@@ -1,0 +1,62 @@
+.mainDropDown{
+    border: solid black;
+    display: flex;
+    flex-direction: column;
+    width: 190px;
+    height: 200px;
+    border-radius: 25px;
+}
+
+.mainDropDown .userPhoto{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-left: 10px;
+    /* margin-top: 15px; */
+}
+
+.mainDropDown .topOfMainDropDown{
+    display: flex;
+    border-bottom: solid gray;
+    align-items: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-top-left-radius: 21px;
+    border-top-right-radius: 21px;
+}
+.mainDropDown .topOfMainDropDown:hover{
+    background-color: rgb(204, 204, 212);
+    cursor: pointer;
+}
+.mainDropDown .topOfMainDropDown div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mainDropDown .topOfMainDropDown div p {
+    margin: 2px;
+}
+
+.mainDropDown ul li{
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.mainDropDown ul li:hover{
+    background-color: rgb(204, 204, 212);
+    cursor: pointer;
+}
+
+.mainDropDown ul li p{
+    margin: 3px;
+    position: relative;
+    left: 15px;
+}
+
+.mainDropDown ul{
+    margin: 0;
+    padding: 0;
+}
