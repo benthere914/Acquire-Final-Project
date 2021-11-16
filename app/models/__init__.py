@@ -1,3 +1,4 @@
 from .db import db
 from .user import User
-from .categories import Category
+from .category import Category
+from .item import Item
