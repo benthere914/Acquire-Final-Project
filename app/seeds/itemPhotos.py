@@ -1,14 +1,11 @@
 from app.models import db, Item, ItemPhoto
 from faker import Faker
+
 fake = Faker()
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_item_photos():
-
-    # db.session.add(demo)
-    # db.session.add(marnie)
-    # db.session.add(bobbie)
     for i in range(1, len([item for item in Item.query.all()]) + 1):
         db.session.add(ItemPhoto(itemId=i, photoUrl=fake.image_url()))
 

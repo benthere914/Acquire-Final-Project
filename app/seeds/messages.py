@@ -1,7 +1,8 @@
 from app.models import db, Message, MessageBoard
 from faker import Faker
-fake = Faker()
 from datetime import date
+
+fake = Faker()
 
 
 # Adds a demo user, you can add other users here if you want

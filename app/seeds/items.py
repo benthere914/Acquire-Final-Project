@@ -1,16 +1,12 @@
 from app.models import db, Item
 from faker import Faker
 from datetime import date
+
 fake = Faker()
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_items():
-
-    # db.session.add(demo)
-    # db.session.add(marnie)
-    # db.session.add(bobbie)
-
     for i in range(1, 4):
         for j in range(1, 7):
             db.session.add(Item(categoryId=j, sellerId=i, name=fake.name(), description=fake.sentence(), dateListed=date.today(), price=(10 * j * i)))

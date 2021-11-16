@@ -3,23 +3,12 @@ from app.models import db, Category
 
 # Adds a demo user, you can add other users here if you want
 def seed_categories():
-
-    # db.session.add(demo)
-    # db.session.add(marnie)
-    # db.session.add(bobbie)
-    electronics = Category(name='electronics')
-    clothes = Category(name='clothes')
-    sporting_goods = Category(name='sporting_goods')
-    collectables = Category(name='collectables')
-    toys = Category(name='toys')
-    misc = Category(name='misc')
-
-    db.session.add(electronics)
-    db.session.add(clothes)
-    db.session.add(sporting_goods)
-    db.session.add(collectables)
-    db.session.add(toys)
-    db.session.add(misc)
+    db.session.add(Category(name='electronics'))
+    db.session.add(Category(name='clothes'))
+    db.session.add(Category(name='sporting_goods'))
+    db.session.add(Category(name='collectables'))
+    db.session.add(Category(name='toys'))
+    db.session.add(Category(name='misc'))
 
     db.session.commit()
 
