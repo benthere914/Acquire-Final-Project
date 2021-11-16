@@ -11,9 +11,14 @@ const NavBar = () => {
         <>
             <div className='navbar'>
                 <p onClick={() => {history.push('/')}}>Acquire</p>
-                <i className='fas fa-bars' onClick={() => {setDropdown(true)}}></i>
+                <i className='fas fa-bars' onMouseEnter={() => {setDropdown(true)}}></i>
             </div>
-            {dropDown?<MainDropdown/>:null}
+            {dropDown?
+            <div className='dropDownParent' onMouseLeave={() => {setDropdown(false)}}>
+                <MainDropdown/>
+            </div>:null
+            }
+
         </>
     );
 }
