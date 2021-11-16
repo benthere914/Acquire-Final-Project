@@ -7,6 +7,7 @@ const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [viewPassword, setViewPassword] = useState(false)
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -31,34 +32,37 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor='email'>Email</label>
-        <input
-          name='email'
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor='password'>Password</label>
-        <input
-          name='password'
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type='submit'>Login</button>
-      </div>
-    </form>
+    <form onSubmit={onLogin} className='signUpForm'>
+            <h2>Log in to continue</h2>
+            <p>To purchase an item, or to chat with a seller, please log in to your account</p>
+            <div>{errors.map((error, ind) => (<div key={ind}>{error}</div>))}</div>
+            <div className='formData'>
+                <label>Email</label>
+                <input
+                    type='text'
+                    name='email'
+                    onChange={(e) => {setEmail(e.target.value)}}
+                    value={email}
+                    placeholder='Enter your email'>
+                </input>
+            </div>
+
+
+            <div className='formData'>
+                <label>Password</label>
+                <input
+                    type={viewPassword?'text':'password'}
+                    name='password' onChange={(e) => {setPassword(e.target.value)}}
+                    value={password}
+                    placeholder='Create a password'>
+                </input>
+                <i
+                    className={viewPassword?'fas fa-eye':'fas fa-eye-slash'}
+                    onClick={() => {setViewPassword((current) => !current)}}>
+                </i>
+            </div>
+            <button type='submit'>Log in</button>
+        </form>
   );
 };
 
