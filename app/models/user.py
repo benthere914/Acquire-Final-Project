@@ -10,6 +10,12 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    icon = db.Column(db.Text, nullable=False)
+    
+    items = db.relationship('Item', back_populates='seller')
+    message_boards_ = db.relationship('MessageBoard', foreign_keys='MessageBoard.potentialBuyerId', back_populates='buyer')
+    message_boards = db.relationship('MessageBoard',foreign_keys='MessageBoard.sellerId' , back_populates='seller')
+    messages = db.relationship('Message', back_populates='author')
 
     @property
     def password(self):
@@ -26,5 +32,6 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'icon': self.icon
         }
