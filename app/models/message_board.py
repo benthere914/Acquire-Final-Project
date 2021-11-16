@@ -6,9 +6,8 @@ class MessageBoard(db.Model):
     sellerId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, unique=False)
     potentialBuyerId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False, unique=False)
 
-
-    seller = db.relationship('User', back_populates='message_boards')
-    buyer = db.relationship('User', back_populates='message_boards')
+    seller = db.relationship('User', back_populates='message_boards', foreign_keys=[sellerId])
+    buyer = db.relationship('User', back_populates='message_boards_', foreign_keys=[potentialBuyerId])
     def to_dict(self):
         return {
             'id': self.id,

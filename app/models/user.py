@@ -10,7 +10,10 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    icon = db.Column(db.Text)
+    icon = db.Column(db.Text, nullable=False)
+    items = db.relationship('Item', back_populates='seller')
+    message_boards = db.relationship('MessageBoard', back_populates='seller')
+    message_boards_ = db.relationship('MessageBoard', back_populates='buyer')
 
     @property
     def password(self):
