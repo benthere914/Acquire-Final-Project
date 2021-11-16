@@ -22,6 +22,7 @@
     left: 35px;
     top: 50px;
     color: rgb(83, 86, 238);
+    cursor: pointer;
 }
 
 .sideAuth img{

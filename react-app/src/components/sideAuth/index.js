@@ -1,9 +1,11 @@
+import { useHistory } from 'react-router-dom'
 import './index.css'
 const SideAuth = () => {
+    const history = useHistory()
     return (
     <>
         <div className='sideAuth'>
-            <h1>Acquire</h1>
+            <h1 onClick={() => {history.push('/')}}>Acquire</h1>
 
             <h2>Sell or buy.</h2>
             <h2>Almost anything.</h2>
