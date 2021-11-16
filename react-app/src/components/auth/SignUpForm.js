@@ -9,13 +9,15 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [icon, setIcon] = useState('');
+
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, email, icon, password));
       if (data) {
         setErrors(data)
       }
@@ -36,6 +38,9 @@ const SignUpForm = () => {
 
   const updateRepeatPassword = (e) => {
     setRepeatPassword(e.target.value);
+  };
+  const updateIcon = (e) => {
+    setIcon(e.target.value);
   };
 
   if (user) {
@@ -83,6 +88,16 @@ const SignUpForm = () => {
           name='repeat_password'
           onChange={updateRepeatPassword}
           value={repeatPassword}
+          required={true}
+        ></input>
+      </div>
+      <div>
+        <label>Icon</label>
+        <input
+          type='text'
+          name='icon'
+          onChange={(e) => {setIcon(e.target.value)}}
+          value={icon}
           required={true}
         ></input>
       </div>
