@@ -9,3 +9,9 @@ class MessageBoard(db.Model):
 
     seller = db.relationship('User', back_populates='message_boards')
     buyer = db.relationship('User', back_populates='message_boards')
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'sellerId': self.sellerId,
+            'potentialBuyerId': self.potentialBuyerId,
+        }

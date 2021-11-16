@@ -10,3 +10,13 @@ class Message(db.Model):
 
     message_board = db.relationship('MessageBoard', back_populates='messages')
     author = db.relationship('User', back_populates='messages')
+
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'messageBoardId': self.messageBoardId,
+            'authorId': self.authorId,
+            'message': self.message,
+            'createdAt': self.createdAt,
+        }

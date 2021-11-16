@@ -12,3 +12,14 @@ class Item(db.Model):
 
     category = db.relationship('Category', back_populates='items')
     seller = db.relationship('User', back_populates='items')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'categoryId': self.categoryId,
+            'sellerId': self.sellerId,
+            'name': self.name,
+            'description': self.description,
+            'dateListed': self.dateListed,
+            'price': self.price
+        }
