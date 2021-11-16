@@ -1,0 +1,19 @@
+.navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.navbar p{
+    margin: 0px 0px 0px 50px;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.navbar i{
+    margin-right: 50px;
+    font-size: 30px;
+    cursor: pointer;
+}

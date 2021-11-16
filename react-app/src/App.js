@@ -29,7 +29,6 @@ function App() {
 
 	return (
 		<BrowserRouter>
-			{/* <NavBar /> */}
 			<Switch>
 				<Route path="/login" exact={true}>
 					<LogIn />
@@ -40,16 +39,22 @@ function App() {
                     <AuthSwitch string={'Do you already have an account'} link='/login'/>
 				</Route>
 				<ProtectedRoute path="/users" exact={true}>
+			        <NavBar />
 					<UsersList />
+                    <Footer />
 				</ProtectedRoute>
 				<ProtectedRoute path="/users/:userId" exact={true}>
+        			<NavBar />
 					<User />
+                    <Footer />
+
 				</ProtectedRoute>
 				<Route path="/" exact={true}>
+			        <NavBar />
 					<h1>My Home Page</h1>
+                    <Footer />
 				</Route>
 			</Switch>
-			{/* <Footer /> */}
 		</BrowserRouter>
 	);
 }
