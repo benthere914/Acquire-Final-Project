@@ -1,6 +1,3 @@
-from enum import unique
-
-from flask.scaffold import F
 from .db import db
 
 class Item(db.Model):
