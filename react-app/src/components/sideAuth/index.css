@@ -1,0 +1,31 @@
+.sideAuth{
+    background-color: rgb(245, 245, 246);
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    padding-left: 45px;
+    height: 100vh;
+}
+
+.sideAuth > h2{
+    position: relative;
+    left: 35px;
+    top: 50px;
+    margin: 1px;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+
+.sideAuth > h1 {
+    position: relative;
+    left: 35px;
+    top: 50px;
+    color: rgb(83, 86, 238);
+}
+
+.sideAuth img{
+    position: relative;
+    top: 150px;
+    right: 45px;
+}
