@@ -8,6 +8,8 @@ class MessageBoard(db.Model):
 
     seller = db.relationship('User', back_populates='message_boards', foreign_keys=[sellerId])
     buyer = db.relationship('User', back_populates='message_boards_', foreign_keys=[potentialBuyerId])
+    messages = db.relationship('Message', back_populates='message_board')
+
     def to_dict(self):
         return {
             'id': self.id,

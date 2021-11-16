@@ -6,7 +6,7 @@ class  ItemPhoto(db.Model):
     itemId = db.Column(db.Integer, db.ForeignKey('items.id'), nullable=False, unique=False)
     photoUrl = db.Column(db.Text, nullable=False)
 
-    item = db.relationship('Item', back_populates='item_phots')
+    item = db.relationship('Item', back_populates='item_photos')
 
     def to_dict(self):
         return {

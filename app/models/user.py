@@ -12,8 +12,9 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     icon = db.Column(db.Text, nullable=False)
     items = db.relationship('Item', back_populates='seller')
-    message_boards = db.relationship('MessageBoard', back_populates='seller')
-    message_boards_ = db.relationship('MessageBoard', back_populates='buyer')
+    message_boards_ = db.relationship('MessageBoard', foreign_keys='MessageBoard.potentialBuyerId', back_populates='buyer')
+    message_boards = db.relationship('MessageBoard',foreign_keys='MessageBoard.sellerId' , back_populates='seller')
+    messages = db.relationship('Message', back_populates='author')
 
     @property
     def password(self):
