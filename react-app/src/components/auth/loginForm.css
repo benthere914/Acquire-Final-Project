@@ -1,0 +1,22 @@
+.logInForm{
+    width: 400px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    padding-top: 35px;
+    padding-left: 40px;
+    position: fixed;
+    right: 500px;
+    top: 150px;
+}
+
+.logInForm p{
+    width: 300px;
+    margin-top: 0;
+}
+
+.logInForm button{
+    width: 330px;
+    height: 35px;
+    cursor: pointer;
+}
