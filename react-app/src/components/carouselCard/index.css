@@ -1,6 +1,13 @@
+.carouselParent{
+    width: 1500px;
+    position: relative;
+}
+
 .carousel-root{
     position: relative;
-    top: 100px;
+    width: 1500px;
+    left: 100px;
+
 }
 
 .control-arrow{
@@ -11,7 +18,6 @@
     height: 363px;
     width: 1500px;
     position: relative;
-    left: 200px;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -64,7 +70,7 @@
     height: 363px;
     width: 1500px;
     position: relative;
-    left: 200px;
+    /* left: 200px; */
     display: flex;
     flex-direction: row;
     margin: 0;
@@ -111,7 +117,7 @@
     height: 363px;
     width: 1500px;
     position: relative;
-    left: 200px;
+    /* left: 200px; */
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -127,6 +133,8 @@
 .carouselCard3 .imagesDiv3{
     height: 363px;
     display: flex;
+    position: relative;
+    right: 50px;
 }
 .carouselCard3 .imagesDiv3 img{
     height: 363px;
@@ -137,7 +145,7 @@
 
 .carouselCard3 .mainDiv3 p{
     color: white;
-    font-size: 70px;
+    font-size: 60px;
     width: 400px;
     text-align: left;
     position: relative;

@@ -3,6 +3,7 @@ const CarouselCard = ({id}) => {
     if (id === 1){
         return (
             <>
+            <div className='carouselParent'>
                 <div className='carouselCard1'>
                     <div className='mainDiv1'>
                         <p className='mainPTag1'>Gifts for the ultimate Gamer</p>
@@ -12,6 +13,7 @@ const CarouselCard = ({id}) => {
                         <img src='https://i.ebayimg.com/images/g/PEgAAOSwVbNhhZLF/s-l960.webp'></img>
                     </div>
                 </div>
+            </div>
             </>
         )
     }
@@ -19,6 +21,7 @@ const CarouselCard = ({id}) => {
     else if (id === 2){
         return (
             <>
+            <div className='carouselParent'>
                 <div className='carouselCard2'>
                     <div className='mainDiv2'>
                         <p className='mainPTag2'>Get more 'OMG' for your buck</p>
@@ -28,12 +31,14 @@ const CarouselCard = ({id}) => {
                         <img src='https://i.ebayimg.com/images/g/0iIAAOSwNjhhhWpu/s-l1600.webp'></img>
                     </div>
                 </div>
+            </div>
             </>
         )
     }
     else if (id === 3){
         return (
             <>
+            <div className='carouselParent'>
             <div className='carouselCard3' style={{backgroundColor: 'rgb(230, 32, 72)'}}>
                 <div className='mainDiv3'>
                     <p>We've got a feeling you'll love these</p>
@@ -44,6 +49,7 @@ const CarouselCard = ({id}) => {
                     <img src='https://i.ebayimg.com/images/g/dCIAAOSwvxtc0K6q/s-l400.webp'></img>
                     <img src='https://i.ebayimg.com/images/g/uAYAAOSwdHhc0K6y/s-l400.webp'></img>
                 </div>
+            </div>
             </div>
 
             </>

@@ -14,7 +14,8 @@ const NavBar = () => {
                 <i className='fas fa-bars' onMouseEnter={() => {setDropdown(true)}}></i>
             </div>
             {dropDown?
-            <div className='dropDownParent' onMouseLeave={() => {setDropdown(false)}}>
+            <div className='dropDownParent'
+                onMouseLeave={() => {setDropdown(false)}}>
                 <MainDropdown/>
             </div>:null
             }
