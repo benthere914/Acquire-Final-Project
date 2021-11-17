@@ -1,4 +1,13 @@
+.carousel-root{
+    position: relative;
+    top: 100px;
+}
+
+.control-arrow{
+    display: none;
+}
 .carouselCard1{
+    cursor: pointer;
     height: 363px;
     width: 1500px;
     position: relative;
@@ -51,6 +60,7 @@
 
 
 .carouselCard2{
+    cursor: pointer;
     height: 363px;
     width: 1500px;
     position: relative;
@@ -94,4 +104,47 @@
     margin: 0;
     bottom: 50px;
     width: 450px;
+}
+
+.carouselCard3{
+    cursor: pointer;
+    height: 363px;
+    width: 1500px;
+    position: relative;
+    left: 200px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(159, 5, 55);
+}
+
+
+.carouselCard3 .mainDiv3{
+    height: 363px;
+}
+.carouselCard3 .imagesDiv3{
+    height: 363px;
+    display: flex;
+}
+.carouselCard3 .imagesDiv3 img{
+    height: 363px;
+    width: 380px;
+    position: relative;
+    left: 30px;
+}
+
+.carouselCard3 .mainDiv3 p{
+    color: white;
+    font-size: 70px;
+    width: 400px;
+    text-align: left;
+    position: relative;
+    bottom: 50px;
+    left: 30px;
+}
+
+.carousel-status{
+    display: none;
 }
