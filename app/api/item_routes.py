@@ -17,3 +17,16 @@ def top_items():
         output[temp['id']] = (temp)
 
     return jsonify(output)
+
+
+@item_routes.route('/<int:id>')
+# @login_required
+def get_item(id):
+    print('got here *************')
+    item = Item.query.get(id)
+    output = {}
+    temp = item.to_dict()
+    temp['photos'] = [photo.to_dict() for photo in item.item_photos]
+    output[temp['id']] = (temp)
+
+    return jsonify(output)

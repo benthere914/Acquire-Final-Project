@@ -5,13 +5,11 @@ import ItemCards from '../itemCard';
 import { Carousel } from 'react-responsive-carousel';
 import Search from '../search';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { getTopItems } from '../../store/items';
-import { useHistory } from 'react-router';
 const SplashPage = () => {
     const dispatch = useDispatch()
     const items = useSelector(state => Object.values(state.items))
-    const history = useHistory()
     useEffect(() => {
         dispatch(getTopItems())
     }, [])

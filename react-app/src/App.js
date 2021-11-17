@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-
 import LogIn from './components/login';
 import SignUp from './components/signup';
 import NavBar from './components/NavBar';
@@ -10,6 +9,7 @@ import AuthSwitch from './components/authSwitch';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import SplashPage from './components/splashPage';
+import ProductPage from './components/productPage';
 import User from './components/User';
 import { authenticate } from './store/session';
 import SideAuth from './components/sideAuth';
@@ -56,6 +56,11 @@ function App() {
 					<SplashPage/>
                     <Footer />
 				</Route>
+                <Route path='/items/:itemId'>
+                    <NavBar/>
+                    <ProductPage/>
+                    <Footer/>
+                </Route>
 			</Switch>
 		</BrowserRouter>
 	);
