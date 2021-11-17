@@ -1,38 +1,26 @@
+import './navBar.css'
+import MainDropdown from './mainDropdown';
+import { useHistory } from 'react-router';
+import { useState } from 'react';
 
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import LogoutButton from './auth/LogoutButton';
 
 const NavBar = () => {
-  return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to='/' exact={true} activeClassName='active'>
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/login' exact={true} activeClassName='active'>
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/sign-up' exact={true} activeClassName='active'>
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to='/users' exact={true} activeClassName='active'>
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <LogoutButton />
-        </li>
-      </ul>
-    </nav>
-  );
+    const history = useHistory()
+    const [dropDown, setDropdown] = useState(false)
+    return (
+        <>
+            <div className='navbar'>
+                <p onClick={() => {history.push('/')}}>Acquire</p>
+                <i className='fas fa-bars' onMouseEnter={() => {setDropdown(true)}}></i>
+            </div>
+            {dropDown?
+            <div className='dropDownParent' onMouseLeave={() => {setDropdown(false)}}>
+                <MainDropdown/>
+            </div>:null
+            }
+
+        </>
+    );
 }
 
 export default NavBar;
