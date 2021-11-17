@@ -1,4 +1,5 @@
 from .db import db
+from .item_photos import ItemPhoto
 
 class Item(db.Model):
     __tablename__ = 'items'
@@ -22,5 +23,6 @@ class Item(db.Model):
             'name': self.name,
             'description': self.description,
             'dateListed': self.dateListed,
-            'price': self.price
+            'price': self.price,
+            # 'photo': ItemPhoto.query.filter(ItemPhoto.itemId == self.id)
         }
