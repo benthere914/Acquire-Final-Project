@@ -1,6 +1,7 @@
 import './index.css'
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import CarouselCard from '../carouselCard';
+import ItemCards from '../itemCard';
 import { Carousel } from 'react-responsive-carousel';
 import Search from '../search';
 import { useSelector, useDispatch } from 'react-redux';
@@ -23,20 +24,7 @@ const SplashPage = () => {
             <CarouselCard id={3}/>
         </Carousel>
         <p className='featuredDeals'>Featured Deals</p>
-        <div className='itemCards'>
-            {items?.map((item) => (
-                <div key={item?.id} className='itemCardDiv' onClick={() => {history.push(`/items/${item?.id}`)}}>
-                    <div className='cardPhotoDiv'>
-                        <img src={item?.photos[0].photoUrl}></img>
-                    </div>
-                    <div>
-                        <p>{item?.name}</p>
-                        <p>{item?.price}</p>
-                        <p className='free shipping'>Free shipping</p>
-                    </div>
-                </div>
-            )) }
-        </div>
+        <ItemCards items={items}/>
     </>
     )
 }
