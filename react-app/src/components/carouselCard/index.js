@@ -6,7 +6,7 @@ const CarouselCard = ({id}) => {
                 <div className='carouselCard1'>
                     <div className='mainDiv1'>
                         <p className='mainPTag1'>Gifts for the ultimate Gamer</p>
-                        <p className='secondaryPTag1'>Score up to 60% off Xbox One, SteelSeries headset, and more</p>
+                        <p className='secondaryPTag1'>Score up to 60% off Xbox One, SteelSeries headset, and more.</p>
                     </div>
                     <div className='imagesDiv1'>
                         <img src='https://i.ebayimg.com/images/g/PEgAAOSwVbNhhZLF/s-l960.webp'></img>
@@ -21,9 +21,8 @@ const CarouselCard = ({id}) => {
             <>
                 <div className='carouselCard2'>
                     <div className='mainDiv2'>
-                        <p>Get more 'OMG' for your buck</p>
-                        <p>Pick from a wide range of holiday gifts at great prices</p>
-                        <button>Shop deals<span><i className='fas fa-arrow-right'></i></span></button>
+                        <p className='mainPTag2'>Get more 'OMG' for your buck</p>
+                        <p className='secondaryPTag2'>Pick from a wide range of holiday gifts at great prices.</p>
                     </div>
                     <div className='imagesDiv2'>
                         <img src='https://i.ebayimg.com/images/g/0iIAAOSwNjhhhWpu/s-l1600.webp'></img>

@@ -68,8 +68,30 @@
 
 .carouselCard2 .imagesDiv2 img{
     height: 363px;
+    object-fit: contain;
 }
 
 .carouselCard2 .mainDiv2{
     color: white;
+}
+
+.carouselCard2 .mainDiv2 .mainPTag2{
+    font-size: 60px;
+    width: 440px;
+    text-align: left;
+    position: relative;
+    left: 55px;
+    bottom: 15px;
+    font-weight: 800;
+}
+
+
+.carouselCard2 .mainDiv2 .secondaryPTag2{
+    font-size: 30px;
+    text-align: left;
+    position: relative;
+    left: 55px;
+    margin: 0;
+    bottom: 50px;
+    width: 450px;
 }
