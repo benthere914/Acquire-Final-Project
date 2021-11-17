@@ -8,23 +8,32 @@ const ProductPage = () => {
     const params = useParams()
     const dispatch = useDispatch()
     const item = useSelector(state => state.selectedItem)
+    const photos = useSelector(state => state.selectedItem.photos)
     useEffect(() => {
         if (params?.itemId){
             const itemId = params?.itemId
             dispatch(getItem(itemId))
-
-
         }
     }, [])
+    useEffect(() => {
+        console.log(photos)
+    },[photos])
     return (
     <>
-        <div>
-            <div>
-            <Carousel autoPlay={true} interval={3000} infiniteLoop={true}>
+        <div className='itemMainDiv'>
+            <div className='itemTopDiv'>
+                <div className='itemTopLeftDiv'>
+                    <Carousel infiniteLoop={true}>
+                        <div className='imageDiv'>
+                            {photos?.map((photo) => (<img src={photo?.photoUrl}></img>))}
+                        </div>
+                    </Carousel>
+                </div>
+                <div className='itemTopRightDiv'>
 
-            </Carousel>
+                </div>
             </div>
-            <div>
+            <div className='itemBottomDiv'>
                 <p>Test2</p>
             </div>
         </div>

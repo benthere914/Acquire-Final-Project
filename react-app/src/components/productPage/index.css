@@ -1,0 +1,43 @@
+.itemMainDiv{
+    /* border: solid black; */
+    margin: 0;
+    padding: 15px;
+    height: 840px;
+}
+
+.itemTopDiv{
+    /* border: solid black; */
+    height: 620px;
+    margin: 15px;
+    display: flex;
+}
+.itemTopLeftDiv{
+    /* border: solid black; */
+    width: 900px;
+    height: 560px;
+    margin: 25px;
+}
+
+.itemTopRightDiv{
+    /* border: solid black; */
+    width: 900px;
+    height: 560px;
+    margin: 25px;
+}
+.itemBottomDiv{
+    /* border: solid black; */
+    height: 160px;
+    margin: 15px;
+}
+.itemTopLeftDiv .carousel-root{
+    /* border: solid black; */
+    width: 900px;
+    position: relative;
+    right: 500px;
+    left: 0;
+    height: 560px;
+}
+.itemTopLeftDiv .carousel-root .imageDiv{
+    width: 800px;
+    height: 400px;
+}
