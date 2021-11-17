@@ -1,0 +1,75 @@
+.carouselCard1{
+    height: 363px;
+    width: 1500px;
+    position: relative;
+    left: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(159, 5, 55);
+}
+
+.carouselCard1 .mainDiv1{
+    color: rgb(255, 222, 199)
+}
+.carouselCard1 .mainDiv1 p{
+    margin: 0;
+    padding: 0;
+}
+.mainPTag1{
+    width: 450px;
+    font-size: 60px;
+    font-weight: 900;
+    text-align: left;
+    position: relative;
+    left: 25px;
+    bottom: 25px;
+}
+
+.secondaryPTag1{
+    font-size: 30px;
+    width: 450px;
+    text-align: left;
+    position: relative;
+    left: 25px;
+}
+.carouselCard1 .imagesDiv1{
+    margin: 0;
+    padding: 0;
+    height: 363px;
+    width: 1000px;
+    position: relative;
+
+}
+
+.carouselCard1 .imagesDiv1 img{
+    position: relative;
+}
+
+
+.carouselCard2{
+    height: 363px;
+    width: 1500px;
+    position: relative;
+    left: 200px;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(103, 2, 36);
+}
+
+.carouselCard2 .imagesDiv2{
+    height: 363px;
+}
+
+.carouselCard2 .imagesDiv2 img{
+    height: 363px;
+}
+
+.carouselCard2 .mainDiv2{
+    color: white;
+}

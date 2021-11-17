@@ -9,8 +9,10 @@ import Footer from './components/footer';
 import AuthSwitch from './components/authSwitch';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
+import SplashPage from './components/splashPage';
 import User from './components/User';
 import { authenticate } from './store/session';
+import SideAuth from './components/sideAuth';
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
@@ -51,7 +53,7 @@ function App() {
 				</ProtectedRoute>
 				<Route path="/" exact={true}>
 			        <NavBar />
-					<h1>My Home Page</h1>
+					<SplashPage/>
                     <Footer />
 				</Route>
 			</Switch>
