@@ -4,11 +4,13 @@ import CarouselCard from '../carouselCard';
 import { Carousel } from 'react-responsive-carousel';
 import Search from '../search';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getTopItems } from '../../store/items';
+import { useHistory } from 'react-router';
 const SplashPage = () => {
     const dispatch = useDispatch()
     const items = useSelector(state => Object.values(state.items))
+    const history = useHistory()
     useEffect(() => {
         dispatch(getTopItems())
     }, [])
@@ -23,7 +25,7 @@ const SplashPage = () => {
         <p className='featuredDeals'>Featured Deals</p>
         <div className='itemCards'>
             {items?.map((item) => (
-                <div key={item?.id} className='itemCardDiv'>
+                <div key={item?.id} className='itemCardDiv' onClick={() => {history.push(`/items/${item?.id}`)}}>
                     <div className='cardPhotoDiv'>
                         <img src={item?.photos[0].photoUrl}></img>
                     </div>
