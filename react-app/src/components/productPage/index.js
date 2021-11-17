@@ -4,11 +4,13 @@ import { useParams } from 'react-router';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getItem } from '../../store/selectedItem';
+import UserTag from '../userTag';
 const ProductPage = () => {
     const params = useParams()
     const dispatch = useDispatch()
     const item = useSelector(state => state.selectedItem)
     const photos = useSelector(state => state.selectedItem.photos)
+    const user = useSelector(state => state.session.user)
     useEffect(() => {
         if (params?.itemId){
             const itemId = params?.itemId
@@ -30,7 +32,7 @@ const ProductPage = () => {
                     </Carousel>
                 </div>
                 <div className='itemTopRightDiv'>
-
+                    <UserTag user={user}/>
                 </div>
             </div>
             <div className='itemBottomDiv'>
