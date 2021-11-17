@@ -1,0 +1,22 @@
+.userTag{
+    display: flex;
+    align-items: center;
+    width: 250px;
+    border: solid gray;
+
+}
+.userTag:hover{
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+}
+
+.userTag img{
+    width: 50px;
+    margin-right: 20px;
+}
+
+.userTagParent{
+    display: flex;
+    align-items: center;
+}

@@ -1,0 +1,121 @@
+.itemMainDiv{
+    /* border: solid black; */
+    margin: 0;
+    padding: 15px;
+    height: 840px;
+}
+
+.itemTopDiv{
+    /* border: solid black; */
+    height: 620px;
+    margin: 15px;
+    display: flex;
+}
+.itemTopLeftDiv{
+    /* border: solid black; */
+    width: 900px;
+    height: 560px;
+    margin: 25px;
+}
+
+.itemTopRightDiv{
+    /* border: solid black; */
+    width: 900px;
+    height: 560px;
+    margin: 25px;
+}
+.itemBottomDiv{
+    /* border: solid black; */
+    height: 160px;
+    margin: 15px;
+}
+.itemTopLeftDiv .carousel-root{
+    /* border: solid black; */
+    width: 900px;
+    position: relative;
+    right: 500px;
+    left: 0;
+    height: 560px;
+}
+.itemTopLeftDiv .carousel-root .imageDiv{
+    width: 800px;
+    height: 400px;
+}
+
+.conditions{
+    display: flex;
+    width: 250px;
+    align-items: center;
+}
+
+.conditions p{
+    font-size: 25px;
+    font-weight: 600;
+}
+p.condition{
+    margin-left: 15px;
+
+}
+
+.counts{
+    display: flex;
+    align-items: center;
+}
+.counts p{
+    font-size: 25px;
+    font-weight: 600;
+}
+p.count{
+    margin-left: 15px;
+
+}
+
+.price_{
+    display: flex;
+    align-items: center;
+}
+.price_ p{
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.fa-slash{
+    font-size: 15px;
+    color: black;
+    position: relative;
+    right: 15px;
+}
+
+.price{
+    margin-left: 15px;
+    display: flex;
+    /* border: solid black; */
+    width: 150px;
+    height: 35px;
+    align-items: center;
+
+}
+
+.discount{
+    display: flex;
+    position: relative;
+    top: 50px;
+    right: 107px;
+    /* margin-left: 25px; */
+    /* border: solid black; */
+    /* width: 200px; */
+    /* height: 30px; */
+}
+
+
+.itemName{
+    font-size: 35px;
+    font-weight: 700;
+    position: relative;
+    bottom: 25px;
+    width: 600px;
+}
+
+.off{
+    margin-left: 15px;
+}
