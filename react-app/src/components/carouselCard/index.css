@@ -1,13 +1,13 @@
 .carouselParent{
     width: 1500px;
-    position: relative;
+    /* position: relative; */
 }
 
 .carousel-root{
-    position: relative;
+    position: absolute;
     width: 1500px;
     left: 180px;
-
+    z-index: 0;
 }
 
 .control-arrow{

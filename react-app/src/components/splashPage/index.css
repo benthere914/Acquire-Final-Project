@@ -1,0 +1,11 @@
+p.featuredDeals{
+    border: solid gray;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 380px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 45px;
+    font-size: 35px;
+}
