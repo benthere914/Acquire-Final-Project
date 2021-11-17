@@ -3,39 +3,50 @@
 // import { NavLink } from 'react-router-dom';
 // import LogoutButton from './auth/LogoutButton';
 import './index.css'
-import { logout } from '../../store/session';
+import { logout, login } from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 
 
 const MainDropdown = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
     const user = useSelector(state => state.session.user)
-    console.log(user)
+    const imgErrorHandler = (e) => {
+        e.target.onerror = null;
+        e.target.src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+    }
     return (
     <>
     {user?.username?
     <div className='mainDropDown'>
-        <div className='topOfMainDropDown'>
-            <img className='userPhoto' src='https://secure.gravatar.com/avatar/5c88f00c5c666cf560ecf0a704b84e35?secure=true&size=300' alt='username'/>
+        <div className='topOfMainDropDown' onClick={() => {history.push(`/users/${user?.id}`)}}>
+            <img
+                className='userPhoto'
+                src={user?.icon}
+                alt='username'
+                onError={(e) => {imgErrorHandler(e)}}
+
+                />
             <div>
-                <p>username</p>
+                <p>{user?.username}</p>
                 <p>See your profile</p>
             </div>
         </div>
         <ul>
-            <li>
+            <li onClick={() => {history.push('/items/new')}}>
                 <i className='fas fa-plus'/>
                 <p>List a new product</p>
             </li>
-            <li>
+            <li onClick={() => {history.push(`/users/${user?.id}/edit`)}}>
                 <i className='fas fa-cog'/>
                 <p>Edit your account</p>
             </li>
-            <li>
+            <li onClick={() => {history.push('messages')}}>
                 <i className='fas fa-comment-dots'/>
                 <p>messages</p>
             </li>
-            <li onClick={() => {dispatch(logout())}}>
+            <li onClick={() => {dispatch(logout()); history.push('/')}}>
                 <i className='fas fa-sign-out-alt'/>
                 <p>Log out</p>
             </li>
@@ -43,22 +54,21 @@ const MainDropdown = () => {
     </div>:
     <div className='mainDropDown' style={{height: 72, width: 125}}>
         <ul>
-            <li style={{borderTopLeftRadius: 22, borderTopRightRadius: 22}}>
+            <li style={{borderTopLeftRadius: 22, borderTopRightRadius: 22}} onClick={() => {history.push('sign-up')}}>
                 <i className='fas fa-plus'/>
                 <p>Sign Up</p>
             </li>
-            <li>
+            <li onClick={() => {history.push('/login')}}>
                 <i className='fas fa-cog'/>
                 <p>Log In</p>
             </li>
-            <li style={{borderBottomLeftRadius: 22, borderBottomRightRadius: 22}}>
+            <li style={{borderBottomLeftRadius: 22, borderBottomRightRadius: 22}} onClick={() => {dispatch(login('demo@aa.io', 'password'))}}>
                 <i className='fas fa-comment-dots'/>
                 <p>Demo</p>
             </li>
         </ul>
     </div>
     }
-
 
     </>
     )
