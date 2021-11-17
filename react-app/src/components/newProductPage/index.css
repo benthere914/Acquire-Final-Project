@@ -1,0 +1,45 @@
+.publishForm{
+    border: solid black;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 7px;
+}
+
+.publishForm input{
+    width: 93%;
+    height: 27px;
+    border: solid gray;
+    font-size: 20px;
+    padding: 5px;
+}
+
+.publishForm p{
+    margin: 5px;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.publishForm button{
+    width: 96%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    /* margin: 10px; */
+    position: relative;
+    /* left: 5px; */
+    height: 30px;
+}
+.publishForm .Dropdown-root{
+    width: 95%;
+    border: solid gray;
+    font-weight: 500;
+    font-size: 20px;
+    color: black;
+}
+
+.Dropdown-option, .Dropdown-placeholder{
+    color: black;
+    font-size: 20px;
+    font-family: 500;
+}
