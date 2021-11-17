@@ -15,3 +15,13 @@ const loadItems = (items) => ({
         dispatch(loadItems(items));
     }
   };
+
+
+  export default function reducer(state = {}, action) {
+    switch (action.type) {
+      case GET_ITEMS:
+        return action.payload 
+      default:
+        return state;
+    }
+  }

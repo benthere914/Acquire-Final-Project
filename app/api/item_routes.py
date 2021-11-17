@@ -9,7 +9,7 @@ item_routes = Blueprint('items', __name__)
 # @login_required
 def top_items():
     print('got here *************')
-    items = Item.query.limit(10).all()
+    items = Item.query.limit(12).all()
     output = {}
     for item in items:
         temp = item.to_dict()
