@@ -24,5 +24,7 @@ def get_item(id):
     item = Item.query.get(id)
     temp = item.to_dict()
     temp['photos'] = [photo.to_dict() for photo in item.item_photos]
-
+    seller = User.query.get(temp['sellerId'])
+    seller = seller.to_dict()
+    temp['seller'] = seller
     return jsonify(temp)

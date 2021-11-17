@@ -28,5 +28,8 @@ class Item(db.Model):
             'description': self.description,
             'dateListed': self.dateListed,
             'price': self.price,
+            'discount': self.discount,
+            'condition': self.condition,
+            'count': self.count
             # 'photo': ItemPhoto.query.filter(ItemPhoto.itemId == self.id)
         }

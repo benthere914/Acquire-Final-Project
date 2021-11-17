@@ -32,12 +32,49 @@ const ProductPage = () => {
                     </Carousel>
                 </div>
                 <div className='itemTopRightDiv'>
-                    <p>{item?.name}</p>
-                    <UserTag user={user}/>
+                    <p className='itemName'>{item?.name}</p>
+                    <UserTag user={item?.seller} extraText={'Sold by'} extraFontSize={25} extraFontWeight={600}/>
+                    <div className='conditions'>
+                        <p>Condition: </p>
+                        <p className='condition'>{item?.condition}</p>
+                    </div>
+                    <div className='counts'>
+                        <p>Quantity:</p>
+                        <p className='count'>{item?.count}</p>
+                    </div>
+                    <div className='price_'>
+                        <p>Price:</p>
+                        {item?.discount == 0?(
+                            <p className='price'>{item?.price}</p>
+                        ):(
+                            <div className='price'>
+                                <p>{`$${item?.price}`}</p>
+                                <i className='fas fa-slash'></i>
+                                <p>{`$${Number(item?.price - Number(item?.price) * (Number(item?.discount / 100)))}`}</p>
+                                <div className='discount'>
+                                    <p>{item?.discount}</p>
+                                    <p>%</p>
+                                    <p className='off'>Off</p>
+                                </div>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
             <div className='itemBottomDiv'>
-                <p>Test2</p>
+                {item?.sellerId == user?.id?(
+                    <div>
+                       <p>You Own this</p>
+                       <button>Edit</button>
+                       <button>Delete</button>
+                    </div>
+                ):(<div style={{display: 'flex', 'alignItems': 'center', 'width': 250, justifyContent: 'space-around'}}>
+                <div style={{display: 'flex', 'alignItems': 'center'}}>
+                <i className='fas fa-dollar-sign'/>
+                <p style={{marginLeft: 5}}>Have one to sell?</p>
+                </div>
+                <button>Sell Now</button>
+            </div>)}
             </div>
         </div>
     </>
