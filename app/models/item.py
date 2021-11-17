@@ -1,3 +1,4 @@
+from threading import Condition
 from .db import db
 from .item_photos import ItemPhoto
 
@@ -10,6 +11,9 @@ class Item(db.Model):
     description = db.Column(db.String(255), nullable=False)
     dateListed = db.Column(db.DateTime(), nullable=False)
     price = db.Column(db.Float, nullable=False)
+    discount = db.Column(db.Integer, nullable=False, default=0)
+    condition=db.Column(db.String(15), nullable=False, default='Used')
+    count = db.Column(db.Integer, nullable=False, default=1)
 
     category = db.relationship('Category', back_populates='items')
     seller = db.relationship('User', back_populates='items')

@@ -32,6 +32,7 @@ const ProductPage = () => {
                     </Carousel>
                 </div>
                 <div className='itemTopRightDiv'>
+                    <p>{item?.name}</p>
                     <UserTag user={user}/>
                 </div>
             </div>
