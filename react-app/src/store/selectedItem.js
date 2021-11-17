@@ -8,7 +8,7 @@ const loadItem = (item) => ({
 
 
   export const getItem = (itemId) => async (dispatch) => {
-    const response = await fetch(`/api/item/${itemId}`)
+    const response = await fetch(`/api/items/${itemId}`)
 
     if (response.ok) {
         const item = await response.json()

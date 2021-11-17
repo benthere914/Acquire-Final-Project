@@ -3,6 +3,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { useParams } from 'react-router';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { getItem } from '../../store/selectedItem';
 const ProductPage = () => {
     const params = useParams()
     const dispatch = useDispatch()
@@ -10,6 +11,7 @@ const ProductPage = () => {
     useEffect(() => {
         if (params?.itemId){
             const itemId = params?.itemId
+            dispatch(getItem(itemId))
 
 
         }
