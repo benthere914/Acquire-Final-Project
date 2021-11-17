@@ -1,0 +1,45 @@
+.search{
+    display: flex;
+    width: 1000px;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    left: 400px;
+    bottom: 40px;
+    border: solid black;
+}
+.search input{
+    width: 730px;
+    height: 40px;
+    padding-left: 15px;
+    font-size: 25px;
+    position: relative;
+    /* right: 50px; */
+}
+
+.search i{
+    position: relative;
+    right: 3px;
+    /* left: 5px; */
+    /* bottom: 2px; */
+}
+.search p{
+    /* border: solid gray; */
+    width: 70px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    /* right: 100px; */
+    left: 10px;
+    cursor: pointer;
+
+}
+
+.Dropdown-root{
+    width: 170px;
+    cursor: pointer;
+}
+
+div.Dropdown-control{
+    cursor: pointer;
+}
