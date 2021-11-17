@@ -13,7 +13,6 @@ const SignUpForm = () => {
     const [viewPassword, setViewPassword] = useState(false)
     const [repeatPassword, setRepeatPassword] = useState('');
     const [viewRepeatPassword, setViewRepeatPassword] = useState(false)
-    const [validImg, setValidImg] = useState(true)
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
@@ -28,7 +27,6 @@ const SignUpForm = () => {
     const imgErrorHandler = (e) => {
         e.target.onerror = null;
         e.target.src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
-        setValidImg(false)
     }
     if (user) {
         return <Redirect to='/' />;
@@ -41,8 +39,8 @@ const SignUpForm = () => {
                 <p>To purchase an item, or to chat with a seller, please create your account</p>
                 <img
                     src={icon?icon:'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png'}
+                    alt='user Icon'
                     onError={(e) => {imgErrorHandler(e)}}
-                    onLoad={()=> {setValidImg(true)}}
                 />
                 <div>{errors.map((error, ind) => (<div key={ind}>{error}</div>))}</div>
                 <div className='formData'>
@@ -104,9 +102,9 @@ const SignUpForm = () => {
                         onClick={() => {setViewRepeatPassword((current) => !current)}}>
                     </i>
                 </div>
-                <button type='submit'>Sign Up</button>
+                <button style={{height: 500}} className='signUpButton' type='submit'>Sign Up</button>
             </form>
-            
+
         </>
   );
 };

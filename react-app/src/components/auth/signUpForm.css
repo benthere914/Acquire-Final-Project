@@ -23,9 +23,9 @@
     border-radius: 50%;
 }
 
-.signUpForm button{
+button.signUpButton{
     width: 330px;
-    height: 35px;
+    height: 500px;
     cursor: pointer;
 }
 

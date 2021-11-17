@@ -20,13 +20,7 @@ const LoginForm = () => {
     }
   };
 
-  const updateEmail = (e) => {
-    setEmail(e.target.value);
-  };
 
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
 
   if (user) {
     return <Redirect to='/' />;
@@ -63,6 +57,8 @@ const LoginForm = () => {
                 </i>
             </div>
             <button type='submit'>Log in</button>
+            <button type='button' onClick={() => {dispatch(login('demo@aa.io', 'password'))}}>Log in as the Demo</button>
+
         </form>
   );
 };
