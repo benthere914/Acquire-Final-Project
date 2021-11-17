@@ -11,6 +11,10 @@
     margin: 0;
 }
 
+.publishForm form{
+    width: 100%;
+}
+
 .publishForm input{
     width: 93%;
     height: 27px;

@@ -1,6 +1,8 @@
-from flask import Blueprint, jsonify
+import re
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Item, ItemPhoto
+from app.models import User, Item, ItemPhoto, Category, db
+from datetime import date
 
 item_routes = Blueprint('items', __name__)
 
@@ -28,3 +30,14 @@ def get_item(id):
     seller = seller.to_dict()
     temp['seller'] = seller
     return jsonify(temp)
+
+
+@item_routes.route('/', methods=['POST'])
+def add_item():
+    print('got here *************')
+    body = request.get_json()
+    category_id = Category.query.filter(Category.name == body['category']['value']).first().to_dict()['id']
+    item = Item(categoryId=category_id, sellerId=body['userId'], name=body['title'], description=body['description'], dateListed=date.today(), price=int(body['price']), discount=0, condition=body['condition']['value'], count=int(body['quantity']))
+    db.session.add(item)
+    db.session.commit()
+    return jsonify({'message': 'success', 'id': item.to_dict()['id']})

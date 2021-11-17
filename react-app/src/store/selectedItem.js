@@ -1,4 +1,4 @@
-const GET_ITEM = 'items/GET_ITEM'
+const GET_ITEM = 'selected_item/GET_ITEM'
 
 
 const loadItem = (item) => ({
