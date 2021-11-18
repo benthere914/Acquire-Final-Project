@@ -16,11 +16,20 @@ const loadItems = (items) => ({
     }
   };
 
+  export const getUsersItems = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}/items`)
+
+    if (response.ok) {
+        const items = await response.json()
+        dispatch(loadItems(items));
+    }
+  };
+
 
   export default function reducer(state = {}, action) {
     switch (action.type) {
       case GET_ITEMS:
-        return action.payload 
+        return action.payload
       default:
         return state;
     }

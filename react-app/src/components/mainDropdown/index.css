@@ -8,7 +8,8 @@
     position: fixed;
     right: 15px;
     top: 50px;
-    z-index: 5000;
+    z-index: 5;
+    background-color: white;
 }
 
 .mainDropDown .userPhoto{
