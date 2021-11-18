@@ -10,7 +10,7 @@ const ItemCards = ({items}) => {
                     <div className='cardPhotoDiv'>
                         <img src={item?.photos[0].photoUrl}></img>
                     </div>
-                    <div>
+                    <div className='cardData'>
                         <p>{item?.name}</p>
                         <p>{item?.price}</p>
                         <p className='free shipping'>Free shipping</p>

@@ -3,12 +3,14 @@ from app.models import db, Category
 
 # Adds a demo user, you can add other users here if you want
 def seed_categories():
-    db.session.add(Category(name='electronics'))
-    db.session.add(Category(name='clothes'))
-    db.session.add(Category(name='sporting_goods'))
-    db.session.add(Category(name='collectables'))
-    db.session.add(Category(name='toys'))
-    db.session.add(Category(name='misc'))
+    options = ['All Categories','Antiques','Art','Baby','Books','Business & Industrial',
+    'Cameras & Photo','Clothing, Shoes, & Accessories','Coins & Paper Money','Collectibles',
+    'Computers/Tablets & Networking','Consumer Electronics','Crafts','Dolls & Bears','DVDs & Movies',
+    'Entertainment Memorabillia','Gift Cards & Coupons','Health & Beauty','Home & Garden','Jewely & Watches',
+    'Music','Musical Instruments & Gear','Pet Supplies','Pottery & Glass','Sporting Goods','Sports Memorabillia',
+    'Stamps','Tickets & Experiences','Toys & hobbies','Travel','Video Games & Consoles','Everything Else']
+    for option in options:
+        db.session.add(Category(name=option))
 
     db.session.commit()
 

@@ -16,11 +16,13 @@ const SplashPage = () => {
     return (
     <>
         <Search/>
-        <Carousel autoPlay={true} interval={3000} infiniteLoop={true}>
-            <CarouselCard id={1}/>
-            <CarouselCard id={2}/>
-            <CarouselCard id={3}/>
-        </Carousel>
+        <div className='splashDivCarousel'>
+            <Carousel autoPlay={true} interval={3000} infiniteLoop={true}>
+                <CarouselCard id={1}/>
+                <CarouselCard id={2}/>
+                <CarouselCard id={3}/>
+            </Carousel>
+        </div>
         <p className='featuredDeals'>Featured Deals</p>
         <ItemCards items={items}/>
     </>

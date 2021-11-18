@@ -10,6 +10,8 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import SplashPage from './components/splashPage';
 import ProductPage from './components/productPage';
+import NewProductPage from './components/newProductPage';
+import EditProductPage from './components/editProductPage';
 import User from './components/User';
 import { authenticate } from './store/session';
 import SideAuth from './components/sideAuth';
@@ -56,6 +58,16 @@ function App() {
 					<SplashPage/>
                     <Footer />
 				</Route>
+                <Route path='/items/new'>
+                    <NavBar/>
+                    <NewProductPage/>
+                    <Footer/>
+                </Route>
+                <Route path='/items/:itemId/edit'>
+                    <NavBar/>
+                    <EditProductPage/>
+                    <Footer/>
+                </Route>
                 <Route path='/items/:itemId'>
                     <NavBar/>
                     <ProductPage/>
