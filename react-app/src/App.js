@@ -12,6 +12,7 @@ import SplashPage from './components/splashPage';
 import ProductPage from './components/productPage';
 import NewProductPage from './components/newProductPage';
 import EditProductPage from './components/editProductPage';
+import ProfilePage from './components/profile';
 import User from './components/User';
 import SellAnotherProductPage from './components/sellSameProductPage';
 import { authenticate } from './store/session';
@@ -49,7 +50,7 @@ function App() {
 				</ProtectedRoute>
 				<ProtectedRoute path="/users/:userId" exact={true}>
         			<NavBar />
-					<User />
+					<ProfilePage />
                     <Footer />
 
 				</ProtectedRoute>

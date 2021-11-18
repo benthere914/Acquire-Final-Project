@@ -1,0 +1,31 @@
+.userProfile .itemCards{
+    position: relative;
+    top: 100px;
+}
+
+.userProfile .userTag{
+    position: relative;
+    top: 50px;
+    left: 50px;
+}
+
+.editAccountButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 350px;
+    bottom: 22px;
+    border: solid gray;
+    width: 240px;
+    height: 40px;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.editAccountButton:hover{
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+}
