@@ -122,14 +122,20 @@ p.count{
 
 .itemTopLeftDiv .carousel-root .carousel.carousel-slider .slider-wrapper .slider .slide img{
     width: 600px;
-    height: 500px;
+    height: 550px;
     overflow: hidden;
     object-fit: contain;
+}
+
+.itemTopLeftDiv .carousel-root .carousel.carousel-slider .slider-wrapper .slider{
+    height: 550px;
 }
 
 .itemTopLeftDiv .carousel-root .carousel .thumbs-wrapper{
     display: flex;
     justify-content: center;
+    position: relative;
+    right: 15px;
 }
 
 .itemBottomDiv{
@@ -160,4 +166,10 @@ p.count{
 .itemTopRightDiv p{
     font-size: 25px;
     font-weight: 600;
+}
+
+.itemTopLeftDiv .carousel-root{
+    position: relative;
+    bottom: 70px;
+    right: 20px;
 }

@@ -1,11 +1,10 @@
 import './index.css'
 import Dropdown from 'react-dropdown';
-import { useSelector, useDispatch } from "react-redux"
+import { useSelector } from "react-redux"
 import { useState } from "react"
 import { Carousel } from 'react-responsive-carousel';
 import { useHistory } from 'react-router';
 const NewProductPage = () => {
-    const dispatch = useDispatch()
     const history = useHistory()
     const imgErrorHandler = (e) => {
         e.target.onerror = null;
@@ -74,7 +73,7 @@ const NewProductPage = () => {
             }),
           });
             if (response.ok) {
-                const item = await response.json().then((e) => {history.push(`/items/${e['id']}`)})
+                await response.json().then((e) => {history.push(`/items/${e['id']}`)})
             }
 
     }
@@ -110,16 +109,19 @@ const NewProductPage = () => {
                 <p>{title || 'Example'}</p>
                     <Carousel>
                             <img
+                            alt='item for sale'
                             className='previewImg'
                             src={icon1}
                             onError={(e) => {imgErrorHandler(e)}}
                             />
                             <img
+                            alt='item for sale'
                             className='previewImg'
                             src={icon2}
                             onError={(e) => {imgErrorHandler(e)}}
                             />
                             <img
+                            alt='item for sale'
                             className='previewImg'
                             src={icon3}
                             onError={(e) => {imgErrorHandler(e)}}

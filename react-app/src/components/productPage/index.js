@@ -32,7 +32,7 @@ const ProductPage = () => {
             }),
           });
             if (response.ok) {
-                const item = await response.json().then((e) => {setError('');history.push(`/`)}).catch(() => {setError('Server Error')})
+                await response.json().then((e) => {setError('');history.push(`/`)}).catch(() => {setError('Server Error')})
             }
             else{
                 setError('Invalid Password')
@@ -54,6 +54,8 @@ const ProductPage = () => {
 
                             {photos?.map((photo) => (
                             <img
+                                key={photo?.id}
+                                alt='item for sale'
                                 src={photo?.photoUrl}
                                 onError={(e) => {imgErrorHandler(e)}}
                             >

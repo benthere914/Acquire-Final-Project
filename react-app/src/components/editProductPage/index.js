@@ -1,5 +1,4 @@
 import './index.css'
-import UserTag from "../userTag"
 import Dropdown from 'react-dropdown';
 import { useSelector, useDispatch } from "react-redux"
 import { useState } from "react"
@@ -31,7 +30,6 @@ const EditProductPage = () => {
         dispatch(getItem(itemId))
     }, [params])
     useEffect(() => {
-        console.log(item)
         setTitle(item?.name)
         setPrice(item?.price)
         setCategory(item?.category?.name)
@@ -104,7 +102,7 @@ const EditProductPage = () => {
             }),
           });
             if (response.ok) {
-                const item = await response.json().then((e) => {history.push(`/items/${e['id']}`)})
+                await response.json().then((e) => {history.push(`/items/${e['id']}`)})
             }
 
     }
@@ -140,16 +138,19 @@ const EditProductPage = () => {
                 <p>{title || 'Example'}</p>
                     <Carousel>
                             <img
+                            alt='item for sale'
                             className='previewImg'
                             src={icon1}
                             onError={(e) => {imgErrorHandler(e)}}
                             />
                             <img
+                            alt='item for sale'
                             className='previewImg'
                             src={icon2}
                             onError={(e) => {imgErrorHandler(e)}}
                             />
                             <img
+                            alt='item for sale'
                             className='previewImg'
                             src={icon3}
                             onError={(e) => {imgErrorHandler(e)}}

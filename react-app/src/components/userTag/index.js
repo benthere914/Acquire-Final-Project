@@ -15,6 +15,7 @@ const UserTag = ({user, extraText, extraFontSize, extraFontWeight}) => {
         {extraText?<p style={{margin: '0px 15px 0px 0px', fontSize: extraFontSize, fontWeight: extraFontWeight}}>{extraText}</p>:null}
         <div className='userTag' onClick={() => {history.push(`/users/${user?.id}`)}}>
             <img
+                alt='user'
                 src={user?.icon}
                 onError={(e) => {imgErrorHandler(e)}}/>
             <p>{user?.username}</p>

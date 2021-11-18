@@ -15,7 +15,6 @@ import EditProductPage from './components/editProductPage';
 import User from './components/User';
 import SellAnotherProductPage from './components/sellSameProductPage';
 import { authenticate } from './store/session';
-import SideAuth from './components/sideAuth';
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
