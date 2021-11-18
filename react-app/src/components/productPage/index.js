@@ -1,11 +1,13 @@
 import './index.css'
 import { Carousel } from 'react-responsive-carousel';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getItem } from '../../store/selectedItem';
 import UserTag from '../userTag';
+import { useState } from 'react';
 const ProductPage = () => {
+    const history = useHistory()
     const imgErrorHandler = (e) => {
         e.target.onerror = null;
         e.target.src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
@@ -38,7 +40,7 @@ const ProductPage = () => {
                             >
 
                             </img>))}
-                        
+
                     </Carousel>
                 </div>
                 <div className='itemTopRightDiv'>
@@ -75,7 +77,7 @@ const ProductPage = () => {
                 {item?.sellerId == user?.id?(
                     <div>
                        <p>You Own this</p>
-                       <button>Edit</button>
+                       <button onClick={() => {history.push(`/items/${item?.id}/edit`)}}>Edit</button>
                        <button>Delete</button>
                     </div>
                 ):(<div style={{display: 'flex', 'alignItems': 'center', 'width': 250, justifyContent: 'space-around'}}>
