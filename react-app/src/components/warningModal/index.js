@@ -7,7 +7,8 @@ const WarningModal = ({mainMessage, mainButtonMessage, secondaryButtonMessage, m
         <div className='warningModal'>
             <p>{mainMessage}</p>
             <div className='warningModalPasswordBox'>
-                {error?<p className='invalidPasswordWarningModal'>Invalid Password</p>:null}
+
+                {error?<p className='invalidPasswordWarningModal'>Password - Invalid Password</p>:<p className='invalidPasswordWarningModal'>Password</p>}
                 <input
                     type={viewPassword?'text':'password'}
                     name='password' onChange={(e) => {setText(e.target.value);setError('')}}

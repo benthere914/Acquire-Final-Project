@@ -13,6 +13,7 @@ import ProductPage from './components/productPage';
 import NewProductPage from './components/newProductPage';
 import EditProductPage from './components/editProductPage';
 import ProfilePage from './components/profile';
+import EditUserPage from './components/editUser';
 import User from './components/User';
 import SellAnotherProductPage from './components/sellSameProductPage';
 import { authenticate } from './store/session';
@@ -48,11 +49,15 @@ function App() {
 					<UsersList />
                     <Footer />
 				</ProtectedRoute>
-				<ProtectedRoute path="/users/:userId" exact={true}>
+				<ProtectedRoute path="/users/:userId/edit" exact={true}>
+        			<NavBar />
+					<EditUserPage />
+                    <Footer />
+				</ProtectedRoute>
+                <ProtectedRoute path="/users/:userId" exact={true}>
         			<NavBar />
 					<ProfilePage />
                     <Footer />
-
 				</ProtectedRoute>
 				<Route path="/" exact={true}>
 			        <NavBar />

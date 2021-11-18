@@ -1,6 +1,10 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
+const UPDATE_USERNAME = 'session/UPDATE_USERNAME'
+const UPDATE_USER_EMAIL = 'session/UPDATE_USER_EMAIL'
+const UPDATE_USER_PASSWORD = 'session/UPDATE_USER_PASSWORD'
+const UPDATE_USER_ICON = 'session/UPDATE_USER_ICON'
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -9,6 +13,26 @@ const setUser = (user) => ({
 
 const removeUser = () => ({
   type: REMOVE_USER,
+})
+
+const updateUserName = (payload) => ({
+    type: UPDATE_USERNAME,
+    payload: payload
+})
+
+const updateUserEmail = (payload) => ({
+    type: UPDATE_USER_EMAIL,
+    payload: payload
+})
+
+const updateUserPassWord = (payload) => ({
+    type: UPDATE_USER_PASSWORD,
+    payload: payload
+})
+
+const updateUserIcon = (payload) => ({
+    type: UPDATE_USER_ICON,
+    payload: payload
 })
 
 const initialState = { user: null };
@@ -70,6 +94,27 @@ export const logout = () => async (dispatch) => {
 };
 
 
+export const deleteAccount = (userId, password) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          password
+        }),
+    })
+    const result = await response.json()
+    if (result.message === 'Success'){
+        dispatch(removeUser());
+        return
+    }
+    else{
+        return result.message
+    }
+
+}
+
 export const signUp = (username, email, icon, password) => async (dispatch) => {
   const response = await fetch('/api/auth/signup', {
     method: 'POST',
@@ -79,7 +124,7 @@ export const signUp = (username, email, icon, password) => async (dispatch) => {
     body: JSON.stringify({
       username,
       email,
-      icon, 
+      icon,
       password,
     }),
   });
@@ -98,12 +143,90 @@ export const signUp = (username, email, icon, password) => async (dispatch) => {
   }
 }
 
+export const updateUsername = (userId, username, password) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username, password
+      })
+    });
+    const result = await response.json()
+    if (result.errors){
+        return result.errorData
+    }
+    dispatch(updateUserName(result))
+
+  }
+
+  export const updateUseremail = (userId, email, password) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email, password
+      })
+    });
+    const result = await response.json()
+    if (result.errors){
+        return result.errorData
+    }
+    dispatch(updateUserEmail(result))
+    return {'password': 'good', 'data': 'good'}
+  }
+
+  export const updateUserPassword = (userId, newPassword, password) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        newPassword, password
+      })
+    });
+    const result = await response.json()
+    if (result.errors){
+        return result.errorData
+    }
+    dispatch(updateUserPassWord(result))
+
+  }
+
+  export const updateUserIcon_ = (userId, newIcon, password) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        newIcon, password
+      })
+    });
+    const result = await response.json()
+    if (result.errors){
+        return result.errorData
+    }
+    dispatch(updateUserIcon(result))
+
+  }
+
 export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
       return { user: action.payload }
     case REMOVE_USER:
       return { user: null }
+    case UPDATE_USERNAME:
+        return {user: action.payload}
+    case UPDATE_USER_EMAIL:
+        return {user: action.payload}
+    case UPDATE_USER_ICON:
+        return {user: action.payload}
     default:
       return state;
   }

@@ -29,7 +29,7 @@ const ProfilePage = () => {
             <div className='userProfile'>
                 <div>
                     <UserTag user={profileUser}/>
-                    {userId === +profileUserId?(<p onClick={() => {history.push(`/users/${userId}/edit`)}} className='editAccountButton'>Edit your account</p>):null}
+                    {userId === +profileUserId && +profileUserId !== +1?(<p onClick={() => {history.push(`/users/${userId}/edit`)}} className='editAccountButton'>Edit your account</p>):null}
                     {userId !== +profileUserId?(<p className='editAccountButton'>{`Message`}</p>):null}
                 </div>
                 <p className='ItemsIntroduction'>{`Items ${profileUser?.username} has for sale`}</p>
