@@ -6,8 +6,8 @@ const loadMessageBoards = (messageBoards) => ({
   });
 
 
-export const getMessageBoards = () => async (dispatch) => {
-    const response = await fetch('/api/messageBoards/')
+export const getMessageBoards = (userId) => async (dispatch) => {
+    const response = await fetch(`/api/users/${userId}/messageBoards/`)
 
     if (response.ok) {
         const messageBoards = await response.json()
