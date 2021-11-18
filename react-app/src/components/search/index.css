@@ -33,12 +33,22 @@
     background-color: rgb(223, 223, 223);
 }
 .Dropdown-root{
-    width: 170px;
+    width: 220px;
+    /* height: 15px; */
     cursor: pointer;
 }
 
-div.Dropdown-control{
+.search div.Dropdown-control{
     cursor: pointer;
     display: flex;
     align-items: center;
+    height: 35px;
+    /* width: 170px; */
+    overflow: hidden;
+}
+
+.search div.Dropdown-control .Dropdown-placeholder{
+    font-size: 22px;
+    overflow: hidden;
+
 }
