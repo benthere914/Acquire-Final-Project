@@ -2,8 +2,10 @@ import './index.css'
 import WarningModal from '../warningModal'
 import { useParams, useHistory } from 'react-router'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import * as sessionActions from '../../store/session'
 const EditUserPage = () => {
+    const dispatch = useDispatch()
     const params = useParams()
     const history = useHistory()
     const user = useSelector(state => state?.session?.user)
@@ -17,6 +19,10 @@ const EditUserPage = () => {
     const [viewPassword, setViewPassword] = useState(false)
     const [deleteModal, setDeleteModal] = useState(false)
     const [error, setError] = useState('')
+    const [badPassword, setBadPassword] = useState(false)
+    const [badData, setBadData] = useState(false)
+    const [passwordError, setPasswordError] = useState('')
+    const [dataError, setDataError] = useState('')
 
     const editModalButtonHandler = (title) => {
         setData('')
@@ -35,6 +41,42 @@ const EditUserPage = () => {
     const imgErrorHandler = (e) => {
         e.target.onerror = null;
         e.target.src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+    }
+
+    const reset = (e) => {
+        console.log(e)
+        if (e){
+            if (e?.password !== 'good'){
+                setBadPassword(true)
+                setPasswordError(` - ${e?.password}`)
+            }else{
+                setBadPassword(false)
+                setPasswordError('')
+            }
+            if (e?.data !== 'good'){
+                setBadData(true)
+                setDataError(` - ${e?.data}`)
+            }else{
+                setBadData(false)
+                setDataError('')
+            }
+
+        }
+    }
+
+    const editUserHandler = () => {
+        if (editModalTitle === 'User Name'){
+            dispatch(sessionActions.updateUsername(userId, data, password)).then((e) => {reset(e)})
+        }
+        else if (editModalTitle === 'Email'){
+            dispatch(sessionActions.updateUseremail(userId, data, password)).then((e) => {reset(e)})
+        }
+        else if (editModalTitle === 'Password'){
+            dispatch(sessionActions.updateUserPassword(userId, data, password)).then((e) => {reset(e)})
+        }
+        else if (editModalTitle === 'Icon'){
+            dispatch(sessionActions.updateUserIcon_(userId, data, password)).then((e) => {reset(e)})
+        }
     }
     useEffect(() => {setUserId(params?.userId)},[params])
     useEffect(() => {if (userId && user?.id){setUserIdLoaded(true)}}, [userId, user])
@@ -100,10 +142,11 @@ const EditUserPage = () => {
                     </div>
                     <div>
                         <div className='formData'>
-                            <label>{editModalTitle}</label>
+                            <label>{editModalTitle}{dataError}</label>
                             <input
+                                style={badData?{border: 'solid 1px red'}:null}
                                 type='text'
-                                onChange={(e) => {setData(e.target.value)}}
+                                onChange={(e) => {setData(e.target.value);setBadData(false);setDataError('')}}
                                 value={data}
                                 placeholder={`Enter Your New ${editModalTitle}`} >
                             </input>
@@ -111,10 +154,11 @@ const EditUserPage = () => {
 
 
                         <div className='formData'>
-                            <label>Password</label>
+                            <label>Password{passwordError}</label>
                             <input
+                                style={badPassword?{border:'solid 1px red'}:null}
                                 type={viewPassword?'text':'password'}
-                                name='password' onChange={(e) => {setPassword(e.target.value)}}
+                                name='password' onChange={(e) => {setPassword(e.target.value);setBadPassword(false);setPasswordError('')}}
                                 value={password}
                                 placeholder='Enter Your Password'>
                             </input>
@@ -126,7 +170,7 @@ const EditUserPage = () => {
                     </div>
                     <div className='editUserButtons'>
                         <p onClick={() => {cancelEditModalHandler()}} className='cancelEditUser'>Cancel</p>
-                        <p className='submitEditUser'>Submit</p>
+                        <p className='submitEditUser' onClick={() => {editUserHandler()}}>Submit</p>
                     </div>
                 </div>
             :null}
