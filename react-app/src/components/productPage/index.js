@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getItem } from '../../store/selectedItem';
 import UserTag from '../userTag';
+import WarningModal from '../warningModal';
 import { useState } from 'react';
 const ProductPage = () => {
     const history = useHistory()
@@ -17,6 +18,7 @@ const ProductPage = () => {
     const item = useSelector(state => state.selectedItem)
     const photos = useSelector(state => state.selectedItem.photos)
     const user = useSelector(state => state.session.user)
+    const [deleteModal, setDeleteModal] = useState(false)
     useEffect(() => {
         if (params?.itemId){
             const itemId = params?.itemId
@@ -78,17 +80,18 @@ const ProductPage = () => {
                     <div>
                        <p>You Own this</p>
                        <button onClick={() => {history.push(`/items/${item?.id}/edit`)}}>Edit</button>
-                       <button>Delete</button>
+                       <button onClick={() => {setDeleteModal(true)}}>Delete</button>
                     </div>
-                ):(<div style={{display: 'flex', 'alignItems': 'center', 'width': 250, justifyContent: 'space-around'}}>
+                ):user?.id?(<div style={{display: 'flex', 'alignItems': 'center', 'width': 250, justifyContent: 'space-around'}}>
                 <div style={{display: 'flex', 'alignItems': 'center'}}>
                 <i className='fas fa-dollar-sign'/>
                 <p style={{marginLeft: 5}}>Have one to sell?</p>
                 </div>
                 <button>Sell Now</button>
-            </div>)}
+            </div>):null}
             </div>
         </div>
+        {deleteModal?<WarningModal message='Are you sure you want to delete this post? This can not be undone'/>:null}
     </>
     )
 }
