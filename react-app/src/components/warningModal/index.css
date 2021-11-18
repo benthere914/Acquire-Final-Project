@@ -45,8 +45,14 @@
 
 p.invalidPasswordWarningModal{
     position: absolute;
-    bottom: 235px;
+    bottom: 240px;
     font-size: 25px;
     z-index: 1;
     font-weight: 300;
+    left: 35px;
+
+}
+
+h4.invalidPasswordWarningModal{
+    position: absolute;
 }

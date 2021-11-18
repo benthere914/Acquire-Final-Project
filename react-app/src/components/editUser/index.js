@@ -1,4 +1,5 @@
 import './index.css'
+import WarningModal from '../warningModal'
 import { useParams, useHistory } from 'react-router'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -14,6 +15,9 @@ const EditUserPage = () => {
     const [data, setData] = useState('')
     const [password, setPassword] = useState('')
     const [viewPassword, setViewPassword] = useState(false)
+    const [deleteModal, setDeleteModal] = useState(false)
+    const [error, setError] = useState('')
+
     const editModalButtonHandler = (title) => {
         setData('')
         setPassword('')
@@ -21,6 +25,13 @@ const EditUserPage = () => {
         setEditModalTitle(title);
         setEditModal(true)
     }
+    const cancelEditModalHandler = () => {
+        setData('')
+        setPassword('')
+        setViewPassword(false)
+        setEditModal(false)
+    }
+    const deleteUserHandler = () => {}
     const imgErrorHandler = (e) => {
         e.target.onerror = null;
         e.target.src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
@@ -39,7 +50,7 @@ const EditUserPage = () => {
                     onError={(e) => {imgErrorHandler(e)}}
                 />
                 <p>{user?.username}</p>
-                <div className='editUserDelete'>Delete Account</div>
+                <div onClick={() => {setDeleteModal(true)}} className='editUserDelete'>Delete Account</div>
 
             </div>
             <div className='editUserForms'>
@@ -114,7 +125,7 @@ const EditUserPage = () => {
                         </div>
                     </div>
                     <div className='editUserButtons'>
-                        <p className='cancelEditUser'>Cancel</p>
+                        <p onClick={() => {cancelEditModalHandler()}} className='cancelEditUser'>Cancel</p>
                         <p className='submitEditUser'>Submit</p>
                     </div>
                 </div>
@@ -124,6 +135,19 @@ const EditUserPage = () => {
             </div>
         </div>
 :null}
+{deleteModal?(
+            <WarningModal
+                mainMessage='Are you sure you want to delete Your account? This can not be undone'
+                mainButtonMessage={'Yes, I\'m sure. Delete My Account'}
+                secondaryButtonMessage={'No. I\'m not sure.'}
+                mainFunc={deleteUserHandler}
+                setWarningModal={setDeleteModal}
+                text={password}
+                setText={setPassword}
+                error={error}
+                setError={setError}
+            />
+        ):null}
     </>
     )
 }
