@@ -44,7 +44,7 @@ const MainDropdown = () => {
                 <p>Edit your account</p>
             </li>
             :null}
-            <li onClick={() => {history.push('messages')}}>
+            <li onClick={() => {history.push('/messages')}}>
                 <i className='fas fa-comment-dots'/>
                 <p>messages</p>
             </li>

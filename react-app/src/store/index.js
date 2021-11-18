@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 import session from './session'
 import items from './items'
 import selectedItem from './selectedItem'
+import messageBoards from './messageBoards'
 const rootReducer = combineReducers({
   session,
   items,
-  selectedItem
+  selectedItem,
+  messageBoards
 });
 
 
