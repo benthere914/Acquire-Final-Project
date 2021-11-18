@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
@@ -9,6 +9,8 @@ const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [viewPassword, setViewPassword] = useState(false)
+  const [emailError, setEmailError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -20,6 +22,10 @@ const LoginForm = () => {
     }
   };
 
+  useEffect(() => {
+      setEmailError(errors?.email)
+      setPasswordError(errors?.password)
+  }, [errors])
 
 
   if (user) {
@@ -30,13 +36,14 @@ const LoginForm = () => {
     <form onSubmit={onLogin} className='logInForm'>
             <h2>Log in to continue</h2>
             <p>To purchase an item, or to chat with a seller, please log in to your account</p>
-            <div>{errors.map((error, ind) => (<div key={ind}>{error}</div>))}</div>
+            {/* <div>{errors.map((error, ind) => (<div key={ind}>{error}</div>))}</div> */}
             <div className='formData'>
-                <label>Email</label>
+                <label>Email {emailError}</label>
                 <input
+                    style={emailError?{border:'solid red 1px'}:null}
                     type='text'
                     name='email'
-                    onChange={(e) => {setEmail(e.target.value)}}
+                    onChange={(e) => {setEmail(e.target.value);setEmailError('')}}
                     value={email}
                     placeholder='Enter your email'>
                 </input>
@@ -44,10 +51,11 @@ const LoginForm = () => {
 
 
             <div className='formData'>
-                <label>Password</label>
+                <label>Password {passwordError}</label>
                 <input
+                    style={passwordError?{border: 'solid red 1px'}:null}
                     type={viewPassword?'text':'password'}
-                    name='password' onChange={(e) => {setPassword(e.target.value)}}
+                    name='password' onChange={(e) => {setPassword(e.target.value);setPasswordError('')}}
                     value={password}
                     placeholder='Create a password'>
                 </input>
