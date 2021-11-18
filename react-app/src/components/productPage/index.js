@@ -8,6 +8,7 @@ import UserTag from '../userTag';
 import WarningModal from '../warningModal';
 import { useState } from 'react';
 const ProductPage = () => {
+    const [password, setPassword] = useState('');
     const history = useHistory()
     const imgErrorHandler = (e) => {
         e.target.onerror = null;
@@ -19,15 +20,27 @@ const ProductPage = () => {
     const photos = useSelector(state => state.selectedItem.photos)
     const user = useSelector(state => state.session.user)
     const [deleteModal, setDeleteModal] = useState(false)
+    const deletePostHandler = async () => {
+        const response = await fetch(`/api/items/${params?.itemId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                user, password
+            }),
+          });
+            if (response.ok) {
+                const item = await response.json().then((e) => {history.push(`/`)})
+            }
+
+    }
     useEffect(() => {
         if (params?.itemId){
             const itemId = params?.itemId
             dispatch(getItem(itemId))
         }
     }, [])
-    useEffect(() => {
-        console.log(photos)
-    },[photos])
     return (
     <>
         <div className='itemMainDiv'>
@@ -91,7 +104,17 @@ const ProductPage = () => {
             </div>):null}
             </div>
         </div>
-        {deleteModal?<WarningModal message='Are you sure you want to delete this post? This can not be undone'/>:null}
+        {deleteModal?(
+            <WarningModal
+                mainMessage='Are you sure you want to delete this post? This can not be undone'
+                mainButtonMessage={'Yes, I\'m sure. Delete This Post'}
+                secondaryButtonMessage={'No. I\'m not sure.'}
+                mainFunc={deletePostHandler}
+                setWarningModal={setDeleteModal}
+                text={password}
+                setText={setPassword}
+            />
+        ):null}
     </>
     )
 }

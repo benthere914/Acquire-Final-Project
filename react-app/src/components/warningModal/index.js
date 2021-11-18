@@ -1,17 +1,16 @@
 import './index.css'
 import { useState } from 'react';
-const WarningModal = ({message}) => {
-    const [password, setPassword] = useState('');
+const WarningModal = ({mainMessage, mainButtonMessage, secondaryButtonMessage, mainFunc, setWarningModal, text, setText}) => {
     const [viewPassword, setViewPassword] = useState(false)
     return (
     <>
         <div className='warningModal'>
-            <p>{message}</p>
+            <p>{mainMessage}</p>
             <div className='warningModalPasswordBox'>
                 <input
                     type={viewPassword?'text':'password'}
-                    name='password' onChange={(e) => {setPassword(e.target.value)}}
-                    value={password}
+                    name='password' onChange={(e) => {setText(e.target.value)}}
+                    value={text}
                     placeholder='Enter your password'>
                 </input>
                 <i
@@ -19,7 +18,8 @@ const WarningModal = ({message}) => {
                     onClick={() => {setViewPassword((current) => !current)}}>
                 </i>
             </div>
-            <button>Yes I'm Sure. Delete This Post</button>
+            <button onClick={() => {mainFunc()}}>{mainButtonMessage}</button>
+            <button onClick={() => {setWarningModal(false)}}>{secondaryButtonMessage}</button>
         </div>
     </>
     )

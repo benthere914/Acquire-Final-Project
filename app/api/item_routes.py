@@ -76,3 +76,15 @@ def update_item():
     photo3.photoUrl=body['icon3']
     db.session.commit()
     return jsonify({'message': 'success', 'id': item.to_dict()['id']})
+
+@item_routes.route('/<int:id>', methods=['DELETE'])
+def delete_item(id):
+    print('got here *************')
+    body = request.get_json()
+    user = User.query.get(body['user']['id'])
+    valid = user.check_password(body['password'])
+    if valid:
+        ItemPhoto.query.filter(ItemPhoto.itemId == id).delete()
+        Item.query.filter_by(id=id).delete()
+        db.session.commit()
+    return jsonify({'message': 'success'})
