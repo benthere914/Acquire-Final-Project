@@ -20,6 +20,7 @@ const ProductPage = () => {
     const photos = useSelector(state => state.selectedItem.photos)
     const user = useSelector(state => state.session.user)
     const [deleteModal, setDeleteModal] = useState(false)
+    const [error, setError] = useState('')
     const deletePostHandler = async () => {
         const response = await fetch(`/api/items/${params?.itemId}`, {
             method: 'DELETE',
@@ -31,7 +32,10 @@ const ProductPage = () => {
             }),
           });
             if (response.ok) {
-                const item = await response.json().then((e) => {history.push(`/`)})
+                const item = await response.json().then((e) => {setError('');history.push(`/`)}).catch(() => {setError('Server Error')})
+            }
+            else{
+                setError('Invalid Password')
             }
 
     }
@@ -113,6 +117,8 @@ const ProductPage = () => {
                 setWarningModal={setDeleteModal}
                 text={password}
                 setText={setPassword}
+                error={error}
+                setError={setError}
             />
         ):null}
     </>

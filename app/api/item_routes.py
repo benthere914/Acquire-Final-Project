@@ -87,4 +87,4 @@ def delete_item(id):
         ItemPhoto.query.filter(ItemPhoto.itemId == id).delete()
         Item.query.filter_by(id=id).delete()
         db.session.commit()
-    return jsonify({'message': 'success'})
+        return jsonify({'message': 'success'})
