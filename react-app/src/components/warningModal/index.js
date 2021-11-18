@@ -23,7 +23,7 @@ const WarningModal = ({mainMessage, mainButtonMessage, secondaryButtonMessage, m
                 </i>
             </div>
             <button onClick={() => {mainFunc()}}>{mainButtonMessage}</button>
-            <button onClick={() => {setError('');setWarningModal(false)}}>{secondaryButtonMessage}</button>
+            <button onClick={() => {setError('');setText('');setWarningModal(false)}}>{secondaryButtonMessage}</button>
         </div>
     </>
     )
