@@ -13,6 +13,7 @@ import ProductPage from './components/productPage';
 import NewProductPage from './components/newProductPage';
 import EditProductPage from './components/editProductPage';
 import User from './components/User';
+import SellAnotherProductPage from './components/sellSameProductPage';
 import { authenticate } from './store/session';
 import SideAuth from './components/sideAuth';
 
@@ -61,6 +62,11 @@ function App() {
                 <Route path='/items/new'>
                     <NavBar/>
                     <NewProductPage/>
+                    <Footer/>
+                </Route>
+                <Route path='/items/:itemId/copy'>
+                    <NavBar/>
+                    <SellAnotherProductPage/>
                     <Footer/>
                 </Route>
                 <Route path='/items/:itemId/edit'>

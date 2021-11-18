@@ -75,20 +75,10 @@ const ProductPage = () => {
                     </div>
                     <div className='price_'>
                         <p>Price:</p>
-                        {item?.discount == 0?(
-                            <p className='price'>{item?.price}</p>
-                        ):(
-                            <div className='price'>
-                                <p>{`$${item?.price}`}</p>
-                                <i className='fas fa-slash'></i>
-                                <p>{`$${Number(item?.price - Number(item?.price) * (Number(item?.discount / 100)))}`}</p>
-                                <div className='discount'>
-                                    <p>{item?.discount}</p>
-                                    <p>%</p>
-                                    <p className='off'>Off</p>
-                                </div>
-                            </div>
-                        )}
+                        <p className='price'>{`$${item?.price}`}</p>
+                    </div>
+                    <div>
+                        <p>{item?.description}</p>
                     </div>
                 </div>
             </div>
@@ -104,7 +94,7 @@ const ProductPage = () => {
                 <i className='fas fa-dollar-sign'/>
                 <p style={{marginLeft: 5}}>Have one to sell?</p>
                 </div>
-                <button>Sell Now</button>
+                <button onClick={() => {history.push(`/items/${params?.itemId}/copy`)}}>Sell Now</button>
             </div>):null}
             </div>
         </div>

@@ -3,6 +3,7 @@
     align-items: center;
     width: 250px;
     border: solid gray;
+    height: 50px;
 
 }
 .userTag:hover{

@@ -157,3 +157,7 @@ p.count{
 .itemBottomDiv i{
     color: green;
 }
+.itemTopRightDiv p{
+    font-size: 25px;
+    font-weight: 600;
+}
