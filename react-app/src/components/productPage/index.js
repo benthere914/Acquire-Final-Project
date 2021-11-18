@@ -6,6 +6,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getItem } from '../../store/selectedItem';
 import UserTag from '../userTag';
 const ProductPage = () => {
+    const imgErrorHandler = (e) => {
+        e.target.onerror = null;
+        e.target.src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+    }
     const params = useParams()
     const dispatch = useDispatch()
     const item = useSelector(state => state.selectedItem)
@@ -26,9 +30,15 @@ const ProductPage = () => {
             <div className='itemTopDiv'>
                 <div className='itemTopLeftDiv'>
                     <Carousel infiniteLoop={true}>
-                        <div className='imageDiv'>
-                            {photos?.map((photo) => (<img src={photo?.photoUrl}></img>))}
-                        </div>
+
+                            {photos?.map((photo) => (
+                            <img
+                                src={photo?.photoUrl}
+                                onError={(e) => {imgErrorHandler(e)}}
+                            >
+
+                            </img>))}
+                        
                     </Carousel>
                 </div>
                 <div className='itemTopRightDiv'>

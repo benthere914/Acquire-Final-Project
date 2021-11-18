@@ -40,4 +40,10 @@ def add_item():
     item = Item(categoryId=category_id, sellerId=body['userId'], name=body['title'], description=body['description'], dateListed=date.today(), price=int(body['price']), discount=0, condition=body['condition']['value'], count=int(body['quantity']))
     db.session.add(item)
     db.session.commit()
+    itemId = item.to_dict()['id']
+    db.session.add(ItemPhoto(itemId=itemId, photoUrl=body['icon1']))
+    db.session.add(ItemPhoto(itemId=itemId, photoUrl=body['icon2']))
+    db.session.add(ItemPhoto(itemId=itemId, photoUrl=body['icon3']))
+    db.session.commit()
+
     return jsonify({'message': 'success', 'id': item.to_dict()['id']})

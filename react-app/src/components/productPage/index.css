@@ -119,3 +119,10 @@ p.count{
 .off{
     margin-left: 15px;
 }
+
+.itemTopLeftDiv .carousel-root .carousel.carousel-slider .slider-wrapper .slider .slide img{
+    width: 600px;
+    height: 500px;
+    overflow: hidden;
+    object-fit: contain;
+}
