@@ -68,7 +68,6 @@ def sign_up():
             icon=form.data['icon'],
             password=form.data['password']
         )
-        print(user.to_dict())
         db.session.add(user)
         db.session.commit()
         login_user(user)

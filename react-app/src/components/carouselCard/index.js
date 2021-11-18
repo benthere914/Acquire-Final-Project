@@ -10,7 +10,7 @@ const CarouselCard = ({id}) => {
                         <p className='secondaryPTag1'>Score up to 60% off Xbox One, SteelSeries headset, and more.</p>
                     </div>
                     <div className='imagesDiv1'>
-                        <img src='https://i.ebayimg.com/images/g/PEgAAOSwVbNhhZLF/s-l960.webp'></img>
+                        <img alt='carousel card' src='https://i.ebayimg.com/images/g/PEgAAOSwVbNhhZLF/s-l960.webp'></img>
                     </div>
                 </div>
             </div>
@@ -28,7 +28,7 @@ const CarouselCard = ({id}) => {
                         <p className='secondaryPTag2'>Pick from a wide range of holiday gifts at great prices.</p>
                     </div>
                     <div className='imagesDiv2'>
-                        <img src='https://i.ebayimg.com/images/g/0iIAAOSwNjhhhWpu/s-l1600.webp'></img>
+                        <img alt='carousel card' src='https://i.ebayimg.com/images/g/0iIAAOSwNjhhhWpu/s-l1600.webp'></img>
                     </div>
                 </div>
             </div>
@@ -45,9 +45,9 @@ const CarouselCard = ({id}) => {
                     <button>Shop All Tech <span><i className='fas fa-arrow-right'></i></span></button>
                 </div>
                 <div className='imagesDiv3'>
-                    <img src='https://i.ebayimg.com/images/g/apkAAOSwkSJc0K6h/s-l400.webp'></img>
-                    <img src='https://i.ebayimg.com/images/g/dCIAAOSwvxtc0K6q/s-l400.webp'></img>
-                    <img src='https://i.ebayimg.com/images/g/uAYAAOSwdHhc0K6y/s-l400.webp'></img>
+                    <img alt='carousel card' src='https://i.ebayimg.com/images/g/apkAAOSwkSJc0K6h/s-l400.webp'></img>
+                    <img alt='carousel card' src='https://i.ebayimg.com/images/g/dCIAAOSwvxtc0K6q/s-l400.webp'></img>
+                    <img alt='carousel card' src='https://i.ebayimg.com/images/g/uAYAAOSwdHhc0K6y/s-l400.webp'></img>
                 </div>
             </div>
             </div>

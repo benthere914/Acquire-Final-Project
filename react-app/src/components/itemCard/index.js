@@ -8,7 +8,7 @@ const ItemCards = ({items}) => {
             {items?.map((item) => (
                 <div key={item?.id} className='itemCardDiv' onClick={() => {history.push(`/items/${item?.id}`)}}>
                     <div className='cardPhotoDiv'>
-                        <img src={item?.photos[0].photoUrl}></img>
+                        <img alt='carousel card' src={item?.photos[0].photoUrl}></img>
                     </div>
                     <div className='cardData'>
                         <p>{item?.name}</p>

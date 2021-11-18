@@ -9,7 +9,6 @@ item_routes = Blueprint('items', __name__)
 
 @item_routes.route('/top')
 def top_items():
-    print('got here *************')
     items = Item.query.limit(12).all()
     output = {}
     for item in items:
@@ -22,7 +21,6 @@ def top_items():
 
 @item_routes.route('/<int:id>')
 def get_item(id):
-    print('got here *************')
     item = Item.query.get(id)
     temp = item.to_dict()
     temp['photos'] = [photo.to_dict() for photo in item.item_photos]
@@ -36,7 +34,6 @@ def get_item(id):
 
 @item_routes.route('/', methods=['POST'])
 def add_item():
-    print('got here *************')
     body = request.get_json()
     category_id = Category.query.filter(Category.name == body['category']['value']).first().to_dict()['id']
     item = Item(categoryId=category_id, sellerId=body['userId'], name=body['title'], description=body['description'], dateListed=date.today(), price=int(body['price']), discount=0, condition=body['condition']['value'], count=int(body['quantity']))
@@ -55,7 +52,6 @@ def add_item():
 @item_routes.route('/', methods=['PUT'])
 def update_item():
     body = request.get_json()
-    print(body['category'])
     category_id = Category.query.filter(Category.name == body['category']).first().to_dict()['id']
     item = Item.query.get(body['id'])
     item.categoryId=category_id
@@ -79,7 +75,6 @@ def update_item():
 
 @item_routes.route('/<int:id>', methods=['DELETE'])
 def delete_item(id):
-    print('got here *************')
     body = request.get_json()
     user = User.query.get(body['user']['id'])
     valid = user.check_password(body['password'])
