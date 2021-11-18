@@ -1,6 +1,6 @@
 .userProfile .itemCards{
     position: relative;
-    top: 100px;
+    top: 50px;
 }
 
 .userProfile .userTag{
@@ -15,6 +15,7 @@
     justify-content: center;
     position: relative;
     left: 350px;
+    /* top: 27px; */
     bottom: 22px;
     border: solid gray;
     width: 240px;
@@ -28,4 +29,20 @@
     background-color: gray;
     color: white;
     cursor: pointer;
+}
+
+.ItemsIntroduction{
+    border: solid gray;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    /* top: 80px; */
+    left: 50px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 45px;
+    font-size: 35px;
+    width: 91.5%;
+    z-index: 0;
+    background-color: white;
 }

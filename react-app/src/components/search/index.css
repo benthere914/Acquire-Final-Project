@@ -4,8 +4,8 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
-    left: 400px;
-    bottom: 40px;
+    /* left: 400px; */
+    /* bottom: 40px; */
     /* border: solid black; */
 }
 .search input{
@@ -51,4 +51,14 @@
     font-size: 22px;
     overflow: hidden;
 
+}
+
+.categoryModalButton p{
+    font-size: 20px;
+    height: 45px;
+    width: 1450px;
+    /* border: solid black; */
+    position: relative;
+    right: 50px;
+    text-align: center;
 }

@@ -1,11 +1,12 @@
 import './index.css'
 import UserTag from '../userTag'
-import { useParams } from 'react-router'
+import { useParams, useHistory } from 'react-router'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUsersItems } from '../../store/items'
 import ItemCards from '../itemCard'
 const ProfilePage = () => {
+    const history = useHistory()
     const params = useParams()
     const dispatch = useDispatch()
     const [profileUserId, setProfileUserId] = useState(0)
@@ -28,9 +29,10 @@ const ProfilePage = () => {
             <div className='userProfile'>
                 <div>
                     <UserTag user={profileUser}/>
-                    {userId === +profileUserId?(<p className='editAccountButton'>Edit your account</p>):null}
+                    {userId === +profileUserId?(<p onClick={() => {history.push(`/users/${userId}/edit`)}} className='editAccountButton'>Edit your account</p>):null}
                     {userId !== +profileUserId?(<p className='editAccountButton'>{`Message`}</p>):null}
                 </div>
+                <p className='ItemsIntroduction'>{`Items ${profileUser?.username} has for sale`}</p>
                 <ItemCards items={items}/>
             </div>
             </>

@@ -2,6 +2,7 @@ import './navBar.css'
 import MainDropdown from './mainDropdown';
 import { useHistory } from 'react-router';
 import { useState } from 'react';
+import Search from './search';
 
 
 const NavBar = () => {
@@ -11,6 +12,7 @@ const NavBar = () => {
         <>
             <div className='navbar'>
                 <p onClick={() => {history.push('/')}}>Acquire</p>
+                <Search/>
                 <i className='fas fa-bars' onMouseEnter={() => {setDropdown(true)}}></i>
             </div>
             {dropDown?
