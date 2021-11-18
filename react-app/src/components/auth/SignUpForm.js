@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -13,6 +13,10 @@ const SignUpForm = () => {
     const [viewPassword, setViewPassword] = useState(false)
     const [repeatPassword, setRepeatPassword] = useState('');
     const [viewRepeatPassword, setViewRepeatPassword] = useState(false)
+    const [emailError, setEmailError] = useState('')
+    const [userNameError, setUserNameError] = useState('')
+    const [passwordError, setPasswordError] = useState('')
+    const [repeatPasswordError, setRepeatPasswordError] = useState('')
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
@@ -20,10 +24,18 @@ const SignUpForm = () => {
         e.preventDefault();
         if (password === repeatPassword) {
             const data = await dispatch(signUp(username, email, icon, password));
-            if (data) {setErrors(data)}
+            if (data) {setErrors(data); console.log(errors)}
+        }
+        else{
+            setRepeatPasswordError(' - Password does not match')
         }
     };
+    useEffect(() => {
+        setEmailError(errors?.email)
+        setUserNameError(errors?.username)
+        setPasswordError(errors?.password)
 
+    }, [errors])
     const imgErrorHandler = (e) => {
         e.target.onerror = null;
         e.target.src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
@@ -42,25 +54,31 @@ const SignUpForm = () => {
                     alt='user Icon'
                     onError={(e) => {imgErrorHandler(e)}}
                 />
-                <div>{errors.map((error, ind) => (<div key={ind}>{error}</div>))}</div>
+                {/* <div>{errors.map((error, ind) => (<div key={ind}>{error}</div>))}</div> */}
                 <div className='formData'>
-                    <label>Email</label>
+                    <label>Email {emailError?emailError:null}</label>
                     <input
+                        style={emailError?{border: 'solid red 1px'}:null}
                         type='text'
                         name='email'
-                        onChange={(e) => {setEmail(e.target.value)}}
+                        onChange={(e) => {setEmail(e.target.value);setEmailError('')}}
                         value={email}
-                        placeholder='Enter your email'>
+                        placeholder='Enter your email'
+                        // required={true}
+                        >
+
                     </input>
                 </div>
                 <div className='formData'>
-                    <label>User Name</label>
+                    <label>User Name {userNameError?userNameError:null}</label>
                     <input
+                        style={userNameError?{border: 'solid red 1px'}:null}
                         type='text'
                         name='username'
-                        onChange={(e) => {setUsername(e.target.value)}}
+                        onChange={(e) => {setUsername(e.target.value);setUserNameError('')}}
                         value={username}
-                        placeholder='Create your username'>
+                        placeholder='Create your username'
+                        >
                     </input>
                 </div>
                 <div className='formData'>
@@ -69,18 +87,20 @@ const SignUpForm = () => {
                         type='text'
                         name='icon'
                         onChange={(e) => {setIcon(e.target.value)}}
-                        value={icon}required={true}
+                        value={icon}
                         placeholder='Enter your photo url'>
                     </input>
                     <p>Image changes upon valid url</p>
                 </div>
                 <div className='formData'>
-                    <label>Password</label>
+                    <label>Password {passwordError?passwordError:null}</label>
                     <input
+                        style={passwordError?{border: 'solid red 1px'}:null}
                         type={viewPassword?'text':'password'}
-                        name='password' onChange={(e) => {setPassword(e.target.value)}}
+                        name='password' onChange={(e) => {setPassword(e.target.value);setPasswordError('')}}
                         value={password}
-                        placeholder='Create a password'>
+                        placeholder='Create a password'
+                        >
                     </input>
                     <i
                         className={viewPassword?'fas fa-eye':'fas fa-eye-slash'}
@@ -88,14 +108,16 @@ const SignUpForm = () => {
                     </i>
                 </div>
                 <div className='formData'>
-                    <label>Confirm Password</label>
+                    <label>Confirm Password {repeatPasswordError?repeatPasswordError:null}</label>
                     <input
+                        style={repeatPasswordError?{border: 'solid red 1px'}:null}
                         type={viewRepeatPassword?'text':'password'}
                         name='repeat_password'
-                        onChange={(e) => {setRepeatPassword(e.target.value)}}
+                        onChange={(e) => {setRepeatPassword(e.target.value);setRepeatPasswordError('')}}
                         value={repeatPassword}
-                        required={true}
-                        placeholder='Confirm your password'>
+
+                        placeholder='Confirm your password'
+                        >
                     </input>
                     <i
                         className={viewRepeatPassword?'fas fa-eye':'fas fa-eye-slash'}
