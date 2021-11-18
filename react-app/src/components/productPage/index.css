@@ -126,3 +126,38 @@ p.count{
     overflow: hidden;
     object-fit: contain;
 }
+
+.itemTopLeftDiv .carousel-root .carousel .thumbs-wrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.itemBottomDiv{
+    /* border: solid black; */
+    width: 600px;
+    position: relative;
+    left: 170px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.itemBottomDiv p{
+    text-align: center;
+}
+.itemBottomDiv button{
+    margin-left: 5px;
+    margin-right: 5px;
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.itemBottomDiv i{
+    color: green;
+}
+.itemTopRightDiv p{
+    font-size: 25px;
+    font-weight: 600;
+}

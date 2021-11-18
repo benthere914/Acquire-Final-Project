@@ -7,7 +7,7 @@ import { Carousel } from 'react-responsive-carousel';
 import { useHistory, useParams } from 'react-router';
 import { useEffect } from 'react';
 import { getItem } from '../../store/selectedItem';
-const EditProductPage = () => {
+const SellAnotherProductPage = () => {
     const params = useParams()
     const dispatch = useDispatch()
     const history = useHistory()
@@ -79,10 +79,9 @@ const EditProductPage = () => {
     }, [condition, category])
 
     const publishHandler = async (e) => {
-
         e.preventDefault()
         const response = await fetch(`/api/items/`, {
-            method: 'PUT',
+            method: 'POST',
             headers: {
               'Content-Type': 'application/json',
             },
@@ -90,17 +89,13 @@ const EditProductPage = () => {
                 userId,
                 title,
                 price,
-                category,
-                condition,
+                category: {'value': category},
+                condition: {'value': condition},
                 description,
                 quantity,
                 icon1,
                 icon2,
-                icon3,
-                id: params['itemId'],
-                photo1Id: item?.photos[0].id,
-                photo2Id: item?.photos[1].id,
-                photo3Id: item?.photos[2].id,
+                icon3
             }),
           });
             if (response.ok) {
@@ -168,4 +163,4 @@ const EditProductPage = () => {
     )
 }
 
-export default EditProductPage
+export default SellAnotherProductPage
