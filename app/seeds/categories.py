@@ -3,12 +3,37 @@ from app.models import db, Category
 
 # Adds a demo user, you can add other users here if you want
 def seed_categories():
-    options = ['All Categories','Antiques','Art','Baby','Books','Business & Industrial',
-    'Cameras & Photo','Clothing, Shoes, & Accessories','Coins & Paper Money','Collectibles',
-    'Computers/Tablets & Networking','Consumer Electronics','Crafts','Dolls & Bears','DVDs & Movies',
-    'Entertainment Memorabillia','Gift Cards & Coupons','Health & Beauty','Home & Garden','Jewely & Watches',
-    'Music','Musical Instruments & Gear','Pet Supplies','Pottery & Glass','Sporting Goods','Sports Memorabillia',
-    'Stamps','Tickets & Experiences','Toys & hobbies','Travel','Video Games & Consoles','Everything Else']
+    options = [
+        'All Categories',
+        'Antiques',
+        'Art',
+        'Baby',
+        'Books',
+        'Cameras & Photo',
+        'Clothing, & Shoes',
+        'Collectibles',
+        'Computers & Tables',
+        'Electronics',
+        'Crafts',
+        'Dolls & Bears',
+        'DVDs & Movies',
+        'Entertainment Misc',
+        'Gift Cards',
+        'Health & Beauty',
+        'Home & Garden',
+        'Jewely & Watches',
+        'Music',
+        'Musical Instruments',
+        'Pet Supplies',
+        'Pottery & Glass',
+        'Sporting Goods',
+        'Sports Memorabillia',
+        'Stamps',
+        'Toys & hobbies',
+        'Travel',
+        'Video Games',
+        'Everything Else'
+    ]
     for option in options:
         db.session.add(Category(name=option))
 
