@@ -90,9 +90,15 @@ def update_data(userId):
 @login_required
 def delete_user(userId):
     user = User.query.get(userId)
-    body = request.get_json()
     if (user.username == 'Demo' or user.username == 'demo'):
         return {"message": "Cannot delete this user"}
+    body = request.get_json()
+    items = [item.to_dict() for item in Item.query.filter(Item.sellerId == user.id).all()]
+    for item in items:
+        ItemPhoto.query.filter(ItemPhoto.itemId == item['id']).delete()
+    Item.query.filter(Item.sellerId == user.id).delete()
+
+
     if (user.check_password(body["password"])):
         db.session.delete(user)
         db.session.commit()

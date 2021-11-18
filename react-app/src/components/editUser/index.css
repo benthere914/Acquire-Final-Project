@@ -54,6 +54,11 @@
     align-items: center;
 }
 
+.editUserTop ul li p{
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .editUserDataButton{
     padding: 5px 10px;
     border: solid gray;

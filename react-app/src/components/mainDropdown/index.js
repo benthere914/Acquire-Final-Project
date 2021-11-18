@@ -19,7 +19,7 @@ const MainDropdown = () => {
     return (
     <>
     {user?.username?
-    <div className='mainDropDown'>
+    <div className='mainDropDown' style={user?.id === 1?{height: 170}:null}>
         <div className='topOfMainDropDown' onClick={() => {history.push(`/users/${user?.id}`)}}>
             <img
                 className='userPhoto'
@@ -38,10 +38,12 @@ const MainDropdown = () => {
                 <i className='fas fa-plus'/>
                 <p>List a new product</p>
             </li>
+            {user?.id !== 1?
             <li onClick={() => {history.push(`/users/${user?.id}/edit`)}}>
                 <i className='fas fa-cog'/>
                 <p>Edit your account</p>
             </li>
+            :null}
             <li onClick={() => {history.push('messages')}}>
                 <i className='fas fa-comment-dots'/>
                 <p>messages</p>

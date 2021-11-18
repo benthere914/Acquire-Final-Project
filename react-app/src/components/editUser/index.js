@@ -23,6 +23,7 @@ const EditUserPage = () => {
     const [badData, setBadData] = useState(false)
     const [passwordError, setPasswordError] = useState('')
     const [dataError, setDataError] = useState('')
+    const [deleteModalPassword, setDeleteModalPassword] = useState('')
 
     const editModalButtonHandler = (title) => {
         setData('')
@@ -37,7 +38,21 @@ const EditUserPage = () => {
         setViewPassword(false)
         setEditModal(false)
     }
-    const deleteUserHandler = () => {}
+
+    const logoutHandler = async () => {
+        cancelEditModalHandler()
+        await dispatch(sessionActions.logout())
+        history.push('/')
+    }
+    const deleteUserHandler = () => {
+        dispatch(sessionActions.deleteAccount(userId, deleteModalPassword)).then((e) => {
+            console.log(e)
+            if (e === 'Incorrect Password'){
+                setDeleteModalPassword('')
+                setError('Icorrect Password')
+            }else{logoutHandler()}
+        }
+    )}
     const imgErrorHandler = (e) => {
         e.target.onerror = null;
         e.target.src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
@@ -60,11 +75,14 @@ const EditUserPage = () => {
                 setBadData(false)
                 setDataError('')
             }
-
+        }else{
+            setData('')
+            setPassword('')
         }
     }
 
     const editUserHandler = () => {
+
         if (editModalTitle === 'User Name'){
             dispatch(sessionActions.updateUsername(userId, data, password)).then((e) => {reset(e)})
         }
@@ -80,7 +98,7 @@ const EditUserPage = () => {
     }
     useEffect(() => {setUserId(params?.userId)},[params])
     useEffect(() => {if (userId && user?.id){setUserIdLoaded(true)}}, [userId, user])
-    useEffect(() => {if (userIdLoaded){if (+userId !== +user?.id){history.push('/')}else{setContentLoaded(true)}}}, [userIdLoaded])
+    useEffect(() => {if (userIdLoaded){if ((+userId !== +user?.id) ||  user?.username.toLowerCase() === 'demo'){history.push('/')}else{setContentLoaded(true)}}}, [userIdLoaded])
     return (
     <>
     {contentLoaded?
@@ -186,8 +204,8 @@ const EditUserPage = () => {
                 secondaryButtonMessage={'No. I\'m not sure.'}
                 mainFunc={deleteUserHandler}
                 setWarningModal={setDeleteModal}
-                text={password}
-                setText={setPassword}
+                text={deleteModalPassword}
+                setText={setDeleteModalPassword}
                 error={error}
                 setError={setError}
             />
