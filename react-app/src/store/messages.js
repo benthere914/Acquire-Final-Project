@@ -7,8 +7,7 @@ const loadMessages = (messages) => ({
 
 
 export const getMessages = (messageBoardId) => async (dispatch) => {
-    const response = await fetch(`/api/messageBoards/${messageBoardId}messages`)
-
+    const response = await fetch(`/api/messageBoards/${messageBoardId}/messages`)
     if (response.ok) {
         const messages = await response.json()
         dispatch(loadMessages(messages));

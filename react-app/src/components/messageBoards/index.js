@@ -1,5 +1,8 @@
 import './index.css'
+import { useDispatch } from 'react-redux'
+import { getMessages } from '../../store/messages'
 const MessageBoards = ({setSelectedBoard, selectedBoard={selectedBoard}, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
+    const dispatch = useDispatch()
     return (
         <div className='messageBoards'>
             <p style={{fontSize: 25, margin: '0px 0px 5px 0px', position: 'relative', 'right': 115, fontWeight: 600}}>Chats </p>
@@ -11,7 +14,7 @@ const MessageBoards = ({setSelectedBoard, selectedBoard={selectedBoard}, selecte
                 <i className='fas fa-search'/>
                 <div className='messageBoardTabs'>
                     {selectedMessageBoards.map((board) => (
-                        <div className='messageBoardTab' key={board.id}>
+                        <div onClick={() => {dispatch(getMessages(board?.id))}} className='messageBoardTab' key={board.id}>
                             <img
                                 src={board?.user?.icon}
                                 alt={`chat room with ${board?.user?.username}`}
