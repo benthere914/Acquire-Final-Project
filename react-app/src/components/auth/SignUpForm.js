@@ -24,7 +24,7 @@ const SignUpForm = () => {
         e.preventDefault();
         if (password === repeatPassword) {
             const data = await dispatch(signUp(username, email, icon, password));
-            if (data) {setErrors(data); console.log(errors)}
+            if (data) {setErrors(data)}
         }
         else{
             setRepeatPasswordError(' - Password does not match')

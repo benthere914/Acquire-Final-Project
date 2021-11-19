@@ -46,7 +46,7 @@ const EditUserPage = () => {
     }
     const deleteUserHandler = () => {
         dispatch(sessionActions.deleteAccount(userId, deleteModalPassword)).then((e) => {
-            console.log(e)
+
             if (e === 'Incorrect Password'){
                 setDeleteModalPassword('')
                 setError('Icorrect Password')
@@ -59,7 +59,7 @@ const EditUserPage = () => {
     }
 
     const reset = (e) => {
-        console.log(e)
+        
         if (e){
             if (e?.password !== 'good'){
                 setBadPassword(true)

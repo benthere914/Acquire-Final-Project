@@ -1,19 +1,15 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setMessageBoard } from '../../store/selectedMessageBoard'
+import { useHistory } from 'react-router-dom'
 import './index.css'
 const NewMessageModal = ({setNewMessageModal, receivingUser}) => {
+    const dispatch = useDispatch()
+    const history = useHistory()
     const userId = useSelector(state => state.session.user.id)
     const [message, setMessage] = useState('')
-    const sendMessageHandler = async () => {
-        await fetch('/api/messages/', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                sellerId: receivingUser?.id,
-                buyerId: userId,
-                message
-            })
-        })
+    const sendMessageHandler = () => {
+        dispatch(setMessageBoard(receivingUser?.id, userId, message, 'buyer')).then(() => history.push('/messages'))
     }
     return (
     <>
