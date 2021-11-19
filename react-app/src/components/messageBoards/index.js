@@ -1,7 +1,7 @@
 import './index.css'
 import { useDispatch } from 'react-redux'
 import { getMessages } from '../../store/messages'
-const MessageBoards = ({setSelectedBoard, selectedBoard={selectedBoard}, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
+const MessageBoards = ({setBoardId, setBuyerId, setSellerId, setSelectedBoard, selectedBoard={selectedBoard}, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
     const dispatch = useDispatch()
     return (
         <div className='messageBoards'>
@@ -14,14 +14,14 @@ const MessageBoards = ({setSelectedBoard, selectedBoard={selectedBoard}, selecte
                 <i className='fas fa-search'/>
                 <div className='messageBoardTabs'>
                     {selectedMessageBoards.map((board) => (
-                        <div onClick={() => {dispatch(getMessages(board?.id))}} className='messageBoardTab' key={board.id}>
+                        <div onClick={() => {dispatch(getMessages(board?.id));setBoardId(board?.id);setSellerId(board?.sellerId);setBuyerId(board?.potentialBuyerId)}} className='messageBoardTab' key={board.id}>
                             <img
                                 src={board?.user?.icon}
                                 alt={`chat room with ${board?.user?.username}`}
                                 onError={(e) => {imgErrorHandler(e)}}
                                 />
                             <p className='username'>{board?.user?.username}</p>
-                            <p className='message'>{board?.last_message?.message}</p>
+                            <p className='lastMessage'>{board?.last_message?.message}</p>
                             <p className='timeSince'>{dateConverter(board?.last_message?.createdAt)}</p>
                         </div>
                     ))}

@@ -12,6 +12,8 @@ message_boards_routes = Blueprint('message_boards', __name__)
 def load_messages(message_board_id):
     if any(MessageBoard.query.filter(message_board_id == message_board_id).all()):
         messages = {message.to_dict()['id']: message.to_dict() for message in Message.query.filter(Message.messageBoardId == message_board_id)}
+        for message in messages:
+            messages[message]['author'] = User.query.get(messages[message]['authorId']).to_dict()
         return jsonify(messages)
     else:
         return {'message': 'invalid request'}
