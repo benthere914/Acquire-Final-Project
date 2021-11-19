@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUsersItems } from '../../store/items'
 import ItemCards from '../itemCard'
+import NewMessageModal from '../newMessageModal'
 const ProfilePage = () => {
     const history = useHistory()
     const params = useParams()
@@ -12,8 +13,10 @@ const ProfilePage = () => {
     const [profileUserId, setProfileUserId] = useState(0)
     const [profileUser, setProfileUser] = useState({})
     const [isLoaded, setisLoaded] = useState(false)
+    const [newMessageModal, setNewMessageModal] = useState(false)
     const items = useSelector(state => Object.values(state.items))
     const userId = useSelector(state => state.session.user.id)
+    const user = useSelector(state => state.session.user)
     useEffect(() => {setProfileUserId(params?.userId)}, [params])
     useEffect( async () => {
         const response = await fetch(`/api/users/${profileUserId}`)
@@ -30,11 +33,12 @@ const ProfilePage = () => {
                 <div>
                     <UserTag user={profileUser}/>
                     {userId === +profileUserId && +profileUserId !== +1?(<p onClick={() => {history.push(`/users/${userId}/edit`)}} className='editAccountButton'>Edit your account</p>):null}
-                    {userId !== +profileUserId?(<p className='editAccountButton'>{`Message`}</p>):null}
+                    {userId !== +profileUserId?(<p onClick={() => {setNewMessageModal(true)}} className='editAccountButton'>{`Message`}</p>):null}
                 </div>
                 <p className='ItemsIntroduction'>{`Items ${profileUser?.username} has for sale`}</p>
                 <ItemCards items={items}/>
             </div>
+            {newMessageModal?<NewMessageModal setNewMessageModal={setNewMessageModal} user={user}/>:null}
             </>
         :null}
     </>
