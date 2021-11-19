@@ -1,7 +1,7 @@
 import './index.css'
 import EditMessagePopup from '../editMessagePopup';
 import { useState } from 'react';
-const Message = ({editMessageModal, setEditMessageModal, selectedMessage,setSelectedMessage, userId, message, imgErrorHandler}) => {
+const Message = ({setButtonText, boardId, editMessageModal, setEditMessageModal, selectedMessage,setSelectedMessage, userId, message, imgErrorHandler}) => {
 
     return (
     <>
@@ -15,7 +15,7 @@ const Message = ({editMessageModal, setEditMessageModal, selectedMessage,setSele
                         alt={message?.author?.username}
                         onError={(e) => {imgErrorHandler(e)}}
                     />
-                {editMessageModal && selectedMessage == message?.id?<EditMessagePopup editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} id={message?.id}/>:null}
+                {editMessageModal && selectedMessage == message?.id?<EditMessagePopup setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} id={message?.id}/>:null}
                 </div>
         </>
         :

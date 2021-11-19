@@ -1,19 +1,9 @@
 import './index.css'
-const EditMessagePopup = ({id, editMessageModal, setEditMessageModal, messageText}) => {
+import { useDispatch } from 'react-redux'
+import { getMessages } from '../../store/messages'
+const EditMessagePopup = ({setButtonText, boardId, id, editMessageModal, setEditMessageModal, messageText}) => {
+    const dispatch = useDispatch()
 
-    const editMessageHandler = async () => {
-        setEditMessageModal(false)
-        const response = await fetch(`/api/messages/${id}`,{
-            method: 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({'message': 'test'})
-        })
-        const result = await response.json()
-        if (result.message === 'success'){
-            
-        }
-
-    }
     const deleteMessageHandler = () => {
         setEditMessageModal(false)
 
@@ -22,7 +12,7 @@ const EditMessagePopup = ({id, editMessageModal, setEditMessageModal, messageTex
     return (
     <>
     <div className='editMessagePopup'>
-        <p className='editOption' onClick={() => {editMessageHandler()}}>Edit this message</p>
+        <p className='editOption' onClick={() => {setEditMessageModal(false);setButtonText('Update Message')}}>Edit this message</p>
         <p onClick={() => {deleteMessageHandler()}}>Delete this message</p>
     </div>
     </>

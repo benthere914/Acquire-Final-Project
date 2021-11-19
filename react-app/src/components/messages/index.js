@@ -11,6 +11,7 @@ const Messages = ({boardId, setBoardId, buyerId, setBuyerId, sellerId, setSeller
     const [messageText, setMessageText] = useState('')
     const [selectedMessage, setSelectedMessage] = useState(0)
     const [editMessageModal, setEditMessageModal] = useState(false)
+    const [buttonText, setButtonText] = useState('Send')
 
     const dispatch = useDispatch()
 
@@ -43,15 +44,31 @@ const Messages = ({boardId, setBoardId, buyerId, setBuyerId, sellerId, setSeller
         setMessageText('')
         dispatch(getMessages(boardId))
     }
+
+    const editMessageHandler = async () => {
+
+        const response = await fetch(`/api/messages/${selectedMessage}`,{
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({'message': messageText})
+        })
+        const result = await response.json()
+        if (result.message === 'success'){
+            dispatch(getMessages(boardId))
+            dispatch(getBuyerMessageBoards(userId))
+            dispatch(getSellerMessageBoards(userId))
+        }
+
+    }
     return (
     <>
     {sellerId?
         <div className='messages' onMouseLeave={() => {setEditMessageModal(false)}}>
-        {messages?.map((message) => (<Message editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage} userId={userId} message={message} imgErrorHandler={imgErrorHandler}/>))}
+        {messages?.map((message) => (<Message setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage} userId={userId} message={message} imgErrorHandler={imgErrorHandler}/>))}
         </div>
     :null}
     <input className='newMessageInput' value={messageText} onChange={(e) => {setMessageText(e.target.value)}}></input>
-    <button onClick={() => {sendMessageHandler()}}>Send</button>
+    <button style={buttonText==='Send'?{width: 125}:{width: 200, bottom: 90}} onClick={buttonText === 'Send'?() => {sendMessageHandler()}:() =>  {editMessageHandler();setButtonText('Send');setMessageText('')}}>{buttonText}</button>
     </>
     )
 }
