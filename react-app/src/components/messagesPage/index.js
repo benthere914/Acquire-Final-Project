@@ -30,6 +30,7 @@ const MessagesPage = () => {
         <div>
             <div className='messagesPage'>
                 <MessageBoards
+                    boardId={boardId}
                     setBoardId={setBoardId}
                     setBuyerId={setBuyerId}
                     setSellerId={setSellerId}
