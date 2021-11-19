@@ -1,0 +1,54 @@
+.newMessageModal{
+    border: solid black 1px;
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    position: absolute;
+    top: 200px;
+    left: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+    border-radius: 15px;
+    z-index: 5;
+}
+
+.newMessageModal p{
+    font-size: 35px;
+    font-weight: 700;
+    margin: 10px;
+}
+
+.newMessageModal textarea{
+    font-size: 25px;
+    padding: 15px;
+    border-radius: 15px;
+    resize: none;
+}
+
+.newMessageModal div{
+    position: relative;
+    top: 70px;
+    left: 140px;
+    display: flex;
+    width: 240px;
+}
+
+.newMessageModal div p.send{
+    font-weight: 500;
+    /* padding: 5px 10px; */
+    /* width: 250px; */
+    border: solid gray;
+    border-radius: 5px;
+}
+
+.newMessageModal div p.send:hover{
+    color: white;
+    background-color: gray;
+    cursor: pointer;
+}
+.newMessageModal div p.cancel:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
