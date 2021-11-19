@@ -1,0 +1,11 @@
+.boardSelecterTabs{
+    border: solid black;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    /* top: 900px; */
+    /* left: 500px; */
+}
+.messagesPage{
+    display: flex;
+}

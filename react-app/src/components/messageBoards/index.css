@@ -1,0 +1,70 @@
+.messageBoards{
+    border: solid gray;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+    border-radius: 15px;
+    height: 800px;
+}
+.messageBoardTabs{
+    width: 300px;
+    height: 640px;
+    border: solid black;
+    padding-top: 8px;
+    border-radius: 15px;
+    /* overflow-y: scroll; */
+}
+
+.messageBoardTab img{
+    height: 50px;
+    width: 50px;
+}
+
+.messageBoardTab {
+    padding: 5px;
+    height: 50px;
+}
+.messageBoardTab:hover{
+    cursor: pointer;
+    background-color: lightblue;
+}
+
+.messageBoardTab .username{
+    position: relative;
+    bottom: 65px;
+    left: 55px;
+}
+
+.messageBoardTab .message{
+    position: relative;
+    bottom: 75px;
+    left: 55px;
+    width: 200px;
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.messageBoardTab .timeSince{
+    position: relative;
+    bottom: 110px;
+    left: 265px;
+}
+
+.messagesSearch{
+    position: relative;
+    margin-bottom: 15px;
+    width: 280px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 5px 5px 5px 35px;
+}
+
+.messageBoards i.fa-search{
+    position: relative;
+    bottom: 45px;
+    right: 140px;
+}
