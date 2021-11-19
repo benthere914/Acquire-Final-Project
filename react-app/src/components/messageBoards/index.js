@@ -1,7 +1,7 @@
 import './index.css'
 import { useDispatch } from 'react-redux'
 import { getMessages } from '../../store/messages'
-const MessageBoards = ({setBoardId, setBuyerId, setSellerId, setSelectedBoard, selectedBoard={selectedBoard}, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
+const MessageBoards = ({boardId, setBoardId, setBuyerId, setSellerId, setSelectedBoard, selectedBoard={selectedBoard}, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
     const dispatch = useDispatch()
     return (
         <div className='messageBoards'>
@@ -14,7 +14,7 @@ const MessageBoards = ({setBoardId, setBuyerId, setSellerId, setSelectedBoard, s
                 <i className='fas fa-search'/>
                 <div className='messageBoardTabs'>
                     {selectedMessageBoards.map((board) => (
-                        <div onClick={() => {dispatch(getMessages(board?.id));setBoardId(board?.id);setSellerId(board?.sellerId);setBuyerId(board?.potentialBuyerId)}} className='messageBoardTab' key={board.id}>
+                        <div style={boardId === board?.id?{backgroundColor: 'lightblue'}: null} onClick={() => {dispatch(getMessages(board?.id));setBoardId(board?.id);setSellerId(board?.sellerId);setBuyerId(board?.potentialBuyerId)}} className='messageBoardTab' key={board.id}>
                             <img
                                 src={board?.user?.icon}
                                 alt={`chat room with ${board?.user?.username}`}
