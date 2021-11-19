@@ -1,8 +1,12 @@
 import './index.css'
-const MessageBoards = ({selectedMessageBoards, imgErrorHandler, dateConverter}) => {
+const MessageBoards = ({setSelectedBoard, selectedBoard={selectedBoard}, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
     return (
         <div className='messageBoards'>
-            <p style={{fontSize: 25, margin: '0px 0px 5px 0px', position: 'relative', 'right': 115, fontWeight: 600}}>Chats</p>
+            <p style={{fontSize: 25, margin: '0px 0px 5px 0px', position: 'relative', 'right': 115, fontWeight: 600}}>Chats </p>
+            <div className='messageBoardSelectTabs'>
+                <p style={selectedBoard === 'seller'?{backgroundColor: 'gray', color: 'white'}:null} onClick={() => setSelectedBoard('seller')}>Sell</p>
+                <p style={selectedBoard === 'buyer'?{backgroundColor: 'gray', color: 'white'}:null} onClick={() => setSelectedBoard('buyer')}>Buy</p>
+            </div>
                 <input className='messagesSearch' type='text' placeholder='Search Your Messages'></input>
                 <i className='fas fa-search'/>
                 <div className='messageBoardTabs'>

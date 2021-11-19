@@ -11,8 +11,6 @@ const MessagesPage = () => {
     // console.log(dateDiff())
     const [selectedBoard, setSelectedBoard] = useState('seller')
     const dispatch = useDispatch()
-    const buyerMessageBoards = useSelector(state => Object.values(state.buyerMessageBoards))
-    const sellerMessageBoards = useSelector(state => Object.values(state.sellerMessageBoards))
     const selectedMessageBoards = useSelector(state => Object.values(state[`${selectedBoard}MessageBoards`]))
     const userId = useSelector(state => state.session.user.id)
     useEffect(() => {
@@ -35,10 +33,10 @@ const MessagesPage = () => {
     <>
         <div>
             <div className='messagesPage'>
-                <MessageBoards selectedMessageBoards={selectedMessageBoards} imgErrorHandler={imgErrorHandler} dateConverter={dateConverter}/>
+                <MessageBoards setSelectedBoard={setSelectedBoard} selectedBoard={selectedBoard} selectedMessageBoards={selectedMessageBoards} imgErrorHandler={imgErrorHandler} dateConverter={dateConverter}/>
                 <div className='boardSelecterTabs'>
-                    <p onClick={() => setSelectedBoard('seller')}>Seller</p>
-                    <p onClick={() => setSelectedBoard('buyer')}>Buy</p>
+
+
                 </div>
             </div>
         </div>
