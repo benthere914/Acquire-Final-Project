@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUsersItems } from '../../store/items'
 import ItemCards from '../itemCard'
-import NewMessageModal from '../newMessageModal'
+import SendMessageButton from '../ sendMessageButton'
 const ProfilePage = () => {
     const history = useHistory()
     const params = useParams()
@@ -33,12 +33,12 @@ const ProfilePage = () => {
                 <div>
                     <UserTag user={profileUser}/>
                     {userId === +profileUserId && +profileUserId !== +1?(<p onClick={() => {history.push(`/users/${userId}/edit`)}} className='editAccountButton'>Edit your account</p>):null}
-                    {userId !== +profileUserId?(<p onClick={() => {setNewMessageModal(true)}} className='editAccountButton'>{`Message`}</p>):null}
+                    {userId !== +profileUserId?(<SendMessageButton receivingUser={profileUser}/>):null}
                 </div>
                 <p className='ItemsIntroduction'>{`Items ${profileUser?.username} has for sale`}</p>
                 <ItemCards items={items}/>
             </div>
-            {newMessageModal?<NewMessageModal setNewMessageModal={setNewMessageModal} user={user}/>:null}
+
             </>
         :null}
     </>
