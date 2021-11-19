@@ -7,7 +7,7 @@ from datetime import date
 message_routes = Blueprint('message', __name__)
 
 
-@message_routes.route('/')
+@message_routes.route('/', methods=['POST'])
 def send_message():
     body = request.get_json()
     print(body)
