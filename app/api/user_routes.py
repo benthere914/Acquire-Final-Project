@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Item, ItemPhoto, db, MessageBoard
+from app.models import User, Item, ItemPhoto, db, MessageBoard, Message
 import re
 
 user_routes = Blueprint('users', __name__)
@@ -110,9 +110,15 @@ def delete_user(userId):
 @user_routes.route('/<int:userId>/buyerMessageBoards')
 @login_required
 def get_buyer_message_boards(userId):
-    return jsonify({board.to_dict()['id']:board.to_dict() for board in MessageBoard.query.filter(MessageBoard.potentialBuyerId == userId).all()})
+    boards = {board.to_dict()['id']:board.to_dict() for board in MessageBoard.query.filter(MessageBoard.potentialBuyerId == userId).all()}
+    for board in boards:
+        boards[board]['last message'] = Message.query.filter(Message.authorId == userId).filter(Message.messageBoardId == board).order_by(Message.createdAt.desc()).first().to_dict()['message'][0:40]
+    return jsonify(boards)
 
 @user_routes.route('/<int:userId>/sellerMessageBoards')
 @login_required
 def get_seller_message_boards(userId):
-    return jsonify({board.to_dict()['id']:board.to_dict() for board in MessageBoard.query.filter(MessageBoard.sellerId == userId).all()})
+    boards = {board.to_dict()['id']:board.to_dict() for board in MessageBoard.query.filter(MessageBoard.sellerId == userId).all()}
+    for board in boards:
+        boards[board]['last message'] = Message.query.filter(Message.authorId == userId).filter(Message.messageBoardId == board).order_by(Message.createdAt.desc()).first().to_dict()['message'][0:40]
+    return jsonify(boards)
