@@ -151,3 +151,7 @@
     background-color: red;
     cursor: pointer;
 }
+
+.imageCheck{
+    display: none;
+}

@@ -4,6 +4,7 @@ import { useParams, useHistory } from 'react-router'
 import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import * as sessionActions from '../../store/session'
+import BetterImage from '../betterImage'
 const EditUserPage = () => {
     const dispatch = useDispatch()
     const params = useParams()
@@ -24,6 +25,8 @@ const EditUserPage = () => {
     const [passwordError, setPasswordError] = useState('')
     const [dataError, setDataError] = useState('')
     const [deleteModalPassword, setDeleteModalPassword] = useState('')
+    const [imgError, setImgError] = useState(false)
+    const [viewImgError, setViewImgError] = useState(false)
 
     const editModalButtonHandler = (title) => {
         setData('')
@@ -31,6 +34,10 @@ const EditUserPage = () => {
         setViewPassword(false)
         setEditModalTitle(title);
         setEditModal(true)
+        setDataError('')
+        setPasswordError('')
+        setBadData(false)
+        setBadPassword(false)
     }
     const cancelEditModalHandler = () => {
         setData('')
@@ -59,7 +66,7 @@ const EditUserPage = () => {
     }
 
     const reset = (e) => {
-        
+
         if (e){
             if (e?.password !== 'good'){
                 setBadPassword(true)
@@ -83,6 +90,7 @@ const EditUserPage = () => {
 
     const editUserHandler = () => {
 
+
         if (editModalTitle === 'User Name'){
             dispatch(sessionActions.updateUsername(userId, data, password)).then((e) => {reset(e)})
         }
@@ -93,6 +101,12 @@ const EditUserPage = () => {
             dispatch(sessionActions.updateUserPassword(userId, data, password)).then((e) => {reset(e)})
         }
         else if (editModalTitle === 'Icon'){
+            if (imgError){
+                setBadData(true);
+                setDataError(' - Invalid Image url')
+                return
+            }
+            else{setBadData(false)}
             dispatch(sessionActions.updateUserIcon_(userId, data, password)).then((e) => {reset(e)})
         }
     }
@@ -104,10 +118,16 @@ const EditUserPage = () => {
     {contentLoaded?
         <div className='editUserPage'>
             <div className='editUserPreviewUser'>
-                <img
-                    src={user?.icon}
+                <BetterImage
+                    classname={'imageCheck'}
+                    src={data}
                     alt={user?.username}
-                    onError={(e) => {imgErrorHandler(e)}}
+                    setError={setImgError}
+                />
+                <img
+                src={user?.icon}
+                alt={user?.username}
+                onError={(e) => {imgErrorHandler(e)}}
                 />
                 <p>{user?.username}</p>
                 <div onClick={() => {setDeleteModal(true)}} className='editUserDelete'>Delete Account</div>
