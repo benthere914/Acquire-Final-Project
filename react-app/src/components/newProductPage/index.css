@@ -101,3 +101,8 @@
     position: relative;
     bottom: 70px;
 }
+
+.checkImage{
+    display: none;
+    
+}
