@@ -8,11 +8,12 @@ const setMessageBoard_ = (messageBoard) => ({
   });
 
 
-  export const setMessageBoard = (sellerId, buyerId, message, boardType) => async (dispatch) => {
+  export const setMessageBoard = (authorId, sellerId, buyerId, message, boardType) => async (dispatch) => {
     const result = await fetch('/api/messages/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
+            authorId,
             sellerId,
             buyerId,
             message
