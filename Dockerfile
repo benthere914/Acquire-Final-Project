@@ -8,6 +8,7 @@ ENV REACT_APP_BASE_URL=https://acquire-aa.herokuapp.com/
 
 # Build our React App
 RUN npm install
+RUN npm install date-difference
 RUN npm run build
 
 FROM python:3.9
