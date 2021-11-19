@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import BetterImage from '../betterImage';
 import './signUpForm.css'
 
 const SignUpForm = () => {
@@ -17,17 +18,31 @@ const SignUpForm = () => {
     const [userNameError, setUserNameError] = useState('')
     const [passwordError, setPasswordError] = useState('')
     const [repeatPasswordError, setRepeatPasswordError] = useState('')
+    const [imgError, setImgError] = useState(false)
+    const [displayImgError, setDisplayImgError] = useState(false)
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
 
     const onSignUp = async (e) => {
         e.preventDefault();
-        if (password === repeatPassword) {
+        if (password === repeatPassword && !imgError) {
             const data = await dispatch(signUp(username, email, icon, password));
             if (data) {setErrors(data)}
         }
         else{
-            setRepeatPasswordError(' - Password does not match')
+            if (password !== repeatPassword){
+                setRepeatPasswordError(' - Password does not match')
+            }
+            if (password === repeatPassword){
+                setRepeatPasswordError('')
+            }
+            if (imgError){
+                setDisplayImgError(true)
+            }
+            if (!imgError){
+                setDisplayImgError(false)
+            }
+
         }
     };
     useEffect(() => {
@@ -49,12 +64,8 @@ const SignUpForm = () => {
             <form onSubmit={onSignUp} className='signUpForm'>
                 <h2>Sign up to continue</h2>
                 <p>To purchase an item, or to chat with a seller, please create your account</p>
-                <img
-                    src={icon?icon:'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png'}
-                    alt='user Icon'
-                    onError={(e) => {imgErrorHandler(e)}}
-                />
-                {/* <div>{errors.map((error, ind) => (<div key={ind}>{error}</div>))}</div> */}
+                <BetterImage src={icon} alt={'User Icon'} setError={setImgError}/>
+
                 <div className='formData'>
                     <label>Email {emailError?emailError:null}</label>
                     <input
@@ -64,7 +75,6 @@ const SignUpForm = () => {
                         onChange={(e) => {setEmail(e.target.value);setEmailError('')}}
                         value={email}
                         placeholder='Enter your email'
-                        // required={true}
                         >
 
                     </input>
@@ -82,15 +92,15 @@ const SignUpForm = () => {
                     </input>
                 </div>
                 <div className='formData'>
-                    <label>Icon - optional</label>
+                    <label>Icon{displayImgError?' - Invalid Image url':null}</label>
                     <input
+                        style={displayImgError?{border: 'solid red 1px'}:null}
                         type='text'
                         name='icon'
                         onChange={(e) => {setIcon(e.target.value)}}
                         value={icon}
                         placeholder='Enter your photo url'>
                     </input>
-                    <p>Image changes upon valid url</p>
                 </div>
                 <div className='formData'>
                     <label>Password {passwordError?passwordError:null}</label>

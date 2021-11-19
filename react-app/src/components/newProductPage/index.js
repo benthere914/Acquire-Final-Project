@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import { useState } from "react"
 import { Carousel } from 'react-responsive-carousel';
 import { useHistory } from 'react-router';
+import BetterImage from '../betterImage';
 const NewProductPage = () => {
     const history = useHistory()
     const imgErrorHandler = (e) => {
@@ -20,6 +21,12 @@ const NewProductPage = () => {
     const [icon1, setIcon1] = useState('')
     const [icon2, setIcon2] = useState('')
     const [icon3, setIcon3] = useState('')
+    const [img1Error, setImg1Error] = useState(false)
+    const [viewImg1Error, setViewImg1Error] = useState(false)
+    const [img2Error, setImg2Error] = useState(false)
+    const [viewImg2Error, setViewImg2Error] = useState(false)
+    const [img3Error, setImg3Error] = useState(false)
+    const [viewImg3Error, setViewImg3Error] = useState(false)
     const options = [
         'All Categories',
         'Antiques',
@@ -54,6 +61,12 @@ const NewProductPage = () => {
 
     const publishHandler = async (e) => {
         e.preventDefault()
+        if (img1Error || img2Error || img3Error){
+            if (img1Error){setViewImg1Error(true)}
+            if (img2Error){setViewImg2Error(true)}
+            if (img3Error){setViewImg3Error(true)}
+            return
+        }
         const response = await fetch(`/api/items/`, {
             method: 'POST',
             headers: {
@@ -93,15 +106,15 @@ const NewProductPage = () => {
                 <p>Condition</p>
                 <Dropdown options={['New', 'Like New','Used', 'Refurbished', 'For Parts or Scrap']} placeholder='select an option' onChange={setCondition} value={condition}/>
                 <p>Description</p>
-                <input required={true} type='text' value={description} onChange={(e) => {setDescription(e.target.value)}}></input>
+                <input type='text' value={description} onChange={(e) => {setDescription(e.target.value)}}></input>
                 <p>Count</p>
-                <input required={true} type='number' value={quantity} onChange={(e) => {setQuantity(e.target.value)}} default={1} min={1}/>
-                <p>Photo Url</p>
-                <input required={true} type='text' value={icon1} onChange={(e) => {setIcon1(e.target.value)}}></input>
-                <p>Photo Url</p>
-                <input required={true} type='text' value={icon2} onChange={(e) => {setIcon2(e.target.value)}}></input>
-                <p>Photo Url</p>
-                <input required={true} type='text' value={icon3} onChange={(e) => {setIcon3(e.target.value)}}></input>
+                <input type='number' value={quantity} onChange={(e) => {setQuantity(e.target.value)}} default={1} min={1}/>
+                <p>Photo Url {viewImg1Error?' - Invalid Image Icon':null}</p>
+                <input style={viewImg1Error?{border: 'solid red 2px'}: null}  type='text' value={icon1} onChange={(e) => {setViewImg1Error(false);setIcon1(e.target.value)}}></input>
+                <p>Photo Url {viewImg2Error?' - Invalid Image Icon':null}</p>
+                <input style={viewImg2Error?{border: 'solid red 2px'}: null}  type='text' value={icon2} onChange={(e) => {setViewImg2Error(false);setIcon2(e.target.value)}}></input>
+                <p>Photo Url {viewImg3Error?' - Invalid Image Icon':null}</p>
+                <input style={viewImg3Error?{border: 'solid red 2px'}: null} type='text' value={icon3} onChange={(e) => {setViewImg3Error(false);setIcon3(e.target.value)}}></input>
                 <button type={'submit'}>Publish</button>
                 </form>
             </div>
@@ -127,7 +140,26 @@ const NewProductPage = () => {
                             onError={(e) => {imgErrorHandler(e)}}
                             />
 
+
                     </Carousel>
+                    <BetterImage
+                        src={icon1}
+                        alt='item for sale'
+                        classname='checkImage'
+                        setError={setImg1Error}
+                    />
+                    <BetterImage
+                        src={icon2}
+                        alt='item for sale'
+                        classname='checkImage'
+                        setError={setImg2Error}
+                    />
+                    <BetterImage
+                        src={icon3}
+                        alt='item for sale'
+                        classname='checkImage'
+                        setError={setImg3Error}
+                    />
                     <div className='bottomPreviewData'>
                         <p>Price: {price || 100}</p>
                         <p>Condition: {condition.value || 'example'}</p>

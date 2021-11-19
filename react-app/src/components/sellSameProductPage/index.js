@@ -6,6 +6,8 @@ import { Carousel } from 'react-responsive-carousel';
 import { useHistory, useParams } from 'react-router';
 import { useEffect } from 'react';
 import { getItem } from '../../store/selectedItem';
+import BetterImage from '../betterImage';
+
 const SellAnotherProductPage = () => {
     const params = useParams()
     const dispatch = useDispatch()
@@ -25,6 +27,12 @@ const SellAnotherProductPage = () => {
     const [icon1, setIcon1] = useState('')
     const [icon2, setIcon2] = useState('')
     const [icon3, setIcon3] = useState('')
+    const [img1Error, setImg1Error] = useState(false)
+    const [viewImg1Error, setViewImg1Error] = useState(false)
+    const [img2Error, setImg2Error] = useState(false)
+    const [viewImg2Error, setViewImg2Error] = useState(false)
+    const [img3Error, setImg3Error] = useState(false)
+    const [viewImg3Error, setViewImg3Error] = useState(false)
     useEffect(() => {
         const itemId = params['itemId']
         dispatch(getItem(itemId))
@@ -119,13 +127,12 @@ const SellAnotherProductPage = () => {
                 <p>Description</p>
                 <input required={true} type='text' value={description} onChange={(e) => {setDescription(e.target.value)}}></input>
                 <p>Count</p>
-                <input required={true} type='number' value={quantity} onChange={(e) => {setQuantity(e.target.value)}} min={1}/>
-                <p>Photo Url</p>
-                <input required={true} type='text' value={icon1} onChange={(e) => {setIcon1(e.target.value)}}></input>
-                <p>Photo Url</p>
-                <input required={true} type='text' value={icon2} onChange={(e) => {setIcon2(e.target.value)}}></input>
-                <p>Photo Url</p>
-                <input required={true} type='text' value={icon3} onChange={(e) => {setIcon3(e.target.value)}}></input>
+                <p>Photo Url {viewImg1Error?' - Invalid Image Icon':null}</p>
+                <input style={viewImg1Error?{border: 'solid red 2px'}: null}  type='text' value={icon1} onChange={(e) => {setViewImg1Error(false);setIcon1(e.target.value)}}></input>
+                <p>Photo Url {viewImg2Error?' - Invalid Image Icon':null}</p>
+                <input style={viewImg2Error?{border: 'solid red 2px'}: null}  type='text' value={icon2} onChange={(e) => {setViewImg2Error(false);setIcon2(e.target.value)}}></input>
+                <p>Photo Url {viewImg3Error?' - Invalid Image Icon':null}</p>
+                <input style={viewImg3Error?{border: 'solid red 2px'}: null} type='text' value={icon3} onChange={(e) => {setViewImg3Error(false);setIcon3(e.target.value)}}></input>
                 <button type={'submit'}>Publish</button>
                 </form>
             </div>
@@ -152,6 +159,24 @@ const SellAnotherProductPage = () => {
                             />
 
                     </Carousel>
+                    <BetterImage
+                        src={icon1}
+                        alt='item for sale'
+                        classname='checkImage'
+                        setError={setImg1Error}
+                    />
+                    <BetterImage
+                        src={icon2}
+                        alt='item for sale'
+                        classname='checkImage'
+                        setError={setImg2Error}
+                    />
+                    <BetterImage
+                        src={icon3}
+                        alt='item for sale'
+                        classname='checkImage'
+                        setError={setImg3Error}
+                    />
                     <div className='bottomPreviewData'>
                         <p>Price: {price || 100}</p>
                         <p>Condition: {condition?.value || 'example'}</p>
