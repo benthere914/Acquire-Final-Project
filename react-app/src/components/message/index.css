@@ -6,4 +6,30 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    cursor: pointer;
+}
+
+.messagePopup{
+    background-color: white;
+    border: solid gray;
+    z-index: 5;
+    position: absolute;
+
+}
+.editMessage{
+    padding: 5px;
+}
+
+.editMessage:hover{
+    background-color: gray;
+    cursor: pointer;
+}
+
+.deleteMessage{
+    padding: 5px;
+}
+
+.deleteMessage:hover{
+    background-color: gray;
+    cursor: pointer;
 }

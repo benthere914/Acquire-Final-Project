@@ -22,3 +22,15 @@ def send_message():
         db.session.add(Message(messageBoardId=message_board.id, authorId=body['authorId'], message=body['message'], createdAt=datetime.now()))
         db.session.commit()
         return {'messageBoardId': message_board.id}
+
+@message_routes.route('/<int:messageId>', methods=['PUT'])
+def update_message(messageId):
+    body = request.get_json()
+    message = Message.query.get(messageId)
+    if body['message'] == '':
+        message.delete()
+    else:
+        message.message = body['message']
+
+    db.session.commit()
+    return {'message': 'success'}

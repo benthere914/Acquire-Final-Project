@@ -9,6 +9,9 @@ const Messages = ({boardId, setBoardId, buyerId, setBuyerId, sellerId, setSeller
     const messages = useSelector(state => Object.values(state.messages))
     const userId = useSelector(state => state.session.user.id)
     const [messageText, setMessageText] = useState('')
+    const [selectedMessage, setSelectedMessage] = useState(0)
+    const [editMessageModal, setEditMessageModal] = useState(false)
+
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -43,8 +46,8 @@ const Messages = ({boardId, setBoardId, buyerId, setBuyerId, sellerId, setSeller
     return (
     <>
     {sellerId?
-        <div className='messages'>
-        {messages?.map((message) => (<Message userId={userId} message={message} imgErrorHandler={imgErrorHandler}/>))}
+        <div className='messages' onMouseLeave={() => {setEditMessageModal(false)}}>
+        {messages?.map((message) => (<Message editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage} userId={userId} message={message} imgErrorHandler={imgErrorHandler}/>))}
         </div>
     :null}
     <input className='newMessageInput' value={messageText} onChange={(e) => {setMessageText(e.target.value)}}></input>
