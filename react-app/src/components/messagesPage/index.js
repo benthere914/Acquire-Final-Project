@@ -49,6 +49,7 @@ const MessagesPage = () => {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
+                authorId: userId,
                 sellerId: sellerId,
                 buyerId: buyerId,
                 message: messageText
@@ -73,6 +74,7 @@ const MessagesPage = () => {
                                 onError={(e) => {imgErrorHandler(e)}}
                                 />
                             <p>{message?.message}</p>
+                            <p>{message?.author?.username}</p>
                             {/* <p className='messageDate'>{dateConverter(message?.createdAt)}</p> */}
                         </div>
                     ))}
