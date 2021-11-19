@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import User, Item, ItemPhoto, db
+from app.models import User, Item, ItemPhoto, db, MessageBoard
 import re
 
 user_routes = Blueprint('users', __name__)
@@ -105,3 +105,14 @@ def delete_user(userId):
         return {"message":"Success"}
     else:
         return {"message":"Incorrect Password"}
+
+
+@user_routes.route('/<int:userId>/buyerMessageBoards')
+@login_required
+def get_buyer_message_boards(userId):
+    return jsonify({board.to_dict()['id']:board.to_dict() for board in MessageBoard.query.filter(MessageBoard.potentialBuyerId == userId).all()})
+
+@user_routes.route('/<int:userId>/sellerMessageBoards')
+@login_required
+def get_seller_message_boards(userId):
+    return jsonify({board.to_dict()['id']:board.to_dict() for board in MessageBoard.query.filter(MessageBoard.sellerId == userId).all()})
