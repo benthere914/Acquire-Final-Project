@@ -1,0 +1,9 @@
+.message.myUser{
+    position: relative;
+    left: 360px;
+    /* border: solid black; */
+    width: 500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}

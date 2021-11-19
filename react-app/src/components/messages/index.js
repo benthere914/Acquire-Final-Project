@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { getBuyerMessageBoards } from '../../store/buyerMessageBoards'
 import { getSellerMessageBoards } from '../../store/sellerMessageBoards'
 import { getMessages } from '../../store/messages'
+import Message from '../message'
 const Messages = ({boardId, setBoardId, buyerId, setBuyerId, sellerId, setSellerId, setSelectedBoard, selectedBoard, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
     const selectedMessageBoard = useSelector(state => state.selectedMessageBoard)
     const messages = useSelector(state => Object.values(state.messages))
@@ -43,18 +44,7 @@ const Messages = ({boardId, setBoardId, buyerId, setBuyerId, sellerId, setSeller
     <>
     {sellerId?
         <div className='messages'>
-        {messages?.map((message) => (
-            <div className='message' key={message?.id}>
-                <img
-                    src={message?.author?.icon}
-                    alt={message?.author?.username}
-                    onError={(e) => {imgErrorHandler(e)}}
-                    />
-                <p>{message?.message}</p>
-                <p>{message?.author?.username}</p>
-                {/* <p className='messageDate'>{dateConverter(message?.createdAt)}</p> */}
-            </div>
-        ))}
+        {messages?.map((message) => (<Message userId={userId} message={message} imgErrorHandler={imgErrorHandler}/>))}
         </div>
     :null}
     <input className='newMessageInput' value={messageText} onChange={(e) => {setMessageText(e.target.value)}}></input>
