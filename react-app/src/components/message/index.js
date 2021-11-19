@@ -15,7 +15,7 @@ const Message = ({setButtonText, boardId, editMessageModal, setEditMessageModal,
                         alt={message?.author?.username}
                         onError={(e) => {imgErrorHandler(e)}}
                     />
-                {editMessageModal && selectedMessage == message?.id?<EditMessagePopup setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} id={message?.id}/>:null}
+                {editMessageModal && selectedMessage == message?.id?<EditMessagePopup userId={userId} setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} id={message?.id}/>:null}
                 </div>
         </>
         :

@@ -28,9 +28,16 @@ def update_message(messageId):
     body = request.get_json()
     message = Message.query.get(messageId)
     if body['message'] == '':
-        message.delete()
+        Message.query.filter(Message.id == messageId).delete()
     else:
         message.message = body['message']
 
+    db.session.commit()
+    return {'message': 'success'}
+
+
+@message_routes.route('/<int:messageId>', methods=['DELETE'])
+def delete_message(messageId):
+    Message.query.filter(Message.id == messageId).delete()
     db.session.commit()
     return {'message': 'success'}

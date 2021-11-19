@@ -1,11 +1,31 @@
 import './index.css'
 import { useDispatch } from 'react-redux'
 import { getMessages } from '../../store/messages'
-const EditMessagePopup = ({setButtonText, boardId, id, editMessageModal, setEditMessageModal, messageText}) => {
+import { getBuyerMessageBoards } from '../../store/buyerMessageBoards'
+import { getSellerMessageBoards } from '../../store/sellerMessageBoards'
+const EditMessagePopup = ({userId, setButtonText, boardId, id, editMessageModal, setEditMessageModal, messageText}) => {
     const dispatch = useDispatch()
 
-    const deleteMessageHandler = () => {
+    const editMessageHandler = async () => {
+
+        const response = await fetch(`/api/messages/${id}`,{
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({'message': messageText})
+        })
+
+
+    }
+    const deleteMessageHandler = async () => {
         setEditMessageModal(false)
+        const response = await fetch(`/api/messages/${id}`,{method: 'DELETE'})
+
+        const result = await response.json()
+        if (result.message === 'success'){
+            dispatch(getMessages(boardId))
+            dispatch(getBuyerMessageBoards(userId))
+            dispatch(getSellerMessageBoards(userId))
+        }
 
     }
 
