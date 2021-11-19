@@ -8,7 +8,7 @@ import { getMessages } from '../../store/messages'
 const dateDiff = require('date-difference')
 const MessagesPage = () => {
     const date = new Date()
-    console.log(date)
+
     const [selectedBoard, setSelectedBoard] = useState('seller')
     const [messageText, setMessageText] = useState('')
     const [sellerId, setSellerId] = useState(0)
@@ -16,12 +16,23 @@ const MessagesPage = () => {
     const [boardId, setBoardId] = useState(0)
     const dispatch = useDispatch()
     const selectedMessageBoards = useSelector(state => Object.values(state[`${selectedBoard}MessageBoards`]))
+    const selectedMessageBoard = useSelector(state => state.selectedMessageBoard)
     const messages = useSelector(state => Object.values(state.messages))
     const userId = useSelector(state => state.session.user.id)
     useEffect(() => {
         dispatch(getBuyerMessageBoards(userId))
         dispatch(getSellerMessageBoards(userId))
     }, [])
+    useEffect(() => {
+        console.log(selectedMessageBoard)
+        if (selectedMessageBoard?.messageBoardId){
+            setSelectedBoard(selectedMessageBoard?.boardType)
+            setBuyerId(selectedMessageBoard?.buyerId)
+            setSellerId(selectedMessageBoard?.sellerId)
+            setBoardId(selectedMessageBoard?.messageBoardId)
+            dispatch(getMessages(selectedMessageBoard?.messageBoardId))
+        }
+    }, [selectedMessageBoard])
     const imgErrorHandler = (e) => {
         e.target.onerror = null;
         e.target.src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
@@ -65,10 +76,10 @@ const MessagesPage = () => {
                             {/* <p className='messageDate'>{dateConverter(message?.createdAt)}</p> */}
                         </div>
                     ))}
-                <input className='newMessageInput' value={messageText} onChange={(e) => {setMessageText(e.target.value)}}></input>
-                <button onClick={() => {sendMessageHandler()}}>Send</button>
                 </div>
                 :null}
+                <input className='newMessageInput' value={messageText} onChange={(e) => {setMessageText(e.target.value)}}></input>
+                <button onClick={() => {sendMessageHandler()}}>Send</button>
             </div>
         </div>
     </>

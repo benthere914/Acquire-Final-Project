@@ -24,7 +24,7 @@ const ProfilePage = () => {
         setProfileUser(profileUser)
     }, [profileUserId])
     useEffect(() => {dispatch(getUsersItems(profileUserId))}, [profileUser])
-    useEffect(() => {if (items && profileUser){setisLoaded(true)};console.log(items, profileUser)}, [items, profileUser])
+    useEffect(() => {if (items && profileUser){setisLoaded(true)}}, [items, profileUser])
     return (
     <>
         {isLoaded?
