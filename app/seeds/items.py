@@ -8,9 +8,9 @@ conditions = ['used', 'new', 'refurbished']
 
 # Adds a demo user, you can add other users here if you want
 def seed_items():
-    for i in range(1, 4):
-        for j in range(1, 7):
-            db.session.add(Item(categoryId=j, sellerId=i, name=fake.sentence(), description=fake.sentence(), dateListed=date.today(), price=(10 * j * i), discount=25, condition=random.choice(conditions), count=i+j ))
+    for i in range(1, 3):
+        for j in range(1, 29):
+            db.session.add(Item(categoryId=j, sellerId=random.choice([_ for _ in range(1, 24)]), name=fake.sentence(), description=fake.sentence(), dateListed=date.today(), price=(10 * j * i), discount=0, condition=random.choice(conditions), count=i+j ))
 
     db.session.commit()
 
