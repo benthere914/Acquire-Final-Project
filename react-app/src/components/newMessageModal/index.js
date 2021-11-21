@@ -9,7 +9,9 @@ const NewMessageModal = ({setNewMessageModal, receivingUser}) => {
     const userId = useSelector(state => state.session.user.id)
     const [message, setMessage] = useState('')
     const sendMessageHandler = () => {
-        dispatch(setMessageBoard(userId, receivingUser?.id, userId, message, 'buyer')).then(() => history.push('/messages'))
+        console.log('got here')
+        dispatch(setMessageBoard(userId, receivingUser, userId, message, 'buyer')).then(() => history.push('/messages'))
+        console.log('got here too')
     }
     return (
     <>

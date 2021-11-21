@@ -57,9 +57,9 @@ const ProfilePage = () => {
                         {userId !== +profileUserId?(
                             <div className='messageTag'>
                                 <p onClick={() => {setNewMessageModal(true)}} className=''>{`Message`}</p>
-                                {newMessageModal?<NewMessageModal setNewMessageModal={setNewMessageModal} receivingUser={profileUserId}/>:null}
                             </div>
                         ):null}
+                        {newMessageModal?<NewMessageModal setNewMessageModal={setNewMessageModal} receivingUser={profileUserId}/>:null}
                     </div>
 
                 <p className='ItemsIntroduction'>{`Items ${profileUser?.username} has for sale`}</p>

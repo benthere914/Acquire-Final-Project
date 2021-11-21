@@ -24,12 +24,13 @@ const MessagesPage = () => {
     const [sellerId, setSellerId] = useState(0)
     const [buyerId, setBuyerId] = useState(0)
     const selectedMessageBoards = useSelector(state => Object.values(state[`${selectedBoard}MessageBoards`]))
-
+    const [hasBoards, setHasBoards] = useState(true)
     return (
     <>
         <div>
             <div className='messagesPage'>
                 <MessageBoards
+                    setHasBoards={setHasBoards}
                     boardId={boardId}
                     setBoardId={setBoardId}
                     setBuyerId={setBuyerId}
@@ -39,7 +40,9 @@ const MessagesPage = () => {
                     selectedMessageBoards={selectedMessageBoards}
                     imgErrorHandler={imgErrorHandler}
                     dateConverter={dateConverter}/>
+                {hasBoards?
                 <Messages
+                    setHasBoards={setHasBoards}
                     setBoardId={setBoardId}
                     boardId={boardId}
                     sellerId={sellerId}
@@ -51,6 +54,7 @@ const MessagesPage = () => {
                     selectedMessageBoards={selectedMessageBoards}
                     imgErrorHandler={imgErrorHandler}
                     dateConverter={dateConverter}/>
+                    :<p>You have no messages. Please visit someones profile to send a message</p>}
             </div>
         </div>
     </>

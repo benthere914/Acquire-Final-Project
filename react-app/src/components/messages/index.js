@@ -5,23 +5,64 @@ import { getBuyerMessageBoards } from '../../store/buyerMessageBoards'
 import { getSellerMessageBoards } from '../../store/sellerMessageBoards'
 import { getMessages } from '../../store/messages'
 import Message from '../message'
-const Messages = ({boardId, setBoardId, buyerId, setBuyerId, sellerId, setSellerId, setSelectedBoard, selectedBoard, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
+const Messages = ({setHasBoards, boardId, setBoardId, buyerId, setBuyerId, sellerId, setSellerId, setSelectedBoard, selectedBoard, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
     const selectedMessageBoard = useSelector(state => state.selectedMessageBoard)
+    const buyerMessageBoard = useSelector(state => Object.values(state.buyerMessageBoards))
+    const sellerMessageBoard = useSelector(state => Object.values(state.sellerMessageBoards))
+    const [buysLoaded, setBuysLoaded] = useState(false)
+    const [sellsLoaded, setSellsLoaded] = useState(false)
     const messages = useSelector(state => Object.values(state.messages))
     const userId = useSelector(state => state.session.user.id)
     const [messageText, setMessageText] = useState('')
     const [selectedMessage, setSelectedMessage] = useState(0)
     const [editMessageModal, setEditMessageModal] = useState(false)
     const [buttonText, setButtonText] = useState('Send')
-
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getBuyerMessageBoards(userId))
-        dispatch(getSellerMessageBoards(userId))
+        dispatch(getBuyerMessageBoards(userId)).then((e) => {
+            if (e === 'success'){
+                setBuysLoaded(true)
+            }
+        })
+        dispatch(getSellerMessageBoards(userId)).then((e) => {
+            if (e === 'success'){
+                setSellsLoaded(true)
+
+            }
+        })
     }, [])
     useEffect(() => {
-        console.log(selectedMessageBoard)
+        if (buysLoaded && sellsLoaded){
+            if (buyerMessageBoard.length ===  0 && sellerMessageBoard.length === 0){
+                console.log('empty')
+                setHasBoards(false)
+            }
+            else{
+                setHasBoards(true)
+                if (!boardId){
+                    if (buyerMessageBoard.length !== 0){
+                        setSelectedBoard('buyer')
+                        setBuyerId(buyerMessageBoard[0]?.potentialBuyerId)
+                        setSellerId(buyerMessageBoard[0]?.sellerId)
+                        setBoardId(buyerMessageBoard[0]?.id)
+                        dispatch(getMessages(buyerMessageBoard[0]?.id))
+                    } else
+                    if (sellerMessageBoard.length !== 0){
+                        setSelectedBoard('seller')
+                        setBuyerId(sellerMessageBoard[0]?.potentialBuyerId)
+                        setSellerId(sellerMessageBoard[0]?.sellerId)
+                        setBoardId(sellerMessageBoard[0]?.id)
+                        dispatch(getMessages(sellerMessageBoard[0]?.id))
+                    }
+                }
+
+            }
+            console.log(buyerMessageBoard,888)
+            console.log(sellerMessageBoard, 999)
+        }
+    }, [selectedMessageBoard, buysLoaded, sellsLoaded, buyerMessageBoard, sellerMessageBoard])
+    useEffect(() => {
         if (selectedMessageBoard?.messageBoardId){
             setSelectedBoard(selectedMessageBoard?.boardType)
             setBuyerId(selectedMessageBoard?.buyerId)

@@ -72,7 +72,7 @@ const SignUpForm = () => {
                         style={emailError?{border: 'solid red 1px'}:null}
                         type='text'
                         name='email'
-                        onChange={(e) => {setEmail(e.target.value);setEmailError('')}}
+                        onChange={(e) => {setEmail(e.target.value);if (emailError) setEmailError('')}}
                         value={email}
                         placeholder='Enter your email'
                         >
@@ -85,7 +85,7 @@ const SignUpForm = () => {
                         style={userNameError?{border: 'solid red 1px'}:null}
                         type='text'
                         name='username'
-                        onChange={(e) => {setUsername(e.target.value);setUserNameError('')}}
+                        onChange={(e) => {setUsername(e.target.value);if (userNameError) setUserNameError('')}}
                         value={username}
                         placeholder='Create your username'
                         >
@@ -107,7 +107,7 @@ const SignUpForm = () => {
                     <input
                         style={passwordError?{border: 'solid red 1px'}:null}
                         type={viewPassword?'text':'password'}
-                        name='password' onChange={(e) => {setPassword(e.target.value);setPasswordError('')}}
+                        name='password' onChange={(e) => {setPassword(e.target.value); if (passwordError) setPasswordError('')}}
                         value={password}
                         placeholder='Create a password'
                         >
@@ -123,7 +123,7 @@ const SignUpForm = () => {
                         style={repeatPasswordError?{border: 'solid red 1px'}:null}
                         type={viewRepeatPassword?'text':'password'}
                         name='repeat_password'
-                        onChange={(e) => {setRepeatPassword(e.target.value);setRepeatPasswordError('')}}
+                        onChange={(e) => {setRepeatPassword(e.target.value);if (repeatPasswordError) setRepeatPasswordError('')}}
                         value={repeatPassword}
 
                         placeholder='Confirm your password'

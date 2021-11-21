@@ -2,14 +2,20 @@
     width: 100%;
     height: 840px;
     display: flex;
+    justify-content: space-evenly;
 }
 
 .editUserPreviewUser{
-    width: 40%;
-    height: 840px;
+    width: 30%;
+    height: 830px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: solid gray;
+    border-radius: 15px;
+    margin-right: 150px;
+    position: relative;
+    left: 100px;
 }
 
 .editUserPreviewUser img{
@@ -27,11 +33,12 @@
 }
 
 .editUserForms{
-    border: solid black;
-    width: 50%;
+    border: solid gray;
+    width: 35%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-radius: 15px;
 }
 
 .editUserTop{
@@ -39,7 +46,7 @@
     border-radius: 25px;
     width: 500px;
     position: relative;
-    top: 25px;
+    top: 50px;
     padding: 0px 15px;
 }
 
@@ -56,8 +63,10 @@
 
 .editUserTop ul li p{
     max-width: 300px;
+    max-height: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin: 10px;
 }
 .editUserDataButton{
     padding: 5px 10px;
@@ -78,7 +87,7 @@
     padding: 0px 15px;
     border-radius: 25px;
     position: relative;
-    top: 50px;
+    top: 100px;
 }
 
 .editUserEditModal .top{

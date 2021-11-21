@@ -10,7 +10,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     margin: 0;
     width: 100%;

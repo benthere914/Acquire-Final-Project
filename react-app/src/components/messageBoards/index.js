@@ -1,8 +1,10 @@
 import './index.css'
 import { useDispatch } from 'react-redux'
 import { getMessages } from '../../store/messages'
-const MessageBoards = ({boardId, setBoardId, setBuyerId, setSellerId, setSelectedBoard, selectedBoard={selectedBoard}, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
+import { useEffect } from 'react'
+const MessageBoards = ({setHasBoards, boardId, setBoardId, setBuyerId, setSellerId, setSelectedBoard, selectedBoard={selectedBoard}, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
     const dispatch = useDispatch()
+    useEffect(() => {},[])
     return (
         <div className='messageBoards'>
             <p style={{fontSize: 25, margin: '0px 0px 5px 0px', position: 'relative', 'right': 115, fontWeight: 600}}>Chats </p>
