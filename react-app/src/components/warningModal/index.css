@@ -9,7 +9,7 @@
     flex-direction: column;
     align-items: center;
     border-radius: 15px;
-    box-shadow: 0 0 0 1000vmax rgba(0,0,0,.5);
+    box-shadow: 0 0 0 1000vmax rgba(0,0,0,.8);
 }
 
 .warningModal p{

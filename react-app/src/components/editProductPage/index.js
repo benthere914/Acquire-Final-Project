@@ -149,7 +149,7 @@ const EditProductPage = () => {
             </div>
             <div className='publishPreview'>
                 <p>{title || 'Example'}</p>
-                    <Carousel>
+                    <Carousel showArrows={false}>
                             <img
                             alt='item for sale'
                             className='previewImg'
