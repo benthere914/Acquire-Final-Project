@@ -2,7 +2,7 @@ import './index.css'
 import { useDispatch } from 'react-redux'
 import { getMessages } from '../../store/messages'
 import { useEffect } from 'react'
-const MessageBoards = ({setHasBoards, boardId, setBoardId, setBuyerId, setSellerId, setSelectedBoard, selectedBoard={selectedBoard}, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
+const MessageBoards = ({setHasBoards, boardId, setBoardId, setBuyerId, setSellerId, setSelectedBoard, selectedBoard, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
     const dispatch = useDispatch()
     useEffect(() => {},[])
     return (
@@ -16,6 +16,7 @@ const MessageBoards = ({setHasBoards, boardId, setBoardId, setBuyerId, setSeller
                 <i className='fas fa-search'/>
                 <div className='messageBoardTabs'>
                     {selectedMessageBoards.map((board) => (
+                        <>
                         <div style={boardId === board?.id?{backgroundColor: 'lightblue'}: null} onClick={() => {dispatch(getMessages(board?.id));setBoardId(board?.id);setSellerId(board?.sellerId);setBuyerId(board?.potentialBuyerId)}} className='messageBoardTab' key={board.id}>
                             <img
                                 src={board?.user?.icon}
@@ -26,6 +27,8 @@ const MessageBoards = ({setHasBoards, boardId, setBoardId, setBuyerId, setSeller
                             <p className='lastMessage'>{board?.last_message?.message}</p>
                             <p className='timeSince'>{dateConverter(board?.last_message?.createdAt)}</p>
                         </div>
+                        {board?.id === boardId && <p className='boardTitle'>{board?.title}</p>}
+                        </>
                     ))}
                 </div>
         </div>

@@ -1,4 +1,4 @@
-from app.models import db, MessageBoard, message_board
+from app.models import db, MessageBoard, message_board, Item
 
 
 
@@ -7,7 +7,7 @@ def seed_message_boards():
     for i in range(1, 18):
         for j in range(1, 18):
             if (i != j):
-                db.session.add(MessageBoard(sellerId=i, potentialBuyerId=j))
+                db.session.add(MessageBoard(sellerId=i, potentialBuyerId=j, title=Item.query.filter(Item.sellerId == i).first().to_dict()['name']))
 
     db.session.commit()
 

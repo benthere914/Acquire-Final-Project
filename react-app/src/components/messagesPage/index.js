@@ -25,6 +25,7 @@ const MessagesPage = () => {
     const [buyerId, setBuyerId] = useState(0)
     const selectedMessageBoards = useSelector(state => Object.values(state[`${selectedBoard}MessageBoards`]))
     const [hasBoards, setHasBoards] = useState(true)
+    console.log(selectedMessageBoards)
     return (
     <>
         <div>
