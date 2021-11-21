@@ -1,14 +1,15 @@
 import './index.css'
 import EditMessagePopup from '../editMessagePopup';
 import { useState } from 'react';
+import { useHistory } from 'react-router';
 const Message = ({setButtonText, boardId, editMessageModal, setEditMessageModal, selectedMessage,setSelectedMessage, userId, message, imgErrorHandler}) => {
-
+    const history = useHistory()
     return (
     <>
 
     {message?.authorId == userId?
         <>
-                <div className='message myUser' key={message?.id} onContextMenu={(e) => {setSelectedMessage(message?.id);e.preventDefault(); setEditMessageModal(true)}}>
+                <div onClick={() => {history.push(`/users/${message?.author?.id}`)}} className='message myUser' key={message?.id} onContextMenu={(e) => {setSelectedMessage(message?.id);e.preventDefault(); setEditMessageModal(true)}}>
                     <p>{message?.message}</p>
                     <img
                         src={message?.author?.icon}
@@ -19,7 +20,7 @@ const Message = ({setButtonText, boardId, editMessageModal, setEditMessageModal,
                 </div>
         </>
         :
-        <div className='message otherUser' key={message?.id}>
+        <div className='message otherUser' key={message?.id} onClick={() => {history.push(`/users/${message?.author?.id}`)}}>
             <img
                 src={message?.author?.icon}
                 alt={message?.author?.username}

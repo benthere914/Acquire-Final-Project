@@ -58,8 +58,6 @@ const Messages = ({setHasBoards, boardId, setBoardId, buyerId, setBuyerId, selle
                 }
 
             }
-            console.log(buyerMessageBoard,888)
-            console.log(sellerMessageBoard, 999)
         }
     }, [selectedMessageBoard, buysLoaded, sellsLoaded, buyerMessageBoard, sellerMessageBoard])
     useEffect(() => {

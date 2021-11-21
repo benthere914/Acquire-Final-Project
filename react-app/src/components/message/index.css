@@ -34,3 +34,9 @@
     background-color: gray;
     cursor: pointer;
 }
+
+
+.message{
+    margin: 5px;
+    cursor: pointer;
+}
