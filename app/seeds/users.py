@@ -1,6 +1,6 @@
 from app.models import db, User
 import random
-guy_names = ['Liam','Noah','Oliver','Elijah','William','James','Benjamin','Lucas','Henry','Alexander','Mason','Michael','Ethan','Daniel',
+guy_names = ['Liam','Noah','Oliver','Elijah','William','Mason','Michael','Ethan','Daniel','James','Benjamin','Lucas','Henry','Alexander',
 'Jacob','Logan','Jackson','Levi','Sebastian','Mateo','Jack','Owen','Theodore','Aiden','Samuel','Joseph','John','David','Wyatt','Matthew',
 'Luke','Asher','Carter','Julian','Grayson','Leo','Jayden','Gabriel','Isaac','Lincoln','Anthony','Hudson','Dylan','Ezra','Thomas','Charles',
 'Christopher','Jaxon','Maverick','Josiah','Isaiah','Andrew','Elias','Joshua','Nathan','Caleb','Ryan','Adrian','Miles','Eli','Nolan',
@@ -10,7 +10,8 @@ guy_names = ['Liam','Noah','Oliver','Elijah','William','James','Benjamin','Lucas
 'Conner','Conor','Corey','Cory','Damian','Damien','Damon','Derek','Derrick','Devin','Devon','Dilan','Dillon','Dominick','Dominik',
 'Donovan','Dorian','Douglas','Drake','Duke','Dustin','Eric','Erick','Erik','Gary','Gavin','Gunnar' ]
 
-gal_names = ['Olivia','Emma','Ava','Charlotte','Sophia','Amelia','Isabella','Mia','Evelyn','Harper','Camila','Gianna','Abigail','Luna',
+
+gal_names = ['Olivia','Emma','Ava','Charlotte','Sophia','Camila','Gianna','Abigail','Luna','Amelia','Isabella','Mia','Evelyn','Harper',
 'Ella','Elizabeth','Sofia','Emily','Avery','Mila','Scarlett','Eleanor','Madison','Layla','Penelope','Aria','Chloe','Grace','Ellie','Nora',
 'Hazel','Zoey','Riley','Victoria','Lily','Aurora','Violet','Nova','Hannah','Emilia','Zoe','Stella','Everly','Isla','Leah','Lillian',
 'Addison','Willow','Lucy','Paisley','Natalie','Naomi','Eliana','Brooklyn','Elena','Aubrey','Claire','Ivy','Kinsley','Audrey','Maya',
@@ -19,6 +20,8 @@ gal_names = ['Olivia','Emma','Ava','Charlotte','Sophia','Amelia','Isabella','Mia
 'Piper','Leilani','Eva','Everleigh','Madeline','Lydia','Jade','Peyton','Brielle','Adeline','Vivian','Rylee','Clara','Raelynn','Melanie',
 'Melody','Julia','Athena','Maria','Liliana','Hadley','Arya','Rose','Reagan','Eliza','Adalynn','Kaylee','Lyla','Mackenzie','Alaia',
 'Isabelle','Charlie','Arianna','Mary','Remi','Margaret','Iris','Ximena','Eden','Ayla','Kylie','Elliana','Josie','Katherine']
+
+
 
 emails = ['gmail', 'hotmail', 'yahoo', 'aa.io']
 guy_photos = [
@@ -83,14 +86,31 @@ gal_photos = [
 ,"https://images.generated.photos/lv5lASULuu22-HcRzJY3VPfCx5kJUtN7XUjfjIv6P00/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MjY5MTk4LmpwZw.jpg"]
 
  # Adds a demo user, you can add other users here if you want
+
+names1 = []
+names2 = []
+while len(names1) <= 6:
+    name = random.choice(guy_names)
+    if not name in names1:
+        names1.append(name)
+
+while len(names2) <= 6:
+    name = random.choice(gal_names)
+    if not name in names2:
+        names2.append(name)
+
 def seed_users():
     db.session.add(User(username='Demo', email='demo@aa.io', password='password', icon=random.choice(guy_photos)))
     db.session.add(User(username='marnie', email='marnie@aa.io', password='password', icon=random.choice(gal_photos)))
     db.session.add(User(username='bobbie', email='bobbie@aa.io', password='password', icon=random.choice(guy_photos)))
-    for name in guy_names:
-        db.session.add(User(username=name, email=f'{name}@{random.choice(emails)}.com', password='password', icon=random.choice(guy_photos)))
-    for name in gal_names:
-        db.session.add(User(username=name, email=f'{name}@{random.choice(emails)}.com', password='password', icon=random.choice(gal_photos)))
+    for name in names1:
+        email = f'{name}@{random.choice(emails)}.com'
+        icon = random.choice(guy_photos)
+        db.session.add(User(username=name, email=email, password='password', icon=icon))
+    for name in names2:
+        email = f'{name}@{random.choice(emails)}.com'
+        icon = random.choice(gal_photos)
+        db.session.add(User(username=name, email=email, password='password', icon=icon))
     db.session.commit()
 
 

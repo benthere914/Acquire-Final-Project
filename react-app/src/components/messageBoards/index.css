@@ -14,7 +14,7 @@
     border: solid black;
     padding-top: 8px;
     border-radius: 15px;
-    /* overflow-y: scroll; */
+    overflow-y: scroll;
 }
 .messageBoardSelectTabs{
     display: flex;
@@ -49,6 +49,7 @@
 .messageBoardTab {
     padding: 5px;
     height: 50px;
+    width: 300px;
 }
 .messageBoardTab:hover{
     cursor: pointer;
@@ -75,6 +76,8 @@
     position: relative;
     bottom: 110px;
     left: 265px;
+    width: min-content;
+    margin: 0;
 }
 
 .messagesSearch{

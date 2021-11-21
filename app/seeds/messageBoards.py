@@ -1,17 +1,14 @@
-from app.models import db, MessageBoard
+from app.models import db, MessageBoard, message_board
 
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_message_boards():
-    db.session.add(MessageBoard(sellerId=1, potentialBuyerId=2))
-    db.session.add(MessageBoard(sellerId=1, potentialBuyerId=3))
-    db.session.add(MessageBoard(sellerId=2, potentialBuyerId=1))
-    db.session.add(MessageBoard(sellerId=2, potentialBuyerId=3))
-    db.session.add(MessageBoard(sellerId=3, potentialBuyerId=1))
-    db.session.add(MessageBoard(sellerId=3, potentialBuyerId=2))
-    db.session.add(MessageBoard(sellerId=1, potentialBuyerId=2))
-    
+    for i in range(1, 18):
+        for j in range(1, 18):
+            if (i != j):
+                db.session.add(MessageBoard(sellerId=i, potentialBuyerId=j))
+
     db.session.commit()
 
 

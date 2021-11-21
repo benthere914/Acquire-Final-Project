@@ -8,7 +8,7 @@ fake = Faker()
 # Adds a demo user, you can add other users here if you want
 def seed_messages():
     for i in [board.to_dict() for board in MessageBoard.query.all()]:
-        for j in range(1, 10):
+        for j in range(1, 20):
             if j % 2 == 0:
                 db.session.add(Message(messageBoardId = i['id'], authorId=i['sellerId'], message=fake.sentence(), createdAt=date.today()))
             else:
