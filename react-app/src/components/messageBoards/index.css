@@ -12,13 +12,14 @@
     /* left: 50px; */
 }
 .messageBoardTabs{
-    width: 330px;
+    width: 300px;
     height: 640px;
     border: solid black;
     /* padding-top: 8px; */
     border-radius: 5px;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
+    padding-right: 0;
     /* background-color: white; */
 }
 
@@ -62,9 +63,10 @@
 }
 
 .messageBoardTab {
-    padding: 5px;
+    padding: 5px 25px 5px 0px;
     height: 50px;
-    width: 300px;
+    width: 330px;
+    margin-right: 0px;
 }
 .messageBoardTab:hover{
     cursor: pointer;
@@ -76,6 +78,10 @@
     bottom: 65px;
     left: 55px;
 }
+.messageBoardTab p{
+    margin: 15px 0px 5px 0px;
+    padding: 0;
+}
 
 .messageBoardTab .lastMessage{
     position: relative;
@@ -85,6 +91,7 @@
     height: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
+    margin-right: 0;
 }
 
 .messageBoardTab .timeSince{
@@ -92,7 +99,6 @@
     bottom: 110px;
     left: 265px;
     width: min-content;
-    margin: 0;
 }
 
 .messagesSearch{

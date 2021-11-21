@@ -28,6 +28,7 @@ const Messages = ({setHasBoards, boardId, setBoardId, buyerId, setBuyerId, selle
         dispatch(getSellerMessageBoards(userId)).then((e) => {
             if (e === 'success'){
                 setSellsLoaded(true)
+
             }
         })
     }, [])
@@ -39,11 +40,28 @@ const Messages = ({setHasBoards, boardId, setBoardId, buyerId, setBuyerId, selle
             }
             else{
                 setHasBoards(true)
+                if (!boardId){
+                    if (buyerMessageBoard.length !== 0){
+                        setSelectedBoard('buyer')
+                        setBuyerId(buyerMessageBoard[0]?.potentialBuyerId)
+                        setSellerId(buyerMessageBoard[0]?.sellerId)
+                        setBoardId(buyerMessageBoard[0]?.id)
+                        dispatch(getMessages(buyerMessageBoard[0]?.id))
+                    } else
+                    if (sellerMessageBoard.length !== 0){
+                        setSelectedBoard('seller')
+                        setBuyerId(sellerMessageBoard[0]?.potentialBuyerId)
+                        setSellerId(sellerMessageBoard[0]?.sellerId)
+                        setBoardId(sellerMessageBoard[0]?.id)
+                        dispatch(getMessages(sellerMessageBoard[0]?.id))
+                    }
+                }
+
             }
             console.log(buyerMessageBoard,888)
             console.log(sellerMessageBoard, 999)
         }
-    }, [buysLoaded, sellsLoaded, buyerMessageBoard, sellerMessageBoard])
+    }, [selectedMessageBoard, buysLoaded, sellsLoaded, buyerMessageBoard, sellerMessageBoard])
     useEffect(() => {
         if (selectedMessageBoard?.messageBoardId){
             setSelectedBoard(selectedMessageBoard?.boardType)
