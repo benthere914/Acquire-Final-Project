@@ -1,0 +1,10 @@
+.messagesDiv{
+    /* background-color: white; */
+    position: relative;
+    left: 300px;
+    width: 910px;
+    border: solid gray;
+    border-radius: 15px;
+    margin: 0;
+    padding: 0;
+}

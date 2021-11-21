@@ -1,3 +1,4 @@
+import './index.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { getBuyerMessageBoards } from '../../store/buyerMessageBoards'
@@ -61,15 +62,15 @@ const Messages = ({boardId, setBoardId, buyerId, setBuyerId, sellerId, setSeller
 
     }
     return (
-    <>
+    <div className='messagesDiv'>
     {sellerId?
         <div className='messages' onMouseLeave={() => {setEditMessageModal(false)}}>
         {messages?.map((message) => (<Message setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage} userId={userId} message={message} imgErrorHandler={imgErrorHandler}/>))}
         </div>
     :null}
     <input className='newMessageInput' value={messageText} onChange={(e) => {setMessageText(e.target.value)}}></input>
-    <button style={buttonText==='Send'?{width: 125}:{width: 200, bottom: 90}} onClick={buttonText === 'Send'?() => {sendMessageHandler()}:() =>  {editMessageHandler();setButtonText('Send');setMessageText('')}}>{buttonText}</button>
-    </>
+    <button style={buttonText==='Send'?{width: 125}:{width: 200, bottom: 30, left: 700}} onClick={buttonText === 'Send'?() => {sendMessageHandler()}:() =>  {editMessageHandler();setButtonText('Send');setMessageText('')}}>{buttonText}</button>
+    </div>
     )
 }
 

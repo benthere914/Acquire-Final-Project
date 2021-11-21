@@ -7,14 +7,29 @@
     padding-top: 15px;
     border-radius: 15px;
     height: 800px;
+    margin-left: 50px;
+    /* position: relative; */
+    /* left: 50px; */
 }
 .messageBoardTabs{
-    width: 300px;
+    width: 330px;
     height: 640px;
     border: solid black;
-    padding-top: 8px;
-    border-radius: 15px;
+    /* padding-top: 8px; */
+    border-radius: 5px;
     overflow-y: scroll;
+    overflow-x: hidden;
+    /* background-color: white; */
+}
+
+.messageBoardTabs::-webkit-scrollbar{
+    width: 15px;
+}
+.messageBoardTabs::-webkit-scrollbar-track{
+
+}
+.messageBoardTabs::-webkit-scrollbar-thumb{
+    background-color: rgb(0, 0, 0, 0.6);
 }
 .messageBoardSelectTabs{
     display: flex;
@@ -24,8 +39,8 @@
     width: 190px;
     height: 40px;
     position: absolute;
-    top: 64px;
-    left: 170px;
+    top: 56px;
+    left: 200px;
     font-size: 20px;
 }
 
@@ -82,6 +97,7 @@
 
 .messagesSearch{
     position: relative;
+    top: 10px;
     margin-bottom: 15px;
     width: 280px;
     height: 30px;
@@ -92,6 +108,6 @@
 
 .messageBoards i.fa-search{
     position: relative;
-    bottom: 45px;
+    bottom: 36px;
     right: 140px;
 }

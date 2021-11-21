@@ -17,7 +17,7 @@ const SplashPage = () => {
     <>
         {/* <Search/> */}
         <div className='splashDivCarousel'>
-            <Carousel autoPlay={true} interval={3000} infiniteLoop={true} showThumbs={false}>
+            <Carousel autoPlay={true} interval={3000} infiniteLoop={true} showThumbs={false} showArrows={false}>
                 <CarouselCard id={1}/>
                 <CarouselCard id={2}/>
                 <CarouselCard id={3}/>

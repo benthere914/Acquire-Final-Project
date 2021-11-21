@@ -1,6 +1,10 @@
 .userProfile .itemCards{
+    top: 0;
+}
+
+.userProfile .itemCards .itemCardDiv{
     position: relative;
-    top: 50px;
+    bottom: 20px;
 }
 
 .userProfile .userTag{
@@ -36,14 +40,26 @@
     border: solid gray;
     display: flex;
     justify-content: center;
-    position: relative;
-    /* top: 80px; */
-    left: 50px;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-right: 45px;
     font-size: 35px;
-    width: 91.5%;
     z-index: 0;
     background-color: white;
+    margin: 0;
+    position: relative;
+    width: 76.4%;
+    left: 177px;
+    bottom: 50px;
+    background-color: white;
+}
+
+.userProfile div .userTagParent .userTag{
+    position: relative;
+    left: 175px;
+}
+
+.userProfile div .editAccountButton{
+    position: relative;
+    left: 470px;
 }
