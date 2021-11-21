@@ -13,6 +13,7 @@ export const getBuyerMessageBoards = (userId) => async (dispatch) => {
         const buyerMessageBoards = await response.json()
         dispatch(loadBuyerMessageBoards(buyerMessageBoards));
     }
+    return 'success'
   };
 
 
