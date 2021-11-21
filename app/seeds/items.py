@@ -96,7 +96,7 @@ def name_(i, j):
 def seed_items():
     for i in range(1, 14):
         for j in range(1, 31):
-            db.session.add(Item(categoryId=i, sellerId=random.choice([_ for _ in range(1, 11)]), name=name_(i, j), description=fake.sentence(), dateListed=date.today(), price=(10 * j * i), discount=0, condition=random.choice(conditions), count=i+j ))
+            db.session.add(Item(categoryId=i, sellerId=random.choice([_ for _ in range(1, 18)]), name=name_(i, j), description=fake.sentence(), dateListed=date.today(), price=(10 * j * i), discount=0, condition=random.choice(conditions), count=i+j ))
     db.session.commit()
 
 
