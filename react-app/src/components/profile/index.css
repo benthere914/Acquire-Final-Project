@@ -1,5 +1,6 @@
 .userProfile .itemCards{
-    top: 0;
+    top: 70px;
+    left: 100px;
 }
 
 .userProfile .itemCards .itemCardDiv{
@@ -14,14 +15,94 @@
     margin-bottom: 35px;
 }
 
+.userTagParent .userTag_{
+    position: relative;
+    top: 50px;
+    /* bottom: 40px; */
+    left: 180px;
+    margin-bottom: 35px;
+    border: solid gray;
+    width: 250px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    height: 50px;
+    /* font-size: 20px; */
+}
+
+.userTagParent .userTag_:hover{
+    background-color: gray;
+    color: white;
+}
+
+.userTagParent .userTag_ img{
+    height: 50px;
+    width: 50px;
+    position: relative;
+    right: 90px;
+}
+
+
+
+.userTagParent .userTag_ p{
+    position: relative;
+    left: 10px;
+    bottom: 55px;
+}
+
+.userTagParent .messageTag{
+    position: relative;
+    top: 50px;
+    /* bottom: 40px; */
+    left: 230px;
+    margin-bottom: 35px;
+    border: solid gray;
+    width: 250px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    height: 50px;
+}
+.userTagParent .messageTag p{
+    position: relative;
+    /* bottom: 20px; */
+}
+
+
+.userProfile .messageTag:hover{
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+}
+
+.userProfile .editAccount{
+    position: relative;
+    top: 50px;
+    /* bottom: 40px; */
+    left: 220px;
+    margin-bottom: 35px;
+    border: solid gray;
+    width: 250px;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    height: 50px;
+}
+
+.userProfile .editAccount:hover{
+    background-color: gray;
+    color: white;
+}
+
 .editAccountButton{
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    left: 350px;
-    /* top: 27px; */
-    bottom: 56px;
+    right: 100px;
+    /* left: 200px; */
+    top: 27px;
+    /* bottom: 56px; */
     border: solid gray;
     width: 240px;
     height: 40px;
@@ -52,6 +133,8 @@
     left: 177px;
     bottom: 50px;
     background-color: white;
+    position: relative;
+    top: 30px;
 }
 
 .userProfile div .userTagParent .userTag{

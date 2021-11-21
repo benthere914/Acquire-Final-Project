@@ -150,7 +150,7 @@ p.count{
 .itemBottomDiv{
     width: 600px;
     position: relative;
-    left: 170px;
+    left: 130px;
     display: flex;
     flex-direction: column;
     align-items: center;

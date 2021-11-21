@@ -1,11 +1,11 @@
 .messageBoards{
     border: solid gray;
+    border-radius: 15px;
     width: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 15px;
-    border-radius: 15px;
     height: 800px;
     margin-left: 50px;
     /* position: relative; */

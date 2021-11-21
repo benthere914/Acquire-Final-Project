@@ -127,6 +127,7 @@ const SellAnotherProductPage = () => {
                 <p>Description</p>
                 <input required={true} type='text' value={description} onChange={(e) => {setDescription(e.target.value)}}></input>
                 <p>Count</p>
+                <input type='number' value={quantity} onChange={(e) => {setQuantity(e.target.value)}} default={1} min={1}/>
                 <p>Photo Url {viewImg1Error?' - Invalid Image Icon':null}</p>
                 <input style={viewImg1Error?{border: 'solid red 2px'}: null}  type='text' value={icon1} onChange={(e) => {setViewImg1Error(false);setIcon1(e.target.value)}}></input>
                 <p>Photo Url {viewImg2Error?' - Invalid Image Icon':null}</p>

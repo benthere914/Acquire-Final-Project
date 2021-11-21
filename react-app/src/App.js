@@ -68,17 +68,17 @@ function App() {
                 <Route path='/items/new'>
                     <NavBar/>
                     <NewProductPage/>
-                    <Footer/>
+                    {/* <Footer/> */}
                 </Route>
                 <Route path='/items/:itemId/copy'>
                     <NavBar/>
                     <SellAnotherProductPage/>
-                    <Footer/>
+                    {/* <Footer/> */}
                 </Route>
                 <Route path='/items/:itemId/edit'>
                     <NavBar/>
                     <EditProductPage/>
-                    <Footer/>
+                    {/* <Footer/> */}
                 </Route>
                 <Route path='/items/:itemId'>
                     <NavBar/>
