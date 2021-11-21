@@ -9,6 +9,11 @@
     align-items: flex-start;
     padding-left: 7px;
     margin: 0;
+    position: relative;
+    left: 200px;
+    top: 25px;
+    border: solid gray;
+    border-radius: 15px;
 }
 
 .publishForm form{
@@ -61,6 +66,7 @@
     /* left: 200px; */
     left: 100px;
     height: 500px;
+    top: 25px;
 }
 
 .publishPreview .carousel-root .carousel.carousel-slider .slider-wrapper .slider .slide img{
@@ -80,6 +86,12 @@
     flex-direction: column;
     justify-content: center;
     height: 800px;
+    position: relative;
+    left: 400px;
+    height: 850px;
+    border: solid gray;
+    border-radius: 15px;
+    top: 25px;
 }
 
 .publishPreview p {
@@ -99,10 +111,10 @@
 
 .bottomPreviewData{
     position: relative;
-    bottom: 70px;
+    bottom: 50px;
 }
 
 .checkImage{
     display: none;
-    
+
 }

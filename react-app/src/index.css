@@ -1,1 +1,15 @@
-/* TODO Add site wide styles */
+.item-cards{
+    background-color: rgba(0, 0, 0, 0.05);
+
+}
+
+body{
+    background-color: rgba(0, 0, 0, 0.281);
+    margin: 0;
+}
+
+#root{
+    /* margin: 8px; */
+}
+
+

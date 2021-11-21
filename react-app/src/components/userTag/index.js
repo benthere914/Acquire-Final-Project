@@ -12,7 +12,7 @@ const UserTag = ({user, extraText, extraFontSize, extraFontWeight}) => {
     return (
     <>
     <div className='userTagParent'>
-        {extraText?<p style={{margin: '0px 15px 0px 0px', fontSize: extraFontSize, fontWeight: extraFontWeight}}>{extraText}</p>:null}
+        {extraText?<p  style={{fontSize: extraFontSize, fontWeight: extraFontWeight}}>{extraText}</p>:null}
         <div className='userTag' onClick={() => {history.push(`/users/${user?.id}`)}}>
             <img
                 alt='user'

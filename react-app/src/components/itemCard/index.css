@@ -5,18 +5,20 @@
     /* border: solid black; */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    width: 1000px;
     gap: 30px;
     padding-bottom: 100px;
+    left: 100px;
 }
 
 .cardPhotoDiv img{
     height: 150px;
     width: 200px;
-    object-fit: cover;
+    object-fit: contain;
     position: relative;
-    /* left: 50px; */
-    /* top: 50px; */
+
     bottom: 30px;
+
 
 }
 
@@ -27,14 +29,18 @@
 
 .itemCardDiv{
     display: flex;
-    width: 500px;
+    width: 480px;
     height: 200px;
-    border: solid black;
     align-items: center;
     justify-content: space-around;
     position: relative;
-    left: 50px;
+    left: 77px;
     cursor: pointer;
+    background-color: white;
+}
+
+.itemCardDiv:hover{
+    outline: solid rgb(0, 0, 0, 0.8);
 }
 
 .cardData{

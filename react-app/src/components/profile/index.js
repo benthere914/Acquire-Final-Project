@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUsersItems } from '../../store/items'
 import ItemCards from '../itemCard'
 import SendMessageButton from '../ sendMessageButton'
+import NewMessageModal from "../newMessageModal"
+
 const ProfilePage = () => {
     const history = useHistory()
     const params = useParams()
@@ -14,6 +16,7 @@ const ProfilePage = () => {
     const [profileUser, setProfileUser] = useState({})
     const [isLoaded, setisLoaded] = useState(false)
     const [newMessageModal, setNewMessageModal] = useState(false)
+
     const items = useSelector(state => Object.values(state.items))
     const userId = useSelector(state => state.session.user.id)
     const user = useSelector(state => state.session.user)
@@ -23,6 +26,7 @@ const ProfilePage = () => {
         const profileUser = await response.json()
         setProfileUser(profileUser)
     }, [profileUserId])
+
     useEffect(() => {dispatch(getUsersItems(profileUserId))}, [profileUser])
     useEffect(() => {if (items && profileUser){setisLoaded(true)}}, [items, profileUser])
     return (
@@ -30,11 +34,34 @@ const ProfilePage = () => {
         {isLoaded?
             <>
             <div className='userProfile'>
-                <div>
-                    <UserTag user={profileUser}/>
-                    {userId === +profileUserId && +profileUserId !== +1?(<p onClick={() => {history.push(`/users/${userId}/edit`)}} className='editAccountButton'>Edit your account</p>):null}
-                    {userId !== +profileUserId?(<SendMessageButton receivingUser={profileUser}/>):null}
-                </div>
+
+                    <div className='userTagParent'>
+                        <div className='userTag_' onClick={() => {history.push(`/users/${profileUser?.id}`)}}>
+                            <img
+                                alt='user'
+                                src={profileUser?.icon}
+                                />
+                            <p>{profileUser?.username}</p>
+                        </div>
+                        {/* {userId === +profileUserId && +profileUserId !== +1?(<p onClick={() => {history.push(`/users/${userId}/edit`)}} className='editAccountButton'>Edit your account</p>):null} */}
+                        {userId === +profileUserId && +profileUserId !== +1?(
+                        <div className='editAccount' onClick={() => {history.push(`/users/${userId}/edit`)}}>
+                            <p >{'edit your account'}</p>
+                        </div>
+
+
+
+                        ):null}
+
+
+                        {userId !== +profileUserId?(
+                            <div className='messageTag'>
+                                <p onClick={() => {setNewMessageModal(true)}} className=''>{`Message`}</p>
+                                {newMessageModal?<NewMessageModal setNewMessageModal={setNewMessageModal} receivingUser={profileUserId}/>:null}
+                            </div>
+                        ):null}
+                    </div>
+
                 <p className='ItemsIntroduction'>{`Items ${profileUser?.username} has for sale`}</p>
                 <ItemCards items={items}/>
             </div>

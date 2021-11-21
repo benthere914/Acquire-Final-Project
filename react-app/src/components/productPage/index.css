@@ -28,6 +28,7 @@
     /* border: solid black; */
     height: 160px;
     margin: 15px;
+    display: flex;
 }
 .itemTopLeftDiv .carousel-root{
     /* border: solid black; */
@@ -40,6 +41,8 @@
 .itemTopLeftDiv .carousel-root .imageDiv{
     width: 800px;
     height: 400px;
+    position: relative;
+    top: 100px;
 }
 
 .conditions{
@@ -122,13 +125,13 @@ p.count{
 
 .itemTopLeftDiv .carousel-root .carousel.carousel-slider .slider-wrapper .slider .slide img{
     width: 600px;
-    height: 550px;
+    height: 450px;
     overflow: hidden;
     object-fit: contain;
 }
 
 .itemTopLeftDiv .carousel-root .carousel.carousel-slider .slider-wrapper .slider{
-    height: 550px;
+    height: 450px;
 }
 
 .itemTopLeftDiv .carousel-root .carousel .thumbs-wrapper{
@@ -138,11 +141,16 @@ p.count{
     right: 15px;
 }
 
-.itemBottomDiv{
-    /* border: solid black; */
+.itemTopLeftDiv .carousel-root{
     width: 600px;
     position: relative;
-    left: 170px;
+    left: 100px;
+}
+
+.itemBottomDiv{
+    width: 600px;
+    position: relative;
+    left: 130px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -170,6 +178,6 @@ p.count{
 
 .itemTopLeftDiv .carousel-root{
     position: relative;
-    bottom: 70px;
+    /* bottom: 70px; */
     right: 20px;
 }

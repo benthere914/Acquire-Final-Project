@@ -1,12 +1,16 @@
 p.featuredDeals{
-    border: solid gray;
+    /* border: solid gray; */
     display: flex;
     justify-content: center;
     position: relative;
     top: 380px;
     padding-top: 5px;
     padding-bottom: 5px;
-    padding-right: 45px;
+    padding: 0px;
+    margin: 0px;
     font-size: 35px;
+    width: 79%;
+    position: relative;
+    left: 177px;
+    background-color: white;
 }
-

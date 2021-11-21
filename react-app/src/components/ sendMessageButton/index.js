@@ -5,8 +5,16 @@ const SendMessageButton = ({receivingUser}) => {
     const [newMessageModal, setNewMessageModal] = useState(false)
     return (
     <>
-    <p onClick={() => {setNewMessageModal(true)}} className='editAccountButton'>{`Message`}</p>
-    {newMessageModal?<NewMessageModal setNewMessageModal={setNewMessageModal} receivingUser={receivingUser}/>:null}
+   
+
+
+
+    <div className='userTagParent'>
+        <div className='userTag'>
+        <p onClick={() => {setNewMessageModal(true)}} className='editAccountButton'>{`Message`}</p>
+        {newMessageModal?<NewMessageModal setNewMessageModal={setNewMessageModal} receivingUser={receivingUser}/>:null}
+        </div>
+    </div>
     </>
     )
 }
