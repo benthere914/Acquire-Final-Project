@@ -39,15 +39,16 @@ const Search = () => {
             history.push(`/search/${optionHandler(option).split('%').join("%25").split(" ").join("%20")}/${searchText.split('%').join("%25").split(" ").join("%20")}`)
         }
             setSearchText('')
+            setOption('All Categories')
     }
 
       return (
     <>
         <div className='search'>
-            <div className='categoryModalButton'>
+            {/* <div className='categoryModalButton'>
                 <p>Random Search</p>
                 <i className='fas fa-arrow-down'></i>
-            </div>
+            </div> */}
             <input value={searchText} onChange={(e) => {setSearchText(e.target.value);}} type='text' placeholder={'search for anything'}></input>
             <Dropdown options={options} value={option} onChange={setOption} placeholder='select an option'/>
         </div>

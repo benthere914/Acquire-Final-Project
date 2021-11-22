@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import './index.css'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router'
 import { getSearchItems } from '../../store/items'
@@ -26,7 +26,8 @@ const SearchPage = () => {
     }, [query, category])
     return (
     <>
-        <div>
+        <div className='searchPage'>
+            <p className='searchTitle'>{category}</p>
             <ItemCards items={items}/>
         </div>
     </>

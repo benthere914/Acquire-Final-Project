@@ -14,3 +14,8 @@ p.featuredDeals{
     left: 177px;
     background-color: white;
 }
+
+.splashPage{
+    position: relative;
+    top: 20px;
+}

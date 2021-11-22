@@ -3,6 +3,8 @@
     height: 840px;
     display: flex;
     justify-content: space-evenly;
+    position: relative;
+    top: 25px;
 }
 
 .editUserPreviewUser{
