@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 const Search = () => {
     const history = useHistory()
+    const [option, setOption] = useState('All Categories')
     const options = [
         'All Categories',
         'Antiques',
@@ -39,7 +40,7 @@ const Search = () => {
     ]
     const [searchText, setSearchText] = useState('')
     const searchHandler = () => {
-        history.push(`/search/${searchText.split('%').join("%25").split(" ").join("%20")}`)
+        history.push(`/search/${option.value.split('%').join("%25").split(" ").join("%20")}/${searchText.split('%').join("%25").split(" ").join("%20")}`)
         setSearchText('')
     }
 
@@ -51,7 +52,7 @@ const Search = () => {
                 <i className='fas fa-arrow-down'></i>
             </div>
             <input value={searchText} onChange={(e) => {setSearchText(e.target.value);}} type='text' placeholder={'search for anything'}></input>
-            <Dropdown options={options} placeholder='select an option'/>
+            <Dropdown options={options} value={option} onChange={setOption} placeholder='select an option'/>
         </div>
             <h3
                 onClick={() => {searchHandler()}}

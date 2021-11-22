@@ -92,7 +92,7 @@ function App() {
                     <MessagesPage/>
                     <Footer/>
                 </ProtectedRoute>
-                <Route path='/search/:query'>
+                <Route path='/search/:category/:query'>
                     <NavBar/>
                     <SearchPage/>
                     <Footer/>

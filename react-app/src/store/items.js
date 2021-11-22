@@ -25,9 +25,9 @@ const loadItems = (items) => ({
     }
   };
 
-  export const getSearchItems = (query) => async (dispatch) => {
+  export const getSearchItems = (category, query) => async (dispatch) => {
     console.log(query, 222)
-      const response = await fetch(`/api/items/search/${query}`)
+      const response = await fetch(`/api/items/search/${category}/${query}`)
       if (response.ok){
           const items = await response.json()
           dispatch(loadItems(items))
