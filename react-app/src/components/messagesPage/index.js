@@ -30,7 +30,6 @@ const MessagesPage = () => {
     const [customContextMenuVisible, setCustomContextMenuVisible] = useState(false)
     const [customMenuId, setCustomMenuId] = useState(0)
     const [boardTitle, setBoardTitle] = useState('')
-    console.log(selectedMessageBoards)
     return (
     <>
         <div>
