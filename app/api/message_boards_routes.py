@@ -27,4 +27,11 @@ def delete_message_board(message_board_id):
     db.session.commit()
     return jsonify({'messaage': 'success'})
 
-
+@message_boards_routes.route('/<int:message_board_id>', methods=['PUT'])
+@login_required
+def update_message_board(message_board_id):
+    body = request.get_json()
+    message_board = MessageBoard.query.get(message_board_id)
+    message_board.title = body['title']
+    db.session.commit()
+    return jsonify({'message': 'success'})

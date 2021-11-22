@@ -121,8 +121,48 @@
 .boardTitle{
     position: absolute;
     top: 50px;
-    left: 1100px;
+    left: 1085px;
     font-size: 40px;
     width: 250px;
+    text-align: center;
+}
+
+.messageBoardContextMenu{
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    /* right: 340px; */
+    left: 7px;
+    width: 890px;
+    top: 14px;
+    /* border: solid black; */
+}
+
+.messageBoardContextMenu p{
+    border: solid gray;
+    width: 250px;
+    text-align: center;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+p.editMessageBoard{
+    position: relative;
+    /* left: 5px; */
+}
+p.deleteMessageBoard{
+    position: relative;
+    /* right: 5px; */
+}
+.messageBoardContextMenu p:hover{
+    cursor: pointer;
+    background-color: gray;
+    color: white;
+}
+
+.messageBoardContextMenu h3{
     text-align: center;
 }
