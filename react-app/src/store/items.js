@@ -25,6 +25,15 @@ const loadItems = (items) => ({
     }
   };
 
+  export const getSearchItems = (query) => async (dispatch) => {
+    console.log(query, 222)
+      const response = await fetch(`/api/items/search/${query}`)
+      if (response.ok){
+          const items = await response.json()
+          dispatch(loadItems(items))
+      }
+  }
+
 
   export default function reducer(state = {}, action) {
     switch (action.type) {

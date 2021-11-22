@@ -5,14 +5,15 @@ import { useState } from 'react';
 import Search from './search';
 
 
-const NavBar = () => {
+const NavBar = ({setSearchQuery}) => {
     const history = useHistory()
     const [dropDown, setDropdown] = useState(false)
+    
     return (
         <>
             <div className='navbar'>
                 <p onClick={() => {history.push('/')}}>Acquire</p>
-                <Search/>
+                <Search setSearchQuery={setSearchQuery}/>
                 <i className='fas fa-bars' onMouseEnter={() => {setDropdown(true)}}></i>
             </div>
             {dropDown?

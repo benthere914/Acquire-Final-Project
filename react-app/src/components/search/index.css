@@ -62,3 +62,18 @@
     right: 50px;
     text-align: center;
 }
+
+.searchButton{
+    position: absolute;
+    right: 200px;
+    background-color: white;
+    width: 200px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchButton:hover{
+    cursor: pointer;
+}

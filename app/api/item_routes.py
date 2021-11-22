@@ -1,6 +1,7 @@
 import re
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
+from werkzeug.wrappers.request import PlainRequest
 from app.models import User, Item, ItemPhoto, Category, db
 from datetime import date
 
@@ -12,6 +13,23 @@ def top_items():
     items = Item.query.limit(12).all()
     output = {}
     for item in items:
+        temp = item.to_dict()
+        temp['photos'] = [photo.to_dict() for photo in item.item_photos]
+        output[temp['id']] = (temp)
+
+    return jsonify(output)
+
+@item_routes.route('/search/<string:query>')
+def search_items(query):
+    query = query.split(' ')
+    allItems = []
+    for word in query:
+        items_by_name = Item.query.filter(Item.name.ilike(f'%{word}%')).filter(Item not in allItems).all()
+        allItems.extend(items_by_name)
+        items_by_description = Item.query.filter(Item.description.ilike(f'%{word}%')).filter(Item not in allItems).all()
+        allItems.extend(items_by_description)
+    output = {}
+    for item in allItems:
         temp = item.to_dict()
         temp['photos'] = [photo.to_dict() for photo in item.item_photos]
         output[temp['id']] = (temp)
