@@ -82,6 +82,8 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
         })
         setMessageText('')
         dispatch(getMessages(boardId))
+        dispatch(getBuyerMessageBoards(userId))
+        dispatch(getSellerMessageBoards(userId))
     }
 
     const editMessageHandler = async () => {

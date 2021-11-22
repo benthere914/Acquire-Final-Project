@@ -12,6 +12,9 @@ const MessageBoards = ({setBoardTitle, setCustomContextMenuVisible,setCustomMenu
         setBoardId(board?.id);
         setSellerId(board?.sellerId);
         setBuyerId(board?.potentialBuyerId)
+        setBoardTitle(board?.title)
+        setButtonText('Send')
+        setCustomContextMenuVisible(false)
     }
     const message_board_right_click_handler = (e, id, title) => {
         e.preventDefault()
