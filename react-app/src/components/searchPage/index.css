@@ -1,0 +1,23 @@
+.searchPage p.searchTitle{
+    border: solid gray;
+    width: 1490px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 180px;
+    top: 50px;
+}
+
+.searchPage .itemCards{
+    position: relative;
+    top: 100px;
+}
+
+.searchPage .noItems{
+    position: relative;
+    top: 10vh;
+    left: 30vw;
+    font-size: 40px;
+}

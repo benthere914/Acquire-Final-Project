@@ -16,6 +16,7 @@ import ProfilePage from './components/profile';
 import EditUserPage from './components/editUser';
 import MessagesPage from './components/messagesPage';
 import User from './components/User';
+import SearchPage from './components/searchPage';
 import SellAnotherProductPage from './components/sellSameProductPage';
 import { authenticate } from './store/session';
 
@@ -67,17 +68,17 @@ function App() {
                     <Footer />
 				</Route>
                 <Route path='/items/new'>
-                    <NavBar/>
+                    <NavBar />
                     <NewProductPage/>
                     {/* <Footer/> */}
                 </Route>
                 <Route path='/items/:itemId/copy'>
-                    <NavBar/>
+                    <NavBar />
                     <SellAnotherProductPage/>
                     {/* <Footer/> */}
                 </Route>
                 <Route path='/items/:itemId/edit'>
-                    <NavBar/>
+                    <NavBar />
                     <EditProductPage/>
                     {/* <Footer/> */}
                 </Route>
@@ -91,6 +92,16 @@ function App() {
                     <MessagesPage/>
                     <Footer/>
                 </ProtectedRoute>
+                <Route path='/search/:category/:query'>
+                    <NavBar/>
+                    <SearchPage/>
+                    <Footer/>
+                </Route>
+                <Route path='/search/:category/'>
+                    <NavBar/>
+                    <SearchPage/>
+                    <Footer/>
+                </Route>
 			</Switch>
 		</BrowserRouter>
 	);

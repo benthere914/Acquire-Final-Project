@@ -70,8 +70,11 @@ const ProductPage = ({itemSelected, setItemSelected}) => {
                 <div className='itemTopRightDiv'>
                     <p className='itemName'>{item?.name}</p>
                     <UserTag user={item?.seller} extraText={'Sold by'} extraFontSize={25} extraFontWeight={600} setItemSelected={setItemSelected} name={item?.name}/>
-                    {user?.id && user?.id !== +item?.seller?.id?(
-                            <div onClick={() => {setNewMessageModal(true)}} className='messageTag'>
+                    {user?.id !== +item?.seller?.id?(
+                            <div onClick={() => {
+                                if (user?.id){setNewMessageModal(true)}
+                                else{history.push('/login')}
+                                }} className='messageTag'>
                                 <p className=''>{`Message`}</p>
                             </div>
                         ):null}

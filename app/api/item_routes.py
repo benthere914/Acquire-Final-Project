@@ -1,8 +1,11 @@
 import re
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
+from sqlalchemy.orm import query_expression
+from werkzeug.wrappers.request import PlainRequest
 from app.models import User, Item, ItemPhoto, Category, db
 from datetime import date
+from sqlalchemy import or_
 
 item_routes = Blueprint('items', __name__)
 
@@ -17,6 +20,34 @@ def top_items():
         output[temp['id']] = (temp)
 
     return jsonify(output)
+
+@item_routes.route('/search/<string:category>/<string:query>')
+def search_items(category, query):
+    query = query.split(' ')
+    output = {}
+    allItems = []
+    selected_category = Category.query.filter(Category.name == category).first()
+    if (any(query) and query[0] != '$$all$$'):
+        for word in query:
+            items_by_name = Item.query.filter(Item.name.ilike(f'%{word}%')).filter(Item not in allItems).filter(or_(Item.category == selected_category, selected_category.to_dict()['name'] == 'All Categories')).all()
+            allItems.extend(items_by_name)
+            items_by_description = Item.query.filter(Item.description.ilike(f'%{word}%')).filter(Item not in allItems).filter(or_(Item.category == selected_category, selected_category.to_dict()['name'] == 'All Categories')).all()
+            allItems.extend(items_by_description)
+    else:
+        print('got herereeree')
+        if (query[0] == '$$all$$' and len(query) == 1):
+            allItems = Item.query.all()
+        else:
+            allItems = Item.query.filter(Item.category == selected_category).all()
+
+    for item in allItems:
+        temp = item.to_dict()
+        temp['photos'] = [photo.to_dict() for photo in item.item_photos]
+        output[temp['id']] = (temp)
+    return jsonify(output)
+    # selected_category = Category.query.filter(Category.name == category).first()
+    # print(selected_category.to_dict(), selected_category.id,  999)
+    # return jsonify({'message': 'selected_category'})
 
 
 @item_routes.route('/<int:id>')

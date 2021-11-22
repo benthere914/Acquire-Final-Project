@@ -1,6 +1,8 @@
 .messagesPage{
     display: flex;
     margin: 0;
+    position: relative;
+    top: 20px;
 }
 .messages{
     padding-top: 2px;

@@ -16,6 +16,8 @@ const SplashPage = () => {
     return (
     <>
         {/* <Search/> */}
+        <div className='splashPage'>
+
         <div className='splashDivCarousel'>
             <Carousel autoPlay={true} interval={3000} infiniteLoop={true} showThumbs={false} showArrows={false}>
                 <CarouselCard id={1}/>
@@ -25,6 +27,7 @@ const SplashPage = () => {
         </div>
         <p className='featuredDeals'>Featured Deals</p>
         <ItemCards items={items}/>
+        </div>
     </>
     )
 }
