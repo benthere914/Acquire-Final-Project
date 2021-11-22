@@ -34,7 +34,12 @@ def search_items(category, query):
             items_by_description = Item.query.filter(Item.description.ilike(f'%{word}%')).filter(Item not in allItems).filter(or_(Item.category == selected_category, selected_category.to_dict()['name'] == 'All Categories')).all()
             allItems.extend(items_by_description)
     else:
-        allItems = Item.query.filter(Item.category == selected_category).all()
+        print('got herereeree')
+        if (query[0] == '$$all$$' and len(query) == 1):
+            allItems = Item.query.all()
+        else:
+            allItems = Item.query.filter(Item.category == selected_category).all()
+
     for item in allItems:
         temp = item.to_dict()
         temp['photos'] = [photo.to_dict() for photo in item.item_photos]
