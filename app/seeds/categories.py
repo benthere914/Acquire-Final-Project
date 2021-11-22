@@ -11,7 +11,7 @@ def seed_categories():
         'Clothing, & Shoes',
         'Collectibles',
         'Computers & Tables',
-        'phones and accessories'
+        'phones and accessories',
         'Electronics',
         'Musical Instruments',
         'Pet Supplies',
@@ -19,6 +19,7 @@ def seed_categories():
         'Toys & hobbies',
         'Game Consoles'
     ]
+    # 13 categories
     for option in options:
         db.session.add(Category(name=option))
 
