@@ -108,7 +108,16 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
             body: JSON.stringify({'title': messageText})
         })
         const result = await response.json()
-        
+        if (result.message === 'success'){
+            dispatch(getMessages(boardId))
+            dispatch(getBuyerMessageBoards(userId))
+            dispatch(getSellerMessageBoards(userId))
+        }
+        setButtonText('Send');
+        setMessageText('')
+        setCustomContextMenuVisible(false)
+
+
     }
 
     const deleteMessageBoardHandler = () => {

@@ -55,6 +55,7 @@ const MessagesPage = () => {
                 <Messages
                     boardTitle={boardTitle}
                     customContextMenuVisible={customContextMenuVisible}
+                    setCustomContextMenuVisible={setCustomContextMenuVisible}
                     customMenuId={customMenuId}
                     buttonText={buttonText}
                     setButtonText={setButtonText}
