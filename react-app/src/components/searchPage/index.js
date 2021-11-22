@@ -28,7 +28,9 @@ const SearchPage = () => {
     <>
         <div className='searchPage'>
             <p className='searchTitle'>{category}</p>
+            {items.length > 0?
             <ItemCards items={items}/>
+        :<p className='noItems'>There are no Items that meet the search criteria.</p>}
         </div>
     </>
     )
