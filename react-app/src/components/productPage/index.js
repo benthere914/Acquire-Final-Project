@@ -7,7 +7,8 @@ import { getItem } from '../../store/selectedItem';
 import UserTag from '../userTag';
 import WarningModal from '../warningModal';
 import { useState } from 'react';
-const ProductPage = () => {
+import NewMessageModal from '../newMessageModal';
+const ProductPage = ({itemSelected, setItemSelected}) => {
     const [password, setPassword] = useState('');
     const history = useHistory()
     const imgErrorHandler = (e) => {
@@ -20,6 +21,8 @@ const ProductPage = () => {
     const photos = useSelector(state => state.selectedItem.photos)
     const user = useSelector(state => state.session.user)
     const [deleteModal, setDeleteModal] = useState(false)
+    const [newMessageModal, setNewMessageModal] = useState(false)
+
     const [error, setError] = useState('')
     const deletePostHandler = async () => {
         const response = await fetch(`/api/items/${params?.itemId}`, {
@@ -50,7 +53,7 @@ const ProductPage = () => {
         <div className='itemMainDiv'>
             <div className='itemTopDiv'>
                 <div className='itemTopLeftDiv'>
-                    <Carousel infiniteLoop={true} showArrows={false}>
+                    <Carousel infiniteLoop={true}>
 
                             {photos?.map((photo) => (
                             <img
@@ -66,7 +69,14 @@ const ProductPage = () => {
                 </div>
                 <div className='itemTopRightDiv'>
                     <p className='itemName'>{item?.name}</p>
-                    <UserTag user={item?.seller} extraText={'Sold by'} extraFontSize={25} extraFontWeight={600}/>
+                    <UserTag user={item?.seller} extraText={'Sold by'} extraFontSize={25} extraFontWeight={600} setItemSelected={setItemSelected} name={item?.name}/>
+                    {user?.id !== +item?.seller?.id?(
+                            <div className='messageTag'>
+                                <p onClick={() => {setNewMessageModal(true)}} className=''>{`Message`}</p>
+                            </div>
+                        ):null}
+                        {newMessageModal?<NewMessageModal setNewMessageModal={setNewMessageModal} receivingUser={item?.seller} itemSelected={item?.name}/>:null}
+
                     <div className='conditions'>
                         <p>Condition: </p>
                         <p className='condition'>{item?.condition}</p>

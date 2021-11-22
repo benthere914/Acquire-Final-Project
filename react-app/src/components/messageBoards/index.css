@@ -120,22 +120,30 @@
 
 .boardTitle{
     position: absolute;
-    top: 50px;
+    top: 95px;
     left: 1085px;
     font-size: 40px;
     width: 250px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+    z-index: 10;
+    background-color: rgb(183, 183, 183);
+    margin: 0;
 }
 
 .messageBoardContextMenu{
     position: absolute;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     /* right: 340px; */
     left: 7px;
     width: 890px;
-    top: 14px;
-    /* border: solid black; */
+    top: 10px;
+    height: 94px;
+    z-index: 10;
 }
 
 .messageBoardContextMenu p{

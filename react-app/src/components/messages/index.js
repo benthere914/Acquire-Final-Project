@@ -5,6 +5,7 @@ import { getBuyerMessageBoards } from '../../store/buyerMessageBoards'
 import { getSellerMessageBoards } from '../../store/sellerMessageBoards'
 import { getMessages } from '../../store/messages'
 import Message from '../message'
+import { reset } from '../../store/selectedMessageBoard'
 const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomContextMenuVisible, buttonText, setButtonText, setHasBoards, boardId, setBoardId, buyerId, setBuyerId, sellerId, setSellerId, setSelectedBoard, selectedBoard, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
     const selectedMessageBoard = useSelector(state => state.selectedMessageBoard)
     const buyerMessageBoard = useSelector(state => Object.values(state.buyerMessageBoards))
@@ -18,9 +19,24 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
     const [editMessageModal, setEditMessageModal] = useState(false)
     const [loadCount, setLoadCount] = useState(0)
     const dispatch = useDispatch()
+    useEffect(() => {
+        console.log('abc')
+        if (selectedMessageBoard?.messageBoardId){
+            console.log('defg')
+            setSelectedBoard(selectedMessageBoard?.boardType)
+            setBuyerId(selectedMessageBoard?.buyerId)
+            setSellerId(selectedMessageBoard?.sellerId)
+            setBoardId(selectedMessageBoard?.messageBoardId)
+            dispatch(getMessages(selectedMessageBoard?.messageBoardId))
+            dispatch(getBuyerMessageBoards(userId))
+            dispatch(getSellerMessageBoards(userId))
+            dispatch(reset())
+        }
+    }, [selectedMessageBoard])
 
     useEffect(() => {
         console.log('test spot')
+        if (selectedMessageBoard?.messageBoardId){return}
         dispatch(getBuyerMessageBoards(userId)).then((e) => {
             if (e === 'success'){
                 setBuysLoaded(true)
@@ -58,15 +74,7 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
             }
         }
     }, [selectedMessageBoard, buysLoaded, sellsLoaded, buyerMessageBoard, sellerMessageBoard])
-    useEffect(() => {
-        if (selectedMessageBoard?.messageBoardId){
-            setSelectedBoard(selectedMessageBoard?.boardType)
-            setBuyerId(selectedMessageBoard?.buyerId)
-            setSellerId(selectedMessageBoard?.sellerId)
-            setBoardId(selectedMessageBoard?.messageBoardId)
-            dispatch(getMessages(selectedMessageBoard?.messageBoardId))
-        }
-    }, [selectedMessageBoard])
+
 
     const sendMessageHandler = async () => {
         await fetch('/api/messages/', {
@@ -138,7 +146,7 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
             </div>
         :null}
     {sellerId?
-        <div className='messages' onMouseLeave={() => {setEditMessageModal(false)}}>
+        <div className='messages' onMouseLeave={() => {setEditMessageModal(false);}}>
         {messages?.map((message) => (<Message setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage} userId={userId} message={message} imgErrorHandler={imgErrorHandler}/>))}
         </div>
     :null}

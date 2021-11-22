@@ -21,6 +21,7 @@ import { authenticate } from './store/session';
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
+    const [itemSelected, setItemSelected] = useState('regular')
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -57,7 +58,7 @@ function App() {
 				</ProtectedRoute>
                 <ProtectedRoute path="/users/:userId" exact={true}>
         			<NavBar />
-					<ProfilePage />
+					<ProfilePage itemSelected={itemSelected}/>
                     <Footer />
 				</ProtectedRoute>
 				<Route path="/" exact={true}>
@@ -82,7 +83,7 @@ function App() {
                 </Route>
                 <Route path='/items/:itemId'>
                     <NavBar/>
-                    <ProductPage/>
+                    <ProductPage itemSelected={itemSelected} setItemSelected={setItemSelected}/>
                     <Footer/>
                 </Route>
                 <ProtectedRoute path='/messages'>
