@@ -11,12 +11,17 @@ const SearchPage = () => {
     const [query, setQuery] = useState('')
     const [category, setCategory] = useState('')
     useEffect(() => {
-        setQuery(params.query)
-        setCategory(params.category)
+        setQuery(params?.query)
+        setCategory(params?.category)
     }, [params])
     useEffect(() => {
-        if (query){
+        if (query && category){
+            console.log('both')
             dispatch(getSearchItems(category.split('%').join("%25").split(" ").join("%20"), query.split('%').join("%25").split(" ").join("%20")))
+        }
+        else if (!query && category){
+            console.log(category)
+            dispatch(getSearchItems(category.split('%').join("%25").split(" ").join("%20"), '$$all$$'))
         }
     }, [query, category])
     return (

@@ -10,38 +10,35 @@ const Search = () => {
     const options = [
         'All Categories',
         'Antiques',
-        'Art',
-        'Baby',
         'Books',
         'Cameras & Photo',
         'Clothing, & Shoes',
         'Collectibles',
         'Computers & Tables',
+        'phones and accessories',
         'Electronics',
-        'Crafts',
-        'Dolls & Bears',
-        'DVDs & Movies',
-        'Entertainment Misc',
-        'Gift Cards',
-        'Health & Beauty',
-        'Home & Garden',
-        'Jewely & Watches',
-        'Music',
         'Musical Instruments',
         'Pet Supplies',
-        'Pottery & Glass',
         'Sporting Goods',
-        'Sports Memorabillia',
-        'Stamps',
         'Toys & hobbies',
-        'Travel',
-        'Video Games',
-        'Everything Else'
+        'Game Consoles'
     ]
+
     const [searchText, setSearchText] = useState('')
+    const optionHandler = (option) => {
+        if (typeof option === 'string'){
+            return option
+        }else if (typeof option === 'object'){
+            return option.value
+        }
+    }
     const searchHandler = () => {
-        history.push(`/search/${option.value.split('%').join("%25").split(" ").join("%20")}/${searchText.split('%').join("%25").split(" ").join("%20")}`)
-        setSearchText('')
+        if (searchText === ''){
+            history.push(`/search/${optionHandler(option).split('%').join("%25").split(" ").join("%20")}/`)
+        }else{
+            history.push(`/search/${optionHandler(option).split('%').join("%25").split(" ").join("%20")}/${searchText.split('%').join("%25").split(" ").join("%20")}`)
+        }
+            setSearchText('')
     }
 
       return (

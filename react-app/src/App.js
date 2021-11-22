@@ -97,6 +97,11 @@ function App() {
                     <SearchPage/>
                     <Footer/>
                 </Route>
+                <Route path='/search/:category/'>
+                    <NavBar/>
+                    <SearchPage/>
+                    <Footer/>
+                </Route>
 			</Switch>
 		</BrowserRouter>
 	);
