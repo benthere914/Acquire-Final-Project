@@ -71,8 +71,8 @@ const ProductPage = ({itemSelected, setItemSelected}) => {
                     <p className='itemName'>{item?.name}</p>
                     <UserTag user={item?.seller} extraText={'Sold by'} extraFontSize={25} extraFontWeight={600} setItemSelected={setItemSelected} name={item?.name}/>
                     {user?.id !== +item?.seller?.id?(
-                            <div className='messageTag'>
-                                <p onClick={() => {setNewMessageModal(true)}} className=''>{`Message`}</p>
+                            <div onClick={() => {setNewMessageModal(true)}} className='messageTag'>
+                                <p className=''>{`Message`}</p>
                             </div>
                         ):null}
                         {newMessageModal?<NewMessageModal setNewMessageModal={setNewMessageModal} receivingUser={item?.seller} itemSelected={item?.name}/>:null}
