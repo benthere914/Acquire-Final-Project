@@ -8,7 +8,7 @@ import ItemCards from '../itemCard'
 import SendMessageButton from '../ sendMessageButton'
 import NewMessageModal from "../newMessageModal"
 
-const ProfilePage = () => {
+const ProfilePage = ({itemSelected}) => {
     const history = useHistory()
     const params = useParams()
     const dispatch = useDispatch()
@@ -54,12 +54,12 @@ const ProfilePage = () => {
                         ):null}
 
 
-                        {userId !== +profileUserId?(
+                        {/* {userId !== +profileUserId?(
                             <div className='messageTag'>
                                 <p onClick={() => {setNewMessageModal(true)}} className=''>{`Message`}</p>
                             </div>
                         ):null}
-                        {newMessageModal?<NewMessageModal setNewMessageModal={setNewMessageModal} receivingUser={profileUserId}/>:null}
+                        {newMessageModal?<NewMessageModal setNewMessageModal={setNewMessageModal} receivingUser={profileUserId} itemSelected={itemSelected}/>:null} */}
                     </div>
 
                 <p className='ItemsIntroduction'>{`Items ${profileUser?.username} has for sale`}</p>

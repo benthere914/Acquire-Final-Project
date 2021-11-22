@@ -18,3 +18,20 @@ def load_messages(message_board_id):
         return jsonify(messages)
     else:
         return {'message': 'invalid request'}
+
+@message_boards_routes.route('/<int:message_board_id>', methods=['Delete'])
+@login_required
+def delete_message_board(message_board_id):
+    messages = Message.query.filter(Message.messageBoardId == message_board_id).delete()
+    message_board = MessageBoard.query.filter(MessageBoard.id == message_board_id).delete()
+    db.session.commit()
+    return jsonify({'message': 'success'})
+
+@message_boards_routes.route('/<int:message_board_id>', methods=['PUT'])
+@login_required
+def update_message_board(message_board_id):
+    body = request.get_json()
+    message_board = MessageBoard.query.get(message_board_id)
+    message_board.title = body['title']
+    db.session.commit()
+    return jsonify({'message': 'success'})

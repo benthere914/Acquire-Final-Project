@@ -10,13 +10,14 @@ message_routes = Blueprint('message', __name__)
 @message_routes.route('/', methods=['POST'])
 def send_message():
     body = request.get_json()
+    print(body, 888)
     message_boards = MessageBoard.query.filter(MessageBoard.sellerId == body['sellerId']).filter(MessageBoard.potentialBuyerId == body['buyerId']).all()
     if len(message_boards) == 1:
         db.session.add(Message(messageBoardId=message_boards[0].to_dict()['id'], authorId=body['authorId'], message=body['message'], createdAt=datetime.now()))
         db.session.commit()
         return {'messageBoardId': message_boards[0].to_dict()['id']}
     if len(message_boards) == 0:
-        message_board = MessageBoard(sellerId=body['sellerId'], potentialBuyerId=body['buyerId'])
+        message_board = MessageBoard(sellerId=body['sellerId'], potentialBuyerId=body['buyerId'], title=body['itemSelected'])
         db.session.add(message_board)
         db.session.commit()
         db.session.add(Message(messageBoardId=message_board.id, authorId=body['authorId'], message=body['message'], createdAt=datetime.now()))

@@ -9,7 +9,7 @@ const Message = ({setButtonText, boardId, editMessageModal, setEditMessageModal,
 
     {message?.authorId == userId?
         <>
-                <div onClick={() => {history.push(`/users/${message?.author?.id}`)}} className='message myUser' key={message?.id} onContextMenu={(e) => {setSelectedMessage(message?.id);e.preventDefault(); setEditMessageModal(true)}}>
+                <div className='message myUser' key={message?.id} onContextMenu={(e) => {setSelectedMessage(message?.id);e.preventDefault(); setEditMessageModal(true)}}>
                     <p>{message?.message}</p>
                     <img
                         src={message?.author?.icon}

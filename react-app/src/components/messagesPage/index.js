@@ -8,6 +8,8 @@ import MessageBoards from '../messageBoards'
 import { getMessages } from '../../store/messages'
 const dateDiff = require('date-difference')
 const MessagesPage = () => {
+    const [buttonText, setButtonText] = useState('Send')
+
 
     const imgErrorHandler = (e) => {
         e.target.onerror = null;
@@ -25,11 +27,20 @@ const MessagesPage = () => {
     const [buyerId, setBuyerId] = useState(0)
     const selectedMessageBoards = useSelector(state => Object.values(state[`${selectedBoard}MessageBoards`]))
     const [hasBoards, setHasBoards] = useState(true)
+    const [customContextMenuVisible, setCustomContextMenuVisible] = useState(false)
+    const [customMenuId, setCustomMenuId] = useState(0)
+    const [boardTitle, setBoardTitle] = useState('')
+    console.log(selectedMessageBoards)
     return (
     <>
         <div>
             <div className='messagesPage'>
                 <MessageBoards
+                    setBoardTitle={setBoardTitle}
+                    setCustomContextMenuVisible={setCustomContextMenuVisible}
+                    setCustomMenuId={setCustomMenuId}
+                    buttonText={buttonText}
+                    setButtonText={setButtonText}
                     setHasBoards={setHasBoards}
                     boardId={boardId}
                     setBoardId={setBoardId}
@@ -42,6 +53,12 @@ const MessagesPage = () => {
                     dateConverter={dateConverter}/>
                 {hasBoards?
                 <Messages
+                    boardTitle={boardTitle}
+                    customContextMenuVisible={customContextMenuVisible}
+                    setCustomContextMenuVisible={setCustomContextMenuVisible}
+                    customMenuId={customMenuId}
+                    buttonText={buttonText}
+                    setButtonText={setButtonText}
                     setHasBoards={setHasBoards}
                     setBoardId={setBoardId}
                     boardId={boardId}

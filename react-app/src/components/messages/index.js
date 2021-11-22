@@ -5,7 +5,8 @@ import { getBuyerMessageBoards } from '../../store/buyerMessageBoards'
 import { getSellerMessageBoards } from '../../store/sellerMessageBoards'
 import { getMessages } from '../../store/messages'
 import Message from '../message'
-const Messages = ({setHasBoards, boardId, setBoardId, buyerId, setBuyerId, sellerId, setSellerId, setSelectedBoard, selectedBoard, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
+import { reset } from '../../store/selectedMessageBoard'
+const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomContextMenuVisible, buttonText, setButtonText, setHasBoards, boardId, setBoardId, buyerId, setBuyerId, sellerId, setSellerId, setSelectedBoard, selectedBoard, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
     const selectedMessageBoard = useSelector(state => state.selectedMessageBoard)
     const buyerMessageBoard = useSelector(state => Object.values(state.buyerMessageBoards))
     const sellerMessageBoard = useSelector(state => Object.values(state.sellerMessageBoards))
@@ -16,10 +17,26 @@ const Messages = ({setHasBoards, boardId, setBoardId, buyerId, setBuyerId, selle
     const [messageText, setMessageText] = useState('')
     const [selectedMessage, setSelectedMessage] = useState(0)
     const [editMessageModal, setEditMessageModal] = useState(false)
-    const [buttonText, setButtonText] = useState('Send')
+    const [loadCount, setLoadCount] = useState(0)
     const dispatch = useDispatch()
+    useEffect(() => {
+        console.log('abc')
+        if (selectedMessageBoard?.messageBoardId){
+            console.log('defg')
+            setSelectedBoard(selectedMessageBoard?.boardType)
+            setBuyerId(selectedMessageBoard?.buyerId)
+            setSellerId(selectedMessageBoard?.sellerId)
+            setBoardId(selectedMessageBoard?.messageBoardId)
+            dispatch(getMessages(selectedMessageBoard?.messageBoardId))
+            dispatch(getBuyerMessageBoards(userId))
+            dispatch(getSellerMessageBoards(userId))
+            dispatch(reset())
+        }
+    }, [selectedMessageBoard])
 
     useEffect(() => {
+        console.log('test spot')
+        if (selectedMessageBoard?.messageBoardId){return}
         dispatch(getBuyerMessageBoards(userId)).then((e) => {
             if (e === 'success'){
                 setBuysLoaded(true)
@@ -28,19 +45,18 @@ const Messages = ({setHasBoards, boardId, setBoardId, buyerId, setBuyerId, selle
         dispatch(getSellerMessageBoards(userId)).then((e) => {
             if (e === 'success'){
                 setSellsLoaded(true)
-
             }
         })
-    }, [])
+    }, [loadCount])
     useEffect(() => {
         if (buysLoaded && sellsLoaded){
+            setBuysLoaded(false)
+            setSellsLoaded(false)
             if (buyerMessageBoard.length ===  0 && sellerMessageBoard.length === 0){
-                console.log('empty')
                 setHasBoards(false)
             }
             else{
                 setHasBoards(true)
-                if (!boardId){
                     if (buyerMessageBoard.length !== 0){
                         setSelectedBoard('buyer')
                         setBuyerId(buyerMessageBoard[0]?.potentialBuyerId)
@@ -55,20 +71,10 @@ const Messages = ({setHasBoards, boardId, setBoardId, buyerId, setBuyerId, selle
                         setBoardId(sellerMessageBoard[0]?.id)
                         dispatch(getMessages(sellerMessageBoard[0]?.id))
                     }
-                }
-
             }
         }
     }, [selectedMessageBoard, buysLoaded, sellsLoaded, buyerMessageBoard, sellerMessageBoard])
-    useEffect(() => {
-        if (selectedMessageBoard?.messageBoardId){
-            setSelectedBoard(selectedMessageBoard?.boardType)
-            setBuyerId(selectedMessageBoard?.buyerId)
-            setSellerId(selectedMessageBoard?.sellerId)
-            setBoardId(selectedMessageBoard?.messageBoardId)
-            dispatch(getMessages(selectedMessageBoard?.messageBoardId))
-        }
-    }, [selectedMessageBoard])
+
 
     const sendMessageHandler = async () => {
         await fetch('/api/messages/', {
@@ -83,6 +89,8 @@ const Messages = ({setHasBoards, boardId, setBoardId, buyerId, setBuyerId, selle
         })
         setMessageText('')
         dispatch(getMessages(boardId))
+        dispatch(getBuyerMessageBoards(userId))
+        dispatch(getSellerMessageBoards(userId))
     }
 
     const editMessageHandler = async () => {
@@ -98,17 +106,54 @@ const Messages = ({setHasBoards, boardId, setBoardId, buyerId, setBuyerId, selle
             dispatch(getBuyerMessageBoards(userId))
             dispatch(getSellerMessageBoards(userId))
         }
+        setButtonText('Send');
+        setMessageText('')
+    }
 
+    const editMessageBoardHandler = async () => {
+        const response = await fetch(`/api/messageBoards/${customMenuId}`,{
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({'title': messageText})
+        })
+        const result = await response.json()
+        if (result.message === 'success'){
+            dispatch(getMessages(boardId))
+            dispatch(getBuyerMessageBoards(userId))
+            dispatch(getSellerMessageBoards(userId))
+        }
+        setButtonText('Send');
+        setMessageText('')
+        setCustomContextMenuVisible(false)
+    }
+    const deleteMessageBoardHandler = async () => {
+        const response = await fetch(`/api/messageBoards/${boardId}`,{method: 'DELETE'})
+        const result = await response.json()
+        console.log(result)
+        if (result.message === 'success'){
+            setLoadCount((prev) => prev + 1)
+        }
+        setButtonText('Send');
+        setMessageText('')
+        setCustomContextMenuVisible(false)
     }
     return (
     <div className='messagesDiv'>
+        {customContextMenuVisible?
+            <div className='messageBoardContextMenu'>
+                <p onClick={() => {setButtonText('Edit Message Board Title')}} className='editMessageBoard'>Edit This Message Board's Title</p>
+                <p onClick={() => {deleteMessageBoardHandler()}} className='deleteMessageBoard'>Delete This Message Board</p>
+            </div>
+        :null}
     {sellerId?
-        <div className='messages' onMouseLeave={() => {setEditMessageModal(false)}}>
+        <div className='messages' onMouseLeave={() => {setEditMessageModal(false);}}>
         {messages?.map((message) => (<Message setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage} userId={userId} message={message} imgErrorHandler={imgErrorHandler}/>))}
         </div>
     :null}
     <input className='newMessageInput' value={messageText} onChange={(e) => {setMessageText(e.target.value)}}></input>
-    <button style={buttonText==='Send'?{width: 125}:{width: 200, bottom: 30, left: 700}} onClick={buttonText === 'Send'?() => {sendMessageHandler()}:() =>  {editMessageHandler();setButtonText('Send');setMessageText('')}}>{buttonText}</button>
+    <button
+        style={buttonText==='Send'?{width: 125}:{width: 200, bottom: 30, left: 700}}
+        onClick={buttonText === 'Send'?() => {sendMessageHandler()}:buttonText === 'Edit Message Board Title'?() => {editMessageBoardHandler()}:() =>  {editMessageHandler();}}>{buttonText}</button>
     </div>
     )
 }
