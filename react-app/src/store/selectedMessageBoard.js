@@ -14,7 +14,6 @@ const setMessageBoard_ = (messageBoard) => ({
     dispatch(reset_())
   }
   export const setMessageBoard = (itemSelected, authorId, sellerId, buyerId, message, boardType) => async (dispatch) => {
-    console.log(itemSelected, 777)
     const result = await fetch('/api/messages/', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},

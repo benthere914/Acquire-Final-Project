@@ -21,3 +21,22 @@
     left: 30vw;
     font-size: 40px;
 }
+
+.searchPage .pages{
+    position: absolute;
+    width: 1900px;
+    left: -100px;
+    height: 60px;
+    /* bottom: 0px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.searchPage .pages p{
+    font-size: 25px;
+    padding: 5px;
+    cursor: pointer;
+    position: relative;
+    bottom: 20px;
+}

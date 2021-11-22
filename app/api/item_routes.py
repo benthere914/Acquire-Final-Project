@@ -35,7 +35,7 @@ def search_items(category, query):
             allItems.extend(items_by_description)
     else:
         print('got herereeree')
-        if (query[0] == '$$all$$' and len(query) == 1):
+        if (query[0] == '$$all$$' and len(query) == 1 and selected_category.to_dict()['name'] == 'All Categories'):
             allItems = Item.query.all()
         else:
             allItems = Item.query.filter(Item.category == selected_category).all()

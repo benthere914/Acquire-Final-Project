@@ -20,9 +20,7 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
     const [loadCount, setLoadCount] = useState(0)
     const dispatch = useDispatch()
     useEffect(() => {
-        console.log('abc')
         if (selectedMessageBoard?.messageBoardId){
-            console.log('defg')
             setSelectedBoard(selectedMessageBoard?.boardType)
             setBuyerId(selectedMessageBoard?.buyerId)
             setSellerId(selectedMessageBoard?.sellerId)
@@ -35,7 +33,6 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
     }, [selectedMessageBoard])
 
     useEffect(() => {
-        console.log('test spot')
         if (selectedMessageBoard?.messageBoardId){return}
         dispatch(getBuyerMessageBoards(userId)).then((e) => {
             if (e === 'success'){
@@ -129,7 +126,6 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
     const deleteMessageBoardHandler = async () => {
         const response = await fetch(`/api/messageBoards/${boardId}`,{method: 'DELETE'})
         const result = await response.json()
-        console.log(result)
         if (result.message === 'success'){
             setLoadCount((prev) => prev + 1)
         }
