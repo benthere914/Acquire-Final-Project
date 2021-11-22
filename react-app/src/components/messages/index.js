@@ -16,9 +16,11 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
     const [messageText, setMessageText] = useState('')
     const [selectedMessage, setSelectedMessage] = useState(0)
     const [editMessageModal, setEditMessageModal] = useState(false)
+    const [loadCount, setLoadCount] = useState(0)
     const dispatch = useDispatch()
 
     useEffect(() => {
+        console.log('test spot')
         dispatch(getBuyerMessageBoards(userId)).then((e) => {
             if (e === 'success'){
                 setBuysLoaded(true)
@@ -27,19 +29,18 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
         dispatch(getSellerMessageBoards(userId)).then((e) => {
             if (e === 'success'){
                 setSellsLoaded(true)
-
             }
         })
-    }, [])
+    }, [loadCount])
     useEffect(() => {
         if (buysLoaded && sellsLoaded){
+            setBuysLoaded(false)
+            setSellsLoaded(false)
             if (buyerMessageBoard.length ===  0 && sellerMessageBoard.length === 0){
-                console.log('empty')
                 setHasBoards(false)
             }
             else{
                 setHasBoards(true)
-                if (!boardId){
                     if (buyerMessageBoard.length !== 0){
                         setSelectedBoard('buyer')
                         setBuyerId(buyerMessageBoard[0]?.potentialBuyerId)
@@ -54,8 +55,6 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
                         setBoardId(sellerMessageBoard[0]?.id)
                         dispatch(getMessages(sellerMessageBoard[0]?.id))
                     }
-                }
-
             }
         }
     }, [selectedMessageBoard, buysLoaded, sellsLoaded, buyerMessageBoard, sellerMessageBoard])
@@ -118,18 +117,22 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
         setButtonText('Send');
         setMessageText('')
         setCustomContextMenuVisible(false)
-
-
     }
-
-    const deleteMessageBoardHandler = () => {
-
+    const deleteMessageBoardHandler = async () => {
+        const response = await fetch(`/api/messageBoards/${boardId}`,{method: 'DELETE'})
+        const result = await response.json()
+        console.log(result)
+        if (result.message === 'success'){
+            setLoadCount((prev) => prev + 1)
+        }
+        setButtonText('Send');
+        setMessageText('')
+        setCustomContextMenuVisible(false)
     }
     return (
     <div className='messagesDiv'>
         {customContextMenuVisible?
             <div className='messageBoardContextMenu'>
-                {/* <h3>{boardTitle}</h3> */}
                 <p onClick={() => {setButtonText('Edit Message Board Title')}} className='editMessageBoard'>Edit This Message Board's Title</p>
                 <p onClick={() => {deleteMessageBoardHandler()}} className='deleteMessageBoard'>Delete This Message Board</p>
             </div>

@@ -25,7 +25,7 @@ def delete_message_board(message_board_id):
     messages = Message.query.filter(Message.messageBoardId == message_board_id).delete()
     message_board = MessageBoard.query.filter(MessageBoard.id == message_board_id).delete()
     db.session.commit()
-    return jsonify({'messaage': 'success'})
+    return jsonify({'message': 'success'})
 
 @message_boards_routes.route('/<int:message_board_id>', methods=['PUT'])
 @login_required
