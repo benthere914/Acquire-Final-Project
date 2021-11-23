@@ -1,7 +1,7 @@
 import './index.css'
 import EditMessagePopup from '../editMessagePopup';
 import { useHistory } from 'react-router';
-const Message = ({setButtonText, boardId, editMessageModal, setEditMessageModal, selectedMessage,setSelectedMessage, userId, message, imgErrorHandler}) => {
+const Message = ({setMessageText, setButtonText, boardId, editMessageModal, setEditMessageModal, selectedMessage,setSelectedMessage, userId, message, imgErrorHandler}) => {
     const history = useHistory()
     return (
     <>
@@ -15,7 +15,7 @@ const Message = ({setButtonText, boardId, editMessageModal, setEditMessageModal,
                         alt={message?.author?.username}
                         onError={(e) => {imgErrorHandler(e)}}
                     />
-                {editMessageModal && selectedMessage === message?.id?<EditMessagePopup userId={userId} setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} id={message?.id}/>:null}
+                {editMessageModal && selectedMessage === message?.id?<EditMessagePopup setMessageText={setMessageText} messageText={message?.message} userId={userId} setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} id={message?.id}/>:null}
                 </div>
         </>
         :

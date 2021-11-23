@@ -157,7 +157,7 @@ const Messages = ({boardTitle, setBoardTitle, customMenuId, customContextMenuVis
     <div className='messagesDiv'>
         {customContextMenuVisible?
             <div className='messageBoardContextMenu'>
-                <p onClick={() => {setButtonText('Edit Message Board Title')}} className='editMessageBoard'>Edit This Message Board's Title</p>
+                <p onClick={() => {setMessageText(boardTitle);setButtonText('Edit Message Board Title')}} className='editMessageBoard'>Edit This Message Board's Title</p>
                 <p onClick={() => {deleteMessageBoardHandler()}} className='deleteMessageBoard'>Delete This Message Board</p>
             </div>
         :null}
@@ -165,7 +165,7 @@ const Messages = ({boardTitle, setBoardTitle, customMenuId, customContextMenuVis
         <>
             <p className='boardTitle'>{boardTitle}</p>
         <div className='messages' onMouseLeave={() => {setEditMessageModal(false);}}>
-            {messages?.map((message) => (<Message setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage} userId={userId} message={message} imgErrorHandler={imgErrorHandler}/>))}
+            {messages?.map((message) => (<Message setMessageText={setMessageText} setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage} userId={userId} message={message} imgErrorHandler={imgErrorHandler}/>))}
             </div>
         </>
     :null}
