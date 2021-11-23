@@ -30,11 +30,15 @@ const MessagesPage = () => {
     const [customContextMenuVisible, setCustomContextMenuVisible] = useState(false)
     const [customMenuId, setCustomMenuId] = useState(0)
     const [boardTitle, setBoardTitle] = useState('')
+    const [boardsToMap, setBoardsToMap] = useState([])
+
     return (
     <>
         <div>
             <div className='messagesPage'>
                 <MessageBoards
+                    setBoardsToMap={setBoardsToMap}
+                    boardsToMap={boardsToMap}
                     setBoardTitle={setBoardTitle}
                     setCustomContextMenuVisible={setCustomContextMenuVisible}
                     setCustomMenuId={setCustomMenuId}
@@ -52,6 +56,8 @@ const MessagesPage = () => {
                     dateConverter={dateConverter}/>
                 {hasBoards?
                 <Messages
+                    setBoardsToMap={setBoardsToMap}
+                    boardsToMap={boardsToMap}
                     boardTitle={boardTitle}
                     setBoardTitle={setBoardTitle}
                     customContextMenuVisible={customContextMenuVisible}
