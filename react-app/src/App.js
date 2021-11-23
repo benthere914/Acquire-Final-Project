@@ -15,7 +15,6 @@ import EditProductPage from './components/editProductPage';
 import ProfilePage from './components/profile';
 import EditUserPage from './components/editUser';
 import MessagesPage from './components/messagesPage';
-import User from './components/User';
 import SearchPage from './components/searchPage';
 import SellAnotherProductPage from './components/sellSameProductPage';
 import { authenticate } from './store/session';
@@ -59,7 +58,7 @@ function App() {
 				</ProtectedRoute>
                 <ProtectedRoute path="/users/:userId" exact={true}>
         			<NavBar />
-					<ProfilePage itemSelected={itemSelected}/>
+					<ProfilePage/>
                     <Footer />
 				</ProtectedRoute>
 				<Route path="/" exact={true}>

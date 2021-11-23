@@ -1,7 +1,6 @@
 import './index.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMessages } from '../../store/messages'
-import { useEffect } from 'react'
 import { useState } from 'react'
 const MessageBoards = ({buyerMessageBoards, sellerMessageBoards, setBoardTitle, setCustomContextMenuVisible,setCustomMenuId,  buttonText, setButtonText, setHasBoards, boardId, setBoardId, setBuyerId, setSellerId, setSelectedBoard, selectedBoard, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
     const dispatch = useDispatch()
@@ -47,7 +46,6 @@ const MessageBoards = ({buyerMessageBoards, sellerMessageBoards, setBoardTitle, 
             setSearchResults((prev) => {
                 const temp = []
                 const boards = [...buyerMessageBoards, ...sellerMessageBoards]
-                console.log(boards[0]?.user?.username?.toLowerCase()?.includes(message?.toLowerCase()))
                 for (let i = 0; i < boards?.length; i++){
                     if (boards[i]?.title.toLowerCase().includes(message?.toLowerCase())){
                             if (boards[i].potentialBuyerId === userId){

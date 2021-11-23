@@ -1,7 +1,7 @@
 import './index.css'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { getSearchItems } from '../../store/items'
 import ItemCards from '../itemCard'
 const SearchPage = () => {
@@ -15,12 +15,10 @@ const SearchPage = () => {
 
 
     const [minIndex, setMinIndex] = useState(0)
-    const [maxIndex, setMaxIndex] = useState(0)
     const [showItems, setShowItems] = useState([])
     const [buttons, setButtons] = useState([])
     const [selectedButton, setSelectedButton] = useState({})
     const [buttonsLoaded, setButtonsLoaded] = useState(false)
-    const [buttonLoaded, setButtonLoaded] = useState(false)
 
     useEffect(() => {
         setQuery(params?.query)
@@ -66,13 +64,11 @@ const SearchPage = () => {
 
     useEffect(() => {
         setMinIndex(selectedButton?.min)
-        setMaxIndex(selectedButton?.max)
         setShowItems(() => items.slice(selectedButton?.min, selectedButton?.max))
     }, [selectedButton])
 
     const pageChangeHandler = (button) => {
         setMinIndex(button?.min);
-        setMaxIndex(button?.max)
         setShowItems(() => items.slice(button?.min, button?.max))
     }
     return (

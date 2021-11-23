@@ -3,7 +3,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import CarouselCard from '../carouselCard';
 import ItemCards from '../itemCard';
 import { Carousel } from 'react-responsive-carousel';
-import Search from '../search';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getTopItems } from '../../store/items';

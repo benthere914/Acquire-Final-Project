@@ -26,7 +26,6 @@ const EditUserPage = () => {
     const [dataError, setDataError] = useState('')
     const [deleteModalPassword, setDeleteModalPassword] = useState('')
     const [imgError, setImgError] = useState(false)
-    const [viewImgError, setViewImgError] = useState(false)
 
     const editModalButtonHandler = (title) => {
         setData('')
