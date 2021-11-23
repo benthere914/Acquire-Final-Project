@@ -134,9 +134,9 @@
 .boardTitle{
     position: absolute;
     top: 32px;
-    left: 325px;
+    /* left: 325px; */
     font-size: 40px;
-    width: 250px;
+    width: 890px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -144,7 +144,16 @@
     z-index: 10;
     background-color: rgb(183, 183, 183);
     margin: 0;
+    border-bottom: solid black;
+    padding-bottom: 25px;
+    width: 910px;
+    height: 50px;
+    overflow:hidden;
+    max-width: 890px;
+    text-overflow: ellipsis;
 }
+
+
 
 .messageBoardContextMenu{
     position: absolute;
@@ -155,7 +164,7 @@
     width: 890px;
     top: 10px;
     height: 94px;
-    z-index: 10;
+    z-index: 15;
 }
 
 .messageBoardContextMenu p{

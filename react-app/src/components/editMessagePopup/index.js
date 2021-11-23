@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { getMessages } from '../../store/messages'
 import { getBuyerMessageBoards } from '../../store/buyerMessageBoards'
 import { getSellerMessageBoards } from '../../store/sellerMessageBoards'
-const EditMessagePopup = ({userId, setButtonText, boardId, id, editMessageModal, setEditMessageModal, messageText}) => {
+const EditMessagePopup = ({setMessageText, userId, setButtonText, boardId, id, editMessageModal, setEditMessageModal, messageText}) => {
     const dispatch = useDispatch()
     const deleteMessageHandler = async () => {
         setEditMessageModal(false)
@@ -21,7 +21,7 @@ const EditMessagePopup = ({userId, setButtonText, boardId, id, editMessageModal,
     return (
     <>
     <div className='editMessagePopup'>
-        <p className='editOption' onClick={() => {setEditMessageModal(false);setButtonText('Update Message')}}>Edit this message</p>
+        <p className='editOption' onClick={() => {setMessageText(messageText);setEditMessageModal(false);setButtonText('Update Message')}}>Edit this message</p>
         <p onClick={() => {deleteMessageHandler()}}>Delete this message</p>
     </div>
     </>

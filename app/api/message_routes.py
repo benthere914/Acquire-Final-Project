@@ -11,7 +11,7 @@ message_routes = Blueprint('message', __name__)
 def send_message():
     body = request.get_json()
     print(body)
-    if (len(body['message']) > 0):
+    if (0 < len(body['message']) < 1999):
         message_boards = MessageBoard.query.filter(MessageBoard.sellerId == body['sellerId']).filter(MessageBoard.potentialBuyerId == body['buyerId']).all()
         if len(message_boards) == 1:
             message_boards[0].title = body['itemSelected']
@@ -32,7 +32,7 @@ def send_message():
 @message_routes.route('/<int:messageId>', methods=['PUT'])
 def update_message(messageId):
     body = request.get_json()
-    if len(body['message']) > 0:
+    if 0 < len(body['message']) < 1999:
         message = Message.query.get(messageId)
         if body['message'] == '':
             Message.query.filter(Message.id == messageId).delete()

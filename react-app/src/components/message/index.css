@@ -1,15 +1,25 @@
 .message.myUser{
     position: relative;
-    left: 360px;
+    left: 460px;
     /* border: solid black; */
-    width: 500px;
+    /* width: 500px; */
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     cursor: pointer;
     margin-top: 15px;
 }
+.message{
+    position: relative;
+    /* bottom: 50px; */
+    /* top: 0px; */
+    width: 400px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-all;
 
+
+}
 .messagePopup{
     background-color: white;
     border: solid gray;
