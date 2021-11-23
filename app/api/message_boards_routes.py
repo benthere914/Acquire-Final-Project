@@ -30,7 +30,10 @@ def delete_message_board(message_board_id):
 @login_required
 def update_message_board(message_board_id):
     body = request.get_json()
-    message_board = MessageBoard.query.get(message_board_id)
-    message_board.title = body['title']
-    db.session.commit()
-    return jsonify({'message': 'success'})
+    if len(body['title']) > 0:
+        message_board = MessageBoard.query.get(message_board_id)
+        message_board.title = body['title']
+        db.session.commit()
+        return jsonify({'message': 'success'})
+    else:
+        return {'bad message': 'bad message'}, 401

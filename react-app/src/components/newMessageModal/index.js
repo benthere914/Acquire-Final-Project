@@ -7,9 +7,16 @@ const NewMessageModal = ({itemSelected, setNewMessageModal, receivingUser}) => {
     const dispatch = useDispatch()
     const history = useHistory()
     const userId = useSelector(state => state.session.user.id)
+    const [badMessage, setBadMessage] = useState(false)
     const [message, setMessage] = useState('')
     const sendMessageHandler = () => {
-        dispatch(setMessageBoard(itemSelected, userId, receivingUser?.id, userId, message, 'buyer')).then(() => history.push('/messages'))
+        dispatch(setMessageBoard(itemSelected, userId, receivingUser?.id, userId, message, 'buyer')).then((e) => {
+            console.log(e)
+            if (e === 'bad message'){
+                console.log('bad data')
+                setBadMessage(true)
+            }else{
+            history.push('/messages')}})
     }
     return (
     <>
@@ -20,7 +27,8 @@ const NewMessageModal = ({itemSelected, setNewMessageModal, receivingUser}) => {
             rows={7}
             cols={30}
             value={message}
-            onChange={(e) => {setMessage(e.target.value)}}/>
+            onChange={(e) => {setMessage(e.target.value); setBadMessage(false)}}
+            style={badMessage?{border: 'solid red 2px'}:null}/>
             <div>
                 <p className='cancel' onClick={() => {setNewMessageModal(false);setMessage('')}}>Cancel</p>
                 <p className='send' onClick={() => {sendMessageHandler()}}>Send</p>
