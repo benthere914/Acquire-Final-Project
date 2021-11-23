@@ -2,7 +2,7 @@
 By Benjamin Rose
 
 ## Table of contents
-   * [Acquire at a glance](##Acquire-At-A-Glance)
+   * [Acquire at a glance](#acquire-at-a-glance)
    * [Styling](##Styling)
 
 
