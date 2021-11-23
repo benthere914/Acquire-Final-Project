@@ -53,6 +53,7 @@ const MessagesPage = () => {
                 {hasBoards?
                 <Messages
                     boardTitle={boardTitle}
+                    setBoardTitle={setBoardTitle}
                     customContextMenuVisible={customContextMenuVisible}
                     setCustomContextMenuVisible={setCustomContextMenuVisible}
                     customMenuId={customMenuId}

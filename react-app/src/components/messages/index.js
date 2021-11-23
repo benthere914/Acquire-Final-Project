@@ -6,7 +6,7 @@ import { getSellerMessageBoards } from '../../store/sellerMessageBoards'
 import { getMessages } from '../../store/messages'
 import Message from '../message'
 import { reset } from '../../store/selectedMessageBoard'
-const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomContextMenuVisible, buttonText, setButtonText, setHasBoards, boardId, setBoardId, buyerId, setBuyerId, sellerId, setSellerId, setSelectedBoard, selectedBoard, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
+const Messages = ({boardTitle, setBoardTitle, customMenuId, customContextMenuVisible, setCustomContextMenuVisible, buttonText, setButtonText, setHasBoards, boardId, setBoardId, buyerId, setBuyerId, sellerId, setSellerId, setSelectedBoard, selectedBoard, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
     const selectedMessageBoard = useSelector(state => state.selectedMessageBoard)
     const buyerMessageBoard = useSelector(state => Object.values(state.buyerMessageBoards))
     const sellerMessageBoard = useSelector(state => Object.values(state.sellerMessageBoards))
@@ -60,6 +60,7 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
                         setSellerId(buyerMessageBoard[0]?.sellerId)
                         setBoardId(buyerMessageBoard[0]?.id)
                         dispatch(getMessages(buyerMessageBoard[0]?.id))
+                        setBoardTitle(buyerMessageBoard[0]?.title)
                     } else
                     if (sellerMessageBoard.length !== 0){
                         setSelectedBoard('seller')
@@ -67,6 +68,7 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
                         setSellerId(sellerMessageBoard[0]?.sellerId)
                         setBoardId(sellerMessageBoard[0]?.id)
                         dispatch(getMessages(sellerMessageBoard[0]?.id))
+                        setBoardTitle(buyerMessageBoard[0]?.title)
                     }
             }
         }
@@ -118,6 +120,7 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
             dispatch(getMessages(boardId))
             dispatch(getBuyerMessageBoards(userId))
             dispatch(getSellerMessageBoards(userId))
+            setBoardTitle(messageText)
         }
         setButtonText('Send');
         setMessageText('')
@@ -142,9 +145,12 @@ const Messages = ({boardTitle,customMenuId, customContextMenuVisible, setCustomC
             </div>
         :null}
     {sellerId?
+        <>
+            <p className='boardTitle'>{boardTitle}</p>
         <div className='messages' onMouseLeave={() => {setEditMessageModal(false);}}>
-        {messages?.map((message) => (<Message setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage} userId={userId} message={message} imgErrorHandler={imgErrorHandler}/>))}
-        </div>
+            {messages?.map((message) => (<Message setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage} userId={userId} message={message} imgErrorHandler={imgErrorHandler}/>))}
+            </div>
+        </>
     :null}
     <input className='newMessageInput' value={messageText} onChange={(e) => {setMessageText(e.target.value)}}></input>
     <button

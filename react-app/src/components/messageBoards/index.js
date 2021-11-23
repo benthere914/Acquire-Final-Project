@@ -5,6 +5,10 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 const MessageBoards = ({setBoardTitle, setCustomContextMenuVisible,setCustomMenuId,  buttonText, setButtonText, setHasBoards, boardId, setBoardId, setBuyerId, setSellerId, setSelectedBoard, selectedBoard, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
     const dispatch = useDispatch()
+    const [boardsToMap, setBoardsToMap] = useState()
+    useEffect(() => {
+        setBoardsToMap(selectedMessageBoards)
+    }, [])
 
     useEffect(() => {},[])
     const message_board_left_click_handler = (board) => {
@@ -52,7 +56,7 @@ const MessageBoards = ({setBoardTitle, setCustomContextMenuVisible,setCustomMenu
                             <p className='lastMessage'>{board?.last_message?.message}</p>
                             <p className='timeSince'>{dateConverter(board?.last_message?.createdAt)}</p>
                         </div>
-                        {board?.id === boardId && <p className='boardTitle'>{board?.title}</p>}
+                        {/* {board?.id === boardId && <p className='boardTitle'>{board?.title}</p>} */}
                         </>
                     ))}
                 </div>
