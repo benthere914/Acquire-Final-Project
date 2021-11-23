@@ -85,7 +85,8 @@ const Messages = ({boardTitle, setBoardTitle, customMenuId, customContextMenuVis
                 authorId: userId,
                 sellerId: sellerId,
                 buyerId: buyerId,
-                message: messageText
+                message: messageText,
+                itemSelected: boardTitle
             })
         })
         setMessageText('')
