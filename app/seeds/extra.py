@@ -334,7 +334,7 @@ pet_supply_photos = [
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4jAJ3Smabkd93rXQXogAt7ywhiZM5gac-MosHx16xcOLf-iFV2SxYyv8m2UHFm2LNK0E&usqp=CAU',
     'https://ae01.alicdn.com/kf/H3a5706a61d724da382c20dd73bc4b618f/Domestic-Delivery-Wood-Climbing-Tree-Cat-Jumping-Toy-Fun-Scratching-Posts-Solid-Cats-Climb-Frame-Pet.jpg_Q90.jpg_.webp',
     'https://images-na.ssl-images-amazon.com/images/I/710IxVP07ML._AC_SY741_.jpg',
-    'https://www.zoostore.de/media/image/product/4590/lg/cat-tree-climbing-tree-cat-scratching-post-biggy-grey-especially-for-large-and-heavy-cats.jpg'
+    'https://www.zoostore.de/media/image/product/4590/lg/cat-tree-climbing-tree-cat-scratching-post-biggy-grey-especially-for-large-and-heavy-cats.jpg',
 
     'https://image.lucrin.com/is/image/LucrinRender/900x600/PM2141-001_VCLS_RGG_RGG/931212-8f1819-bc2d27-b63631-c72d26-c35860-c71b1b/short-dog-leash-in-leather.jpg',
     'https://cdn.shopify.com/s/files/1/1577/4333/products/40304-FlatOutLeash-RedButte-WEB_1024x1024.jpg',
