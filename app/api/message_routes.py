@@ -10,7 +10,6 @@ message_routes = Blueprint('message', __name__)
 @message_routes.route('/', methods=['POST'])
 def send_message():
     body = request.get_json()
-    print(body, 888)
     message_boards = MessageBoard.query.filter(MessageBoard.sellerId == body['sellerId']).filter(MessageBoard.potentialBuyerId == body['buyerId']).all()
     if len(message_boards) == 1:
         message_boards[0].title = body['itemSelected']

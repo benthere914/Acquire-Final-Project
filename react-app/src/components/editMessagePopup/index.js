@@ -5,17 +5,6 @@ import { getBuyerMessageBoards } from '../../store/buyerMessageBoards'
 import { getSellerMessageBoards } from '../../store/sellerMessageBoards'
 const EditMessagePopup = ({userId, setButtonText, boardId, id, editMessageModal, setEditMessageModal, messageText}) => {
     const dispatch = useDispatch()
-
-    const editMessageHandler = async () => {
-
-        const response = await fetch(`/api/messages/${id}`,{
-            method: 'PUT',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({'message': messageText})
-        })
-
-
-    }
     const deleteMessageHandler = async () => {
         setEditMessageModal(false)
         const response = await fetch(`/api/messages/${id}`,{method: 'DELETE'})

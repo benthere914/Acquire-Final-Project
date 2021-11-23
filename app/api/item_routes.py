@@ -34,7 +34,6 @@ def search_items(category, query):
             items_by_description = Item.query.filter(Item.description.ilike(f'%{word}%')).filter(Item not in allItems).filter(or_(Item.category == selected_category, selected_category.to_dict()['name'] == 'All Categories')).all()
             allItems.extend(items_by_description)
     else:
-        print('got herereeree')
         if (query[0] == '$$all$$' and len(query) == 1 and selected_category.to_dict()['name'] == 'All Categories'):
             allItems = Item.query.all()
         else:
@@ -45,9 +44,7 @@ def search_items(category, query):
         temp['photos'] = [photo.to_dict() for photo in item.item_photos]
         output[temp['id']] = (temp)
     return jsonify(output)
-    # selected_category = Category.query.filter(Category.name == category).first()
-    # print(selected_category.to_dict(), selected_category.id,  999)
-    # return jsonify({'message': 'selected_category'})
+
 
 
 @item_routes.route('/<int:id>')

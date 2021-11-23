@@ -28,7 +28,6 @@ const Messages = ({boardTitle, setBoardTitle, customMenuId, customContextMenuVis
             dispatch(getMessages(selectedMessageBoard?.messageBoardId))
             dispatch(getBuyerMessageBoards(userId))
             dispatch(getSellerMessageBoards(userId))
-            console.log(selectedMessageBoard, 777)
             setBoardTitle(selectedMessageBoard?.title)
             dispatch(reset())
         }

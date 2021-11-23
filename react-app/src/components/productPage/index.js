@@ -8,7 +8,7 @@ import UserTag from '../userTag';
 import WarningModal from '../warningModal';
 import { useState } from 'react';
 import NewMessageModal from '../newMessageModal';
-const ProductPage = ({itemSelected, setItemSelected}) => {
+const ProductPage = () => {
     const [password, setPassword] = useState('');
     const history = useHistory()
     const imgErrorHandler = (e) => {
@@ -69,7 +69,7 @@ const ProductPage = ({itemSelected, setItemSelected}) => {
                 </div>
                 <div className='itemTopRightDiv'>
                     <p className='itemName'>{item?.name}</p>
-                    <UserTag user={item?.seller} extraText={'Sold by'} extraFontSize={25} extraFontWeight={600} setItemSelected={setItemSelected} name={item?.name}/>
+                    <UserTag user={item?.seller} extraText={'Sold by'} extraFontSize={25} extraFontWeight={600}/>
                     {user?.id !== +item?.seller?.id?(
                             <div onClick={() => {
                                 if (user?.id){setNewMessageModal(true)}
@@ -98,7 +98,7 @@ const ProductPage = ({itemSelected, setItemSelected}) => {
                 </div>
             </div>
             <div className='itemBottomDiv'>
-                {item?.sellerId == user?.id?(
+                {item?.sellerId === user?.id?(
                     <div>
                        <p>You Own this</p>
                        <button onClick={() => {history.push(`/items/${item?.id}/edit`)}}>Edit</button>
