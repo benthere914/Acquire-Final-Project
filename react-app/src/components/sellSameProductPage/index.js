@@ -18,6 +18,7 @@ const SellAnotherProductPage = () => {
     }
     const userId = useSelector(state => state.session.user.id)
     const item = useSelector(state => state.selectedItem)
+    const options = useSelector(state => state.options)
     const [title, setTitle] = useState('')
     const [price, setPrice] = useState('')
     const [category, setCategory] = useState('')
@@ -33,22 +34,29 @@ const SellAnotherProductPage = () => {
     const [viewImg2Error, setViewImg2Error] = useState(false)
     const [img3Error, setImg3Error] = useState(false)
     const [viewImg3Error, setViewImg3Error] = useState(false)
+    const [loadThumbs, setLoadThumbs] = useState(false)
+    const [itemLoaded, setItemLoaded] = useState(false)
+
     useEffect(() => {
         const itemId = params['itemId']
-        dispatch(getItem(itemId))
+        dispatch(getItem(itemId)).then(() => {setItemLoaded(true)})
+
     }, [params])
     useEffect(() => {
-        setTitle(item?.name)
-        setPrice(item?.price)
-        setCategory(item?.category?.name)
-        setCondition(item?.condition)
-        setDescription(item?.description)
-        setQuantity(item?.count)
-        setIcon1(item?.photos[0]?.photoUrl)
-        setIcon2(item?.photos[1]?.photoUrl)
-        setIcon3(item?.photos[2]?.photoUrl)
-    }, [item])
-    const options = useSelector(state => state.options)
+        if (itemLoaded){
+            setTitle(item?.name)
+            setPrice(item?.price)
+            setCategory(item?.category?.name)
+            setCondition(item?.condition)
+            setDescription(item?.description)
+            setQuantity(item?.count)
+            setIcon1(item?.photos[0]?.photoUrl)
+            setIcon2(item?.photos[1]?.photoUrl)
+            setIcon3(item?.photos[2]?.photoUrl)
+            setLoadThumbs(true)
+            setItemLoaded(false)
+        }
+    }, [item, itemLoaded])
     useEffect(() => {
         if (typeof category === 'object'){setCategory(category.value)}
         if (typeof condition === 'object'){setCondition(condition.value)}
@@ -109,7 +117,7 @@ const SellAnotherProductPage = () => {
             </div>
             <div className='publishPreview'>
                 <p>{title || 'Example'}</p>
-                    <Carousel showArrows={false}>
+                    <Carousel showArrows={false} showThumbs={loadThumbs}>
                             <img
                             alt='item for sale'
                             className='previewImg'
