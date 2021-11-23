@@ -3,8 +3,12 @@ By Benjamin Rose
 
 ## Table of contents
    * [Acquire at a glance](#acquire-at-a-glance)
-   * [Styling](##Styling)
-
+   * [Example Usage](#Example-Usage)
+   * [Application Architexture](#Application-Architexture)
+   * [Frontend Overview](#Frontend-Overview)
+   * [Backend overview](#Backend-Overview)
+   * [Styling](#Styling)
+   * [Conclusion and Next Steps](#Conclusion-and-Next-Steps)
 
 
 ## Acquire At A Glance
