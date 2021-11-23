@@ -26,7 +26,12 @@ const setMessageBoard_ = (messageBoard) => ({
         })
     })
     const response = await result.json()
-    return dispatch(setMessageBoard_({itemSelected, response, boardType, sellerId, buyerId}))
+    if (result.ok){
+        return dispatch(setMessageBoard_({itemSelected, response, boardType, sellerId, buyerId}))
+    }
+    else {
+        return'bad message'
+    }
 
 
   };

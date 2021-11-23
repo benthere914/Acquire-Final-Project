@@ -18,6 +18,7 @@ const Messages = ({boardTitle, setBoardTitle, customMenuId, customContextMenuVis
     const [selectedMessage, setSelectedMessage] = useState(0)
     const [editMessageModal, setEditMessageModal] = useState(false)
     const [loadCount, setLoadCount] = useState(0)
+    const [badMessage, setBadMessage] = useState(false)
     const dispatch = useDispatch()
     useEffect(() => {
         if (selectedMessageBoard?.messageBoardId){
@@ -77,7 +78,7 @@ const Messages = ({boardTitle, setBoardTitle, customMenuId, customContextMenuVis
 
 
     const sendMessageHandler = async () => {
-        await fetch('/api/messages/', {
+        const response = await fetch('/api/messages/', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
@@ -88,10 +89,18 @@ const Messages = ({boardTitle, setBoardTitle, customMenuId, customContextMenuVis
                 itemSelected: boardTitle
             })
         })
-        setMessageText('')
-        dispatch(getMessages(boardId))
-        dispatch(getBuyerMessageBoards(userId))
-        dispatch(getSellerMessageBoards(userId))
+        if (response.ok){
+            setMessageText('')
+            dispatch(getMessages(boardId))
+            dispatch(getBuyerMessageBoards(userId))
+            dispatch(getSellerMessageBoards(userId))
+        }
+        else{
+            setBadMessage(true)
+            console.log('bad data messages')
+        }
+
+
     }
 
     const editMessageHandler = async () => {
@@ -102,13 +111,16 @@ const Messages = ({boardTitle, setBoardTitle, customMenuId, customContextMenuVis
             body: JSON.stringify({'message': messageText})
         })
         const result = await response.json()
-        if (result.message === 'success'){
+        if (response.ok){
             dispatch(getMessages(boardId))
             dispatch(getBuyerMessageBoards(userId))
             dispatch(getSellerMessageBoards(userId))
+            setButtonText('Send');
+            setMessageText('')
+            }
+        else {
+            setBadMessage(true)
         }
-        setButtonText('Send');
-        setMessageText('')
     }
 
     const editMessageBoardHandler = async () => {
@@ -118,15 +130,18 @@ const Messages = ({boardTitle, setBoardTitle, customMenuId, customContextMenuVis
             body: JSON.stringify({'title': messageText})
         })
         const result = await response.json()
-        if (result.message === 'success'){
+        if (response.ok){
             dispatch(getMessages(boardId))
             dispatch(getBuyerMessageBoards(userId))
             dispatch(getSellerMessageBoards(userId))
             setBoardTitle(messageText)
+            setButtonText('Send');
+            setMessageText('')
+            setCustomContextMenuVisible(false)
         }
-        setButtonText('Send');
-        setMessageText('')
-        setCustomContextMenuVisible(false)
+        else {
+            setBadMessage(true)
+        }
     }
     const deleteMessageBoardHandler = async () => {
         const response = await fetch(`/api/messageBoards/${boardId}`,{method: 'DELETE'})
@@ -154,7 +169,7 @@ const Messages = ({boardTitle, setBoardTitle, customMenuId, customContextMenuVis
             </div>
         </>
     :null}
-    <input className='newMessageInput' value={messageText} onChange={(e) => {setMessageText(e.target.value)}}></input>
+    <input style={badMessage?{border: 'solid red 1px'}:null} className='newMessageInput' value={messageText} onChange={(e) => {setMessageText(e.target.value); setBadMessage(false)}}></input>
     <button
         style={buttonText==='Send'?{width: 125}:{width: 200, bottom: 30, left: 700}}
         onClick={buttonText === 'Send'?() => {sendMessageHandler()}:buttonText === 'Edit Message Board Title'?() => {editMessageBoardHandler()}:() =>  {editMessageHandler();}}>{buttonText}</button>
