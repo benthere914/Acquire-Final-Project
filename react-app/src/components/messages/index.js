@@ -164,8 +164,8 @@ const Messages = ({boardTitle, setBoardTitle, customMenuId, customContextMenuVis
     {sellerId?
         <>
             <p className='boardTitle'>{boardTitle}</p>
-        <div className='messages' onMouseLeave={() => {setEditMessageModal(false);}}>
-            {messages?.map((message) => (<Message setMessageText={setMessageText} setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage} userId={userId} message={message} imgErrorHandler={imgErrorHandler}/>))}
+        <div style={messages?.length <= 8? {justifyContent: 'flex-end'}:null} className='messages' onMouseLeave={() => {setEditMessageModal(false);}}>
+            {messages?.map((message) => (<Message count={messages?.length} setMessageText={setMessageText} setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage} userId={userId} message={message} imgErrorHandler={imgErrorHandler}/>))}
             </div>
         </>
     :null}

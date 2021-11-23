@@ -9,7 +9,12 @@
     cursor: pointer;
     margin-top: 15px;
 }
+.message{
+    position: relative;
+    /* bottom: 50px; */
+    /* top: 0px; */
 
+}
 .messagePopup{
     background-color: white;
     border: solid gray;

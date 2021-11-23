@@ -1,14 +1,19 @@
 import './index.css'
 import EditMessagePopup from '../editMessagePopup';
 import { useHistory } from 'react-router';
-const Message = ({setMessageText, setButtonText, boardId, editMessageModal, setEditMessageModal, selectedMessage,setSelectedMessage, userId, message, imgErrorHandler}) => {
+const Message = ({count, setMessageText, setButtonText, boardId, editMessageModal, setEditMessageModal, selectedMessage,setSelectedMessage, userId, message, imgErrorHandler}) => {
     const history = useHistory()
     return (
     <>
 
     {message?.authorId === userId?
         <>
-                <div className='message myUser' key={message?.id} onContextMenu={(e) => {setSelectedMessage(message?.id);e.preventDefault(); setEditMessageModal(true)}}>
+                <div
+                    className='message myUser'
+                    key={message?.id}
+                    onContextMenu={(e) => {setSelectedMessage(message?.id);e.preventDefault(); setEditMessageModal(true)}}
+                    style={count <= 8? {bottom: 50, top: 0}: null}
+                >
                     <p>{message?.message}</p>
                     <img
                         src={message?.author?.icon}
