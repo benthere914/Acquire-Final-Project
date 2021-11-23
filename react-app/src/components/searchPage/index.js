@@ -65,7 +65,6 @@ const SearchPage = () => {
     }, [buttons, buttonsLoaded])
 
     useEffect(() => {
-        console.log('abc', selectedButton)
         setMinIndex(selectedButton?.min)
         setMaxIndex(selectedButton?.max)
         setShowItems(() => items.slice(selectedButton?.min, selectedButton?.max))
