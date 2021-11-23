@@ -1,134 +1,98 @@
-# Flask React Project
+# Acquire
+By Benjamin Rose
 
-This is the starter for the Flask React project.
+## Table of contents
+   * [Acquire at a glance](##Acquire-At-A-Glance)
+   * [Styling](##Styling)
 
-## Getting started
 
-1. Clone this repository (only this branch)
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+## Acquire At A Glance
+Acquire is a fullstack app that allows the user to find items for sale, list items for sale and message other users who the user is interested in doing business with.
 
-2. Install dependencies
+## Example Usage
+### Step 1
+   * Visit the site
+      * ![image](https://user-images.githubusercontent.com/8016326/142956978-3baea7af-7e2f-4235-84e6-c9caac3acc92.png) 
+### Step 2
+   * sign up by hovering your mouse over the dropdown menu in the top right corner and clicking sign up
+      * ![image](https://user-images.githubusercontent.com/8016326/142957184-868b050b-de74-4ff1-9144-8ab98fc7faca.png)
+### Step 3
+   * Fill out the sign up form completely and click sign up
+      * ![image](https://user-images.githubusercontent.com/8016326/142957447-bcd9cc2d-dd95-4b64-91b7-1db22d132928.png)
+### Step 4
+   * type in the search box the item you are looking to buy and press search - In this case, I am searching for an Xbox
+      * ![image](https://user-images.githubusercontent.com/8016326/142958498-7c6d908a-9d29-4fce-b8a5-8c9f212cab87.png)
+### Step 5 
+   * Click the option that you want
+      * ![image](https://user-images.githubusercontent.com/8016326/142957962-26e94e58-f977-46c3-ad4a-963a89e6335d.png)
+### Step 6 
+   * Click the 'Message' button if you would like to message the seller about buying the product the seller has for sale
+      * ![image](https://user-images.githubusercontent.com/8016326/142958134-4a9ca07c-3876-496c-8be6-030df25bd7ee.png)
+### Step 7
+   * Type out the message and press send
+      * ![image](https://user-images.githubusercontent.com/8016326/142958315-f6c4a2aa-d50e-463c-b219-b9b8e6e71103.png)
+### Step 8 
+   * Wait for a response or message other buyers
+      * ![image](https://user-images.githubusercontent.com/8016326/142958436-66dfe7bb-e8a9-447e-9868-1cd51d0b1225.png)
+## Application Architecture
+As mentioned before, Acquire is a fullstack application.
+   * Backend Server - Python Flask
+   * Database - SQLAlchemy
+   * Frontend - React Redux
+   * Styling - Custom Css
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
+![image](https://user-images.githubusercontent.com/8016326/142907347-cd44b06d-6814-439f-851b-608bf30c9471.png)
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+## Frontend Overview
+### React
 
-   ```bash
-   pipenv shell
-   ```
+Acquire utilized react for its frontend, making use of props, hooks and countless other technologies provided by react. React allowed the process of creating the site to be much more efficient.
 
-   ```bash
-   flask db upgrade
-   ```
+### Redux 
 
-   ```bash
-   flask seed all
-   ```
+Acquire utilized redux for its state management on the frontend, making use of reducers, action creators, and custom thunks. Redux made the majority of all API calls to the backend, and stored all major, immediately needed data. 
 
-   ```bash
-   flask run
-   ```
+## Backend Overview
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+### Flask 
+The Flask server was chosen for ease of use with a supported ORM. The Flask server consists of different routes that perform CRUD operations to the database.
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
+### Postgresql 
+Postgresql was chosen as the SQL language and is managed by SQLAlchemy and Alembic.
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+### Seed Data
+Taking advantage of Alembic, The database was seeded with both custom data and data generated via a Faker package.
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
 
-## Deploy to Heroku
+## Styling
 
-1. Before you deploy, don't forget to run the following command in order to
-ensure that your production environment has all of your up-to-date
-dependencies. You only have to run this command when you have installed new
-Python packages since your last deployment, but if you aren't sure, it won't
-hurt to run it again.
+### CSS 
+Custom CSS was used for the styling of this project. 
+Properties used frequently:
+   * Position
+      * relative
+      * absolute
+      * fixed
+   * Display
+      * flex
+      * grid
+   * custom scroll bars
+   * animations and effects
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+## Conclusion and Next Steps
 
-2. Create a new project on Heroku
-3. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-4. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-5. Run
+Acquire was a blast to create and I look forward to managing it in the future.
+There are some features that I plan on implementing in the future 
+   * WebSockets for realtime messaging
+   * AWS for photo upload
+   * Friends and following
+   * Comments and likes
+   * Friends Feed
+   * Responsive styling 
+   * Conversion to mobile app with React-Native
 
-   ```bash
-   heroku login
-   ```
 
-6. Login to the heroku container registry
 
-   ```bash
-   heroku container:login
-   ```
 
-7. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-8. Push your docker container to heroku from the root directory of your project.
-   (If you are using an M1 mac, follow [these steps below](#for-m1-mac-users) instead, then continue on to step 9.)
-   This will build the Dockerfile and push the image to your heroku container registry.
-
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
-
-9. Release your docker container to heroku
-
-      ```bash
-      heroku container:release web -a {NAME_OF_HEROKU_APP}
-      ```
-
-10. set up your database
-
-      ```bash
-      heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-      heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-      ```
-
-11. Under Settings find "Config Vars" and add any additional/secret .env
-variables.
-
-12. profit
-
-### For M1 Mac users
-
-(Replaces **Step 8**)
-
-1. Build image with linux platform for heroku servers. Replace
-{NAME_OF_HEROKU_APP} with your own tag:
-
-   ```bash=
-   docker buildx build --platform linux/amd64 -t {NAME_OF_HEROKU_APP} .
-   ```
-
-2. Tag your app with the url for your apps registry. Make sure to use the name
-of your Heroku app in the url and tag name:
-
-   ```bash=2
-   docker tag {NAME_OF_HEROKU_APP} registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
-
-3. Use docker to push the image to the Heroku container registry:
-
-   ```bash=3
-   docker push registry.heroku.com/{NAME_OF_HEROKU_APP}/web
-   ```
