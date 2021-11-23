@@ -57,6 +57,19 @@
     cursor: pointer;
 }
 
+.messageBoardSelectTabs.messageSearchTabs p{
+    position: relative;
+    top: 5px;
+    padding-left: 28px;
+    padding-right: 28px;
+    padding-top: 6px;
+    padding-bottom: 8px;
+    margin: 0;
+    border: solid green;
+    /* cursor: pointer; */
+    width: 5px;
+}
+
 .messageBoardTab img{
     height: 50px;
     width: 50px;
