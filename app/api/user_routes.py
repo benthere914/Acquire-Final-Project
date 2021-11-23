@@ -114,6 +114,7 @@ def get_buyer_message_boards(userId):
     boards = {board.to_dict()['id']:board.to_dict() for board in MessageBoard.query.filter(MessageBoard.potentialBuyerId == userId).all()}
     for board in boards:
         boards[board]['last_message'] = Message.query.filter(or_(Message.authorId == boards[board]['sellerId'], Message.authorId == boards[board]['potentialBuyerId'])).filter(Message.messageBoardId == board).order_by(Message.createdAt).first().to_dict()
+        boards[board]['messages'] = {message.to_dict()['id']: message.to_dict() for message in Message.query.filter(Message.messageBoardId == board)}
         boards[board]['user'] = User.query.filter(User.id != userId).filter(or_(User.id == boards[board]['sellerId'], User.id == boards[board]['potentialBuyerId'])).first().to_dict()
     print(boards)
     return jsonify(boards)
@@ -124,5 +125,6 @@ def get_seller_message_boards(userId):
     boards = {board.to_dict()['id']:board.to_dict() for board in MessageBoard.query.filter(MessageBoard.sellerId == userId).all()}
     for board in boards:
         boards[board]['last_message'] = Message.query.filter(or_(Message.authorId == boards[board]['sellerId'], Message.authorId == boards[board]['potentialBuyerId'])).filter(Message.messageBoardId == board).order_by(Message.createdAt.desc()).first().to_dict()
+        boards[board]['messages'] = {message.to_dict()['id']: message.to_dict() for message in Message.query.filter(Message.messageBoardId == board)}
         boards[board]['user'] = User.query.filter(User.id != userId).filter(or_(User.id == boards[board]['sellerId'], User.id == boards[board]['potentialBuyerId'])).first().to_dict()
     return jsonify(boards)
