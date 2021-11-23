@@ -4,7 +4,7 @@ By Benjamin Rose
 ## Table of contents
    * [Acquire at a glance](#acquire-at-a-glance)
    * [Example Usage](#Example-Usage)
-   * [Application Architexture](#Application-Architexture)
+   * [Application Architexture](#application-architecture)
    * [Frontend Overview](#Frontend-Overview)
    * [Backend overview](#Backend-Overview)
    * [Styling](#Styling)
