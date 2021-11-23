@@ -1,7 +1,7 @@
 import './index.css'
 import Dropdown from 'react-dropdown';
 import { useSelector } from "react-redux"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Carousel } from 'react-responsive-carousel';
 import { useHistory } from 'react-router';
 import BetterImage from '../betterImage';
@@ -12,8 +12,9 @@ const NewProductPage = () => {
         e.target.src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
     }
     const userId = useSelector(state => state.session.user.id)
+    const options = useSelector(state => state.options)
     const [title, setTitle] = useState('')
-    const [price, setPrice] = useState('')
+    const [price, setPrice] = useState(0)
     const [category, setCategory] = useState('')
     const [condition, setCondition] = useState('')
     const [quantity, setQuantity] = useState(1)
@@ -27,9 +28,27 @@ const NewProductPage = () => {
     const [viewImg2Error, setViewImg2Error] = useState(false)
     const [img3Error, setImg3Error] = useState(false)
     const [viewImg3Error, setViewImg3Error] = useState(false)
-    const options = useSelector(state => state.options)
 
-    
+    const [titleError, setTitleError] = useState('')
+    const [priceError, setPriceError] = useState('')
+    const [categoryError, setCategoryError] = useState('')
+    const [conditionError, setConditionError] = useState('')
+    const [descriptionError, setDescriptionError] = useState('')
+    const [quantityError, setQuantityError] = useState('')
+    const [categoryClass, setCategoryClass] = useState('')
+    const [conditionClass, setConditionClass] = useState('')
+
+    useEffect(() => {
+        setCategoryClass('')
+        setCategoryError('')
+    }, [category])
+
+    useEffect(() => {
+        setConditionClass('')
+        setConditionError('')
+    }, [condition])
+
+
 
     const publishHandler = async (e) => {
         e.preventDefault()
@@ -47,11 +66,11 @@ const NewProductPage = () => {
             body: JSON.stringify({
                 userId,
                 title,
-                price,
+                price: +price,
                 category,
                 condition,
                 description,
-                quantity,
+                quantity: +quantity,
                 icon1,
                 icon2,
                 icon3
@@ -60,6 +79,22 @@ const NewProductPage = () => {
             if (response.ok) {
                 await response.json().then((e) => {history.push(`/items/${e['id']}`)})
             }
+            else{
+                const result = await response.json()
+                console.log('bad data')
+                setTitleError(result?.title)
+                setPriceError(result?.price)
+                setDescriptionError(result?.description)
+                setQuantityError(result?.quantity)
+                setCategoryError(result?.category)
+                setConditionError(result?.condition)
+                if (result?.condition){
+                    setConditionClass('badDropDown')
+                }
+                if (result?.category){
+                    setCategoryClass('badDropDown')
+                }
+            }
 
     }
     return (
@@ -67,26 +102,78 @@ const NewProductPage = () => {
         <div className='publishMain'>
             <div className='publishForm'>
                 <p>Item For Sale</p>
-                {/* <UserTag user={user}/> */}
                 <form onSubmit={(e) => {publishHandler(e)}}>
-                <p>Title</p>
-                <input required={true} type='text' value={title} onChange={(e) => {setTitle(e.target.value)}}></input>
-                <p>Price</p>
-                <input required={true} type='text' value={price} onChange={(e) => {setPrice(e.target.value)}}></input>
-                <p>Category</p>
-                <Dropdown options={options} placeholder='select an option' onChange={setCategory} value={category}/>
-                <p>Condition</p>
-                <Dropdown options={['New', 'Like New','Used', 'Refurbished', 'For Parts or Scrap']} placeholder='select an option' onChange={setCondition} value={condition}/>
-                <p>Description</p>
-                <input type='text' value={description} onChange={(e) => {setDescription(e.target.value)}}></input>
-                <p>Count</p>
-                <input type='number' value={quantity} onChange={(e) => {setQuantity(e.target.value)}} default={1} min={1}/>
+                <p>Title {titleError}</p>
+                <input
+                    required={true}
+                    type='text'
+                    value={title}
+                    onChange={(e) => {setTitle(e.target.value); setTitleError('')}}
+                    style={titleError?{border: 'solid red 1px'}: null}>
+                </input>
+                <p>Price {priceError}</p>
+                <input
+                    required={true}
+                    type='number'
+                    value={price}
+                    min={0} max={5000}
+                    onChange={(e) => {setPrice(e.target.value); setPriceError('')}}
+                    style={priceError?{border: 'solid red 1px'}: null}>
+                </input>
+                <p>Category {categoryError}</p>
+                <Dropdown
+                    options={options}
+                    placeholder='select an option'
+                    onChange={setCategory}
+                    value={category}
+                    controlClassName={categoryClass}
+
+                />
+                <p>Condition {conditionError}</p>
+                <Dropdown
+                    options={['New', 'Like New','Used', 'Refurbished', 'For Parts or Scrap']}
+                    placeholder='select an option'
+                    onChange={setCondition}
+                    value={condition}
+                    controlClassName={conditionClass}
+                />
+                <p>Description <span style={{fontSize: 22}}>{descriptionError}</span></p>
+                <input
+                    type='text'
+                    value={description}
+                    onChange={(e) => {setDescription(e.target.value); setDescriptionError('')}}
+                    style={descriptionError?{border: 'solid red 1px'}: null}>
+                </input>
+                <p>Count {quantityError}</p>
+                <input
+                    type='number'
+                    value={quantity}
+                    onChange={(e) => {setQuantity(e.target.value); setQuantityError('')}}
+                    default={1}
+                    min={1}
+                    max={20}
+                    style={quantityError?{border: 'solid red 1px'}: null}>
+                </input>
                 <p>Photo Url {viewImg1Error?' - Invalid Image Icon':null}</p>
-                <input style={viewImg1Error?{border: 'solid red 2px'}: null}  type='text' value={icon1} onChange={(e) => {setViewImg1Error(false);setIcon1(e.target.value)}}></input>
+                <input
+                    style={viewImg1Error?{border: 'solid red 2px'}: null}
+                    type='text' value={icon1}
+                    onChange={(e) => {setViewImg1Error(false);setIcon1(e.target.value)}}>
+                </input>
                 <p>Photo Url {viewImg2Error?' - Invalid Image Icon':null}</p>
-                <input style={viewImg2Error?{border: 'solid red 2px'}: null}  type='text' value={icon2} onChange={(e) => {setViewImg2Error(false);setIcon2(e.target.value)}}></input>
+                <input
+                    style={viewImg2Error?{border: 'solid red 2px'}: null}
+                    type='text'
+                    value={icon2}
+                    onChange={(e) => {setViewImg2Error(false);setIcon2(e.target.value)}}>
+                </input>
                 <p>Photo Url {viewImg3Error?' - Invalid Image Icon':null}</p>
-                <input style={viewImg3Error?{border: 'solid red 2px'}: null} type='text' value={icon3} onChange={(e) => {setViewImg3Error(false);setIcon3(e.target.value)}}></input>
+                <input
+                    style={viewImg3Error?{border: 'solid red 2px'}: null}
+                    type='text'
+                    value={icon3}
+                    onChange={(e) => {setViewImg3Error(false);setIcon3(e.target.value)}}>
+                </input>
                 <button type={'submit'}>Publish</button>
                 </form>
             </div>
