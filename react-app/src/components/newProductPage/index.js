@@ -1,7 +1,7 @@
 import './index.css'
 import Dropdown from 'react-dropdown';
 import { useSelector } from "react-redux"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Carousel } from 'react-responsive-carousel';
 import { useHistory } from 'react-router';
 import BetterImage from '../betterImage';
@@ -35,8 +35,18 @@ const NewProductPage = () => {
     const [conditionError, setConditionError] = useState('')
     const [descriptionError, setDescriptionError] = useState('')
     const [quantityError, setQuantityError] = useState('')
+    const [categoryClass, setCategoryClass] = useState('')
+    const [conditionClass, setConditionClass] = useState('')
 
+    useEffect(() => {
+        setCategoryClass('')
+        setCategoryError('')
+    }, [category])
 
+    useEffect(() => {
+        setConditionClass('')
+        setConditionError('')
+    }, [condition])
 
 
 
@@ -76,6 +86,14 @@ const NewProductPage = () => {
                 setPriceError(result?.price)
                 setDescriptionError(result?.description)
                 setQuantityError(result?.quantity)
+                setCategoryError(result?.category)
+                setConditionError(result?.condition)
+                if (result?.condition){
+                    setConditionClass('badDropDown')
+                }
+                if (result?.category){
+                    setCategoryClass('badDropDown')
+                }
             }
 
     }
@@ -90,7 +108,7 @@ const NewProductPage = () => {
                     required={true}
                     type='text'
                     value={title}
-                    onChange={(e) => {setTitle(e.target.value)}}
+                    onChange={(e) => {setTitle(e.target.value); setTitleError('')}}
                     style={titleError?{border: 'solid red 1px'}: null}>
                 </input>
                 <p>Price {priceError}</p>
@@ -99,35 +117,38 @@ const NewProductPage = () => {
                     type='number'
                     value={price}
                     min={0} max={5000}
-                    onChange={(e) => {setPrice(e.target.value)}}
+                    onChange={(e) => {setPrice(e.target.value); setPriceError('')}}
                     style={priceError?{border: 'solid red 1px'}: null}>
                 </input>
-                <p>Category</p>
+                <p>Category {categoryError}</p>
                 <Dropdown
                     options={options}
                     placeholder='select an option'
                     onChange={setCategory}
                     value={category}
+                    controlClassName={categoryClass}
+
                 />
-                <p>Condition</p>
+                <p>Condition {conditionError}</p>
                 <Dropdown
                     options={['New', 'Like New','Used', 'Refurbished', 'For Parts or Scrap']}
                     placeholder='select an option'
                     onChange={setCondition}
                     value={condition}
+                    controlClassName={conditionClass}
                 />
                 <p>Description <span style={{fontSize: 22}}>{descriptionError}</span></p>
                 <input
                     type='text'
                     value={description}
-                    onChange={(e) => {setDescription(e.target.value)}}
+                    onChange={(e) => {setDescription(e.target.value); setDescriptionError('')}}
                     style={descriptionError?{border: 'solid red 1px'}: null}>
                 </input>
                 <p>Count {quantityError}</p>
                 <input
                     type='number'
                     value={quantity}
-                    onChange={(e) => {setQuantity(e.target.value)}}
+                    onChange={(e) => {setQuantity(e.target.value); setQuantityError('')}}
                     default={1}
                     min={1}
                     max={20}

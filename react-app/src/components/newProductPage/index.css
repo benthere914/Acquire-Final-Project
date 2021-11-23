@@ -119,3 +119,7 @@
     display: none;
 
 }
+
+.badDropDown{
+    border: solid red 1px;
+}
