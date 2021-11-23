@@ -13,6 +13,7 @@ def send_message():
     print(body, 888)
     message_boards = MessageBoard.query.filter(MessageBoard.sellerId == body['sellerId']).filter(MessageBoard.potentialBuyerId == body['buyerId']).all()
     if len(message_boards) == 1:
+        message_boards[0].title = body['itemSelected']
         db.session.add(Message(messageBoardId=message_boards[0].to_dict()['id'], authorId=body['authorId'], message=body['message'], createdAt=datetime.now()))
         db.session.commit()
         return {'messageBoardId': message_boards[0].to_dict()['id']}

@@ -26,15 +26,24 @@ const MessagesPage = () => {
     const [sellerId, setSellerId] = useState(0)
     const [buyerId, setBuyerId] = useState(0)
     const selectedMessageBoards = useSelector(state => Object.values(state[`${selectedBoard}MessageBoards`]))
+    const buyerMessageBoards = useSelector(state => Object.values(state.buyerMessageBoards))
+    const sellerMessageBoards = useSelector(state => Object.values(state.sellerMessageBoards))
+
     const [hasBoards, setHasBoards] = useState(true)
     const [customContextMenuVisible, setCustomContextMenuVisible] = useState(false)
     const [customMenuId, setCustomMenuId] = useState(0)
     const [boardTitle, setBoardTitle] = useState('')
+    const [boardsToMap, setBoardsToMap] = useState([])
+
     return (
     <>
         <div>
             <div className='messagesPage'>
                 <MessageBoards
+                    buyerMessageBoards={buyerMessageBoards}
+                    sellerMessageBoards={sellerMessageBoards}
+                    setBoardsToMap={setBoardsToMap}
+                    boardsToMap={boardsToMap}
                     setBoardTitle={setBoardTitle}
                     setCustomContextMenuVisible={setCustomContextMenuVisible}
                     setCustomMenuId={setCustomMenuId}
@@ -52,7 +61,10 @@ const MessagesPage = () => {
                     dateConverter={dateConverter}/>
                 {hasBoards?
                 <Messages
+                    setBoardsToMap={setBoardsToMap}
+                    boardsToMap={boardsToMap}
                     boardTitle={boardTitle}
+                    setBoardTitle={setBoardTitle}
                     customContextMenuVisible={customContextMenuVisible}
                     setCustomContextMenuVisible={setCustomContextMenuVisible}
                     customMenuId={customMenuId}
