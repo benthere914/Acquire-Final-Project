@@ -97,7 +97,6 @@ const Messages = ({boardTitle, setBoardTitle, customMenuId, customContextMenuVis
         }
         else{
             setBadMessage(true)
-            console.log('bad data messages')
         }
 
 
