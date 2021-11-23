@@ -1,11 +1,8 @@
 import './index.css'
-import { useSelector, useDispatch } from 'react-redux'
-import { useEffect, useState } from 'react'
-import { getBuyerMessageBoards } from '../../store/buyerMessageBoards'
-import { getSellerMessageBoards } from '../../store/sellerMessageBoards'
+import { useSelector } from 'react-redux'
+import {  useState } from 'react'
 import Messages from '../messages'
 import MessageBoards from '../messageBoards'
-import { getMessages } from '../../store/messages'
 const dateDiff = require('date-difference')
 const MessagesPage = () => {
     const [buttonText, setButtonText] = useState('Send')
@@ -90,26 +87,3 @@ const MessagesPage = () => {
 }
 
 export default MessagesPage
-
-
-// <div className='messagesPage'>
-//                 <MessageBoards setBoardId={setBoardId} setBuyerId={setBuyerId} setSellerId={setSellerId} setSelectedBoard={setSelectedBoard} selectedBoard={selectedBoard} selectedMessageBoards={selectedMessageBoards} imgErrorHandler={imgErrorHandler} dateConverter={dateConverter}/>
-//                 {sellerId?
-//                 <div className='messages'>
-//                     {messages?.map((message) => (
-//                         <div className='message' key={message?.id}>
-//                             <img
-//                                 src={message?.author?.icon}
-//                                 alt={message?.author?.username}
-//                                 onError={(e) => {imgErrorHandler(e)}}
-//                                 />
-//                             <p>{message?.message}</p>
-//                             <p>{message?.author?.username}</p>
-//                             {/* <p className='messageDate'>{dateConverter(message?.createdAt)}</p> */}
-//                         </div>
-//                     ))}
-//                 </div>
-//                 :null}
-//                 <input className='newMessageInput' value={messageText} onChange={(e) => {setMessageText(e.target.value)}}></input>
-//                 <button onClick={() => {sendMessageHandler()}}>Send</button>
-//             </div>

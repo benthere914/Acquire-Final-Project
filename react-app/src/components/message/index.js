@@ -1,13 +1,12 @@
 import './index.css'
 import EditMessagePopup from '../editMessagePopup';
-import { useState } from 'react';
 import { useHistory } from 'react-router';
 const Message = ({setButtonText, boardId, editMessageModal, setEditMessageModal, selectedMessage,setSelectedMessage, userId, message, imgErrorHandler}) => {
     const history = useHistory()
     return (
     <>
 
-    {message?.authorId == userId?
+    {message?.authorId === userId?
         <>
                 <div className='message myUser' key={message?.id} onContextMenu={(e) => {setSelectedMessage(message?.id);e.preventDefault(); setEditMessageModal(true)}}>
                     <p>{message?.message}</p>
@@ -16,7 +15,7 @@ const Message = ({setButtonText, boardId, editMessageModal, setEditMessageModal,
                         alt={message?.author?.username}
                         onError={(e) => {imgErrorHandler(e)}}
                     />
-                {editMessageModal && selectedMessage == message?.id?<EditMessagePopup userId={userId} setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} id={message?.id}/>:null}
+                {editMessageModal && selectedMessage === message?.id?<EditMessagePopup userId={userId} setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} id={message?.id}/>:null}
                 </div>
         </>
         :
