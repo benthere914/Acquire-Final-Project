@@ -30,7 +30,7 @@ def delete_message_board(message_board_id):
 @login_required
 def update_message_board(message_board_id):
     body = request.get_json()
-    if len(body['title']) > 0:
+    if 0 < len(body['title']) < 50 :
         message_board = MessageBoard.query.get(message_board_id)
         message_board.title = body['title']
         db.session.commit()
