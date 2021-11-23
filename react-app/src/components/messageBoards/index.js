@@ -47,8 +47,9 @@ const MessageBoards = ({buyerMessageBoards, sellerMessageBoards, setBoardTitle, 
             setSearchResults((prev) => {
                 const temp = []
                 const boards = [...buyerMessageBoards, ...sellerMessageBoards]
+                console.log(boards[0]?.user?.username?.toLowerCase()?.includes(message?.toLowerCase()))
                 for (let i = 0; i < boards?.length; i++){
-                    if (boards[i]?.title.toLowerCase().includes(message.toLowerCase())){
+                    if (boards[i]?.title.toLowerCase().includes(message?.toLowerCase())){
                             if (boards[i].potentialBuyerId === userId){
                                 boards[i].boardType = 'Buying From - '
                             }
@@ -58,6 +59,15 @@ const MessageBoards = ({buyerMessageBoards, sellerMessageBoards, setBoardTitle, 
                             temp.unshift(boards[i])
 
                     }
+                    else if (boards[i]?.user?.username?.toLowerCase().includes(message?.toLowerCase())){
+                        if (boards[i].potentialBuyerId === userId){
+                            boards[i].boardType = 'Buying From - '
+                        }
+                        else if (boards[i].sellerId === userId){
+                            boards[i].boardType = 'Selling To - '
+                        }
+                        temp.push(boards[i])
+                    }
                     else if (messagesContain(boards[i].messages, message.toLowerCase())){
                         if (boards[i].potentialBuyerId === userId){
                             boards[i].boardType = 'Buying From - '
@@ -65,8 +75,7 @@ const MessageBoards = ({buyerMessageBoards, sellerMessageBoards, setBoardTitle, 
                         else if (boards[i].sellerId === userId){
                             boards[i].boardType = 'Selling To - '
                         }
-                            temp.push(boards[i])
-
+                        temp.push(boards[i])
                     }
                 }
                 return temp
