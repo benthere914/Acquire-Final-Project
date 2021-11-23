@@ -27,37 +27,9 @@ const NewProductPage = () => {
     const [viewImg2Error, setViewImg2Error] = useState(false)
     const [img3Error, setImg3Error] = useState(false)
     const [viewImg3Error, setViewImg3Error] = useState(false)
-    const options = [
-        'All Categories',
-        'Antiques',
-        'Art',
-        'Baby',
-        'Books',
-        'Cameras & Photo',
-        'Clothing, & Shoes',
-        'Collectibles',
-        'Computers & Tables',
-        'Electronics',
-        'Crafts',
-        'Dolls & Bears',
-        'DVDs & Movies',
-        'Entertainment Misc',
-        'Gift Cards',
-        'Health & Beauty',
-        'Home & Garden',
-        'Jewely & Watches',
-        'Music',
-        'Musical Instruments',
-        'Pet Supplies',
-        'Pottery & Glass',
-        'Sporting Goods',
-        'Sports Memorabillia',
-        'Stamps',
-        'Toys & hobbies',
-        'Travel',
-        'Video Games',
-        'Everything Else'
-    ]
+    const options = useSelector(state => state.options)
+
+    
 
     const publishHandler = async (e) => {
         e.preventDefault()

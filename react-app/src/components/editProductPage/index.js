@@ -18,6 +18,7 @@ const EditProductPage = () => {
     }
     const userId = useSelector(state => state.session.user.id)
     const item = useSelector(state => state.selectedItem)
+    const options = useSelector(state => state.options)
     const [title, setTitle] = useState('')
     const [price, setPrice] = useState('')
     const [category, setCategory] = useState('')
@@ -48,37 +49,7 @@ const EditProductPage = () => {
         setIcon2(item?.photos[1]?.photoUrl)
         setIcon3(item?.photos[2]?.photoUrl)
     }, [item])
-    const options = [
-        'All Categories',
-        'Antiques',
-        'Art',
-        'Baby',
-        'Books',
-        'Cameras & Photo',
-        'Clothing, & Shoes',
-        'Collectibles',
-        'Computers & Tables',
-        'Electronics',
-        'Crafts',
-        'Dolls & Bears',
-        'DVDs & Movies',
-        'Entertainment Misc',
-        'Gift Cards',
-        'Health & Beauty',
-        'Home & Garden',
-        'Jewely & Watches',
-        'Music',
-        'Musical Instruments',
-        'Pet Supplies',
-        'Pottery & Glass',
-        'Sporting Goods',
-        'Sports Memorabillia',
-        'Stamps',
-        'Toys & hobbies',
-        'Travel',
-        'Video Games',
-        'Everything Else'
-    ]
+
     useEffect(() => {
         if (typeof category === 'object'){setCategory(category.value)}
         if (typeof condition === 'object'){setCondition(condition.value)}

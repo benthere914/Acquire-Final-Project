@@ -1,16 +1,16 @@
 const LOAD_ALL_OPTIONS = 'LOAD_ALL_OPTIONS/options'
 
 const load_options = (payload) => {
-    return {
-        type: LOAD_ALL_OPTIONS,
-        payload
-    }
+    console.log(LOAD_ALL_OPTIONS)
+    return ({type: LOAD_ALL_OPTIONS,payload})
+
 }
 
-const loadOptions = () => async (dispatch) => {
+
+export const loadOptions = () => async (dispatch) => {
     const response = await fetch('/api/options')
     if (response.ok){
-        const options = response.json()
+        const options = await response.json()
         dispatch(load_options(options))
     }
 }
@@ -19,7 +19,7 @@ const loadOptions = () => async (dispatch) => {
 export default function reducer(state = {}, action) {
     switch (action.type) {
       case LOAD_ALL_OPTIONS:
-        return action.payload
+        return action.payload.options
       default:
         return state;
     }

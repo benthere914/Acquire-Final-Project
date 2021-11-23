@@ -48,37 +48,7 @@ const SellAnotherProductPage = () => {
         setIcon2(item?.photos[1]?.photoUrl)
         setIcon3(item?.photos[2]?.photoUrl)
     }, [item])
-    const options = [
-        'All Categories',
-        'Antiques',
-        'Art',
-        'Baby',
-        'Books',
-        'Cameras & Photo',
-        'Clothing, & Shoes',
-        'Collectibles',
-        'Computers & Tables',
-        'Electronics',
-        'Crafts',
-        'Dolls & Bears',
-        'DVDs & Movies',
-        'Entertainment Misc',
-        'Gift Cards',
-        'Health & Beauty',
-        'Home & Garden',
-        'Jewely & Watches',
-        'Music',
-        'Musical Instruments',
-        'Pet Supplies',
-        'Pottery & Glass',
-        'Sporting Goods',
-        'Sports Memorabillia',
-        'Stamps',
-        'Toys & hobbies',
-        'Travel',
-        'Video Games',
-        'Everything Else'
-    ]
+    const options = useSelector(state => state.options)
     useEffect(() => {
         if (typeof category === 'object'){setCategory(category.value)}
         if (typeof condition === 'object'){setCondition(condition.value)}
