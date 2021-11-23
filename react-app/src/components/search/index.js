@@ -15,12 +15,12 @@ const Search = () => {
         'Clothing, & Shoes',
         'Collectibles',
         'Computers & Tables',
-        'phones and accessories',
+        'Phones and Accessories',
         'Electronics',
         'Musical Instruments',
         'Pet Supplies',
         'Sporting Goods',
-        'Toys & hobbies',
+        'Toys & Hobbies',
         'Game Consoles'
     ]
 

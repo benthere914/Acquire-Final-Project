@@ -142,6 +142,27 @@
     position: relative;
     left: 30px;
 }
+.click1{
+    top: 0px;
+    left: 380px;
+    position: absolute;
+    height: 500px;
+    width: 380px;
+}
+.click2{
+    top: 0px;
+    left: 762px;
+    position: absolute;
+    height: 500px;
+    width: 380px;
+}
+.click3{
+    top: 0px;
+    left: 1142px;
+    position: absolute;
+    height: 500px;
+    width: 358px;
+}
 
 .carouselCard3 .mainDiv3 p{
     color: white;
