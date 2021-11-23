@@ -121,7 +121,6 @@ def update_item():
     good_quantity = False
     good_category = False
     good_condition = False
-    print(body)
     if (body['category'] != '' and isinstance(body['category'], str)):
         good_category = True
     if (body['condition'] != '' and isinstance(body['condition'], str)):
@@ -135,7 +134,6 @@ def update_item():
     if (1 <= body['quantity'] <= 20 and isinstance(body['quantity'], int) and not '.' in str(body['quantity'])):
         good_quantity = True
     if (good_category and good_condition and good_title and good_price and good_description and good_quantity):
-        print('got here')
         category_id = Category.query.filter(Category.name == body['category']).first().to_dict()['id']
         item = Item.query.get(body['id'])
         item.categoryId=category_id
