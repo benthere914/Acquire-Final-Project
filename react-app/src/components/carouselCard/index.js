@@ -1,9 +1,11 @@
+import { useHistory } from 'react-router'
 import './index.css'
 const CarouselCard = ({id}) => {
+    const history = useHistory()
     if (id === 1){
         return (
             <>
-            <div className='carouselParent'>
+            <div className='carouselParent' onClick={() => {history.push('/search/Computers%20&%20Tables/')}}>
                 <div className='carouselCard1'>
                     <div className='mainDiv1'>
                         <p className='mainPTag1'>Gifts for the ultimate Gamer</p>
@@ -21,7 +23,7 @@ const CarouselCard = ({id}) => {
     else if (id === 2){
         return (
             <>
-            <div className='carouselParent'>
+            <div className='carouselParent' onClick={() => {history.push('/search/Toys%20&%20Hobbies/')}}>
                 <div className='carouselCard2'>
                     <div className='mainDiv2'>
                         <p className='mainPTag2'>Get more 'OMG' for your buck</p>
@@ -44,12 +46,21 @@ const CarouselCard = ({id}) => {
                     <p>We've got a feeling you'll love these</p>
                     <button>Shop All Tech <span><i className='fas fa-arrow-right'></i></span></button>
                 </div>
-                <div className='imagesDiv3'>
+                <div className='imagesDiv3' >
                     <img alt='carousel card' src='https://i.ebayimg.com/images/g/apkAAOSwkSJc0K6h/s-l400.webp'></img>
                     <img alt='carousel card' src='https://i.ebayimg.com/images/g/dCIAAOSwvxtc0K6q/s-l400.webp'></img>
                     <img alt='carousel card' src='https://i.ebayimg.com/images/g/uAYAAOSwdHhc0K6y/s-l400.webp'></img>
                 </div>
             </div>
+            </div>
+            <div className='click1' onClick={() => {history.push('/search/Phones%20and%20Accessories/')}}>
+
+            </div>
+            <div className='click2' onClick={() => {history.push('/search/Electronics/Television')}}>
+
+            </div>
+            <div className='click3' onClick={() => {history.push('/search/Game%20Consoles/')}}>
+
             </div>
 
             </>
