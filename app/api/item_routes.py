@@ -2,8 +2,9 @@ import re
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from sqlalchemy.orm import query_expression
+from sqlalchemy.sql.expression import false, true
 from werkzeug.wrappers.request import PlainRequest
-from app.models import User, Item, ItemPhoto, Category, db
+from app.models import User, Item, ItemPhoto, Category, category, db
 from datetime import date
 from sqlalchemy import or_
 
@@ -63,17 +64,53 @@ def get_item(id):
 @item_routes.route('/', methods=['POST'])
 def add_item():
     body = request.get_json()
-    category_id = Category.query.filter(Category.name == body['category']['value']).first().to_dict()['id']
-    item = Item(categoryId=category_id, sellerId=body['userId'], name=body['title'], description=body['description'], dateListed=date.today(), price=int(body['price']), discount=0, condition=body['condition']['value'], count=int(body['quantity']))
-    db.session.add(item)
-    db.session.commit()
-    itemId = item.to_dict()['id']
-    db.session.add(ItemPhoto(itemId=itemId, photoUrl=body['icon1']))
-    db.session.add(ItemPhoto(itemId=itemId, photoUrl=body['icon2']))
-    db.session.add(ItemPhoto(itemId=itemId, photoUrl=body['icon3']))
-    db.session.commit()
+    good_title = False
+    good_price = False
+    good_description = False
+    good_quantity = False
+    print('*****************')
+    print('*****************')
+    print('*****************')
+    print('*****************')
+    print('*****************')
+    print('*****************')
+    print('*****************')
+    print('*****************')
 
-    return jsonify({'message': 'success', 'id': item.to_dict()['id']})
+    print(body)
+    print(8 < len(body['title']) <  35)
+    if (8 < len(body['title']) < 35) and isinstance(body['title'], str):
+        good_title = True
+    if (0 <= body['price'] <= 5000 and isinstance(body['price'], int) and not '.' in str(body['price'])):
+        good_price = True
+    if (8 < len(body['description']) < 500) and isinstance(body['description'], str):
+        good_description = True
+    if (1 <= body['quantity'] <= 20 and isinstance(body['quantity'], int) and not '.' in str(body['quantity'])):
+        good_quantity = True
+    print(good_title)
+    if (good_title and good_price and good_description and good_quantity):
+        category_id = Category.query.filter(Category.name == body['category']['value']).first().to_dict()['id']
+        item = Item(categoryId=category_id, sellerId=body['userId'], name=body['title'], description=body['description'], dateListed=date.today(), price=int(body['price']), discount=0, condition=body['condition']['value'], count=int(body['quantity']))
+        db.session.add(item)
+        db.session.commit()
+        itemId = item.to_dict()['id']
+        db.session.add(ItemPhoto(itemId=itemId, photoUrl=body['icon1']))
+        db.session.add(ItemPhoto(itemId=itemId, photoUrl=body['icon2']))
+        db.session.add(ItemPhoto(itemId=itemId, photoUrl=body['icon3']))
+        db.session.commit()
+
+        return jsonify({'message': 'success', 'id': item.to_dict()['id']})
+
+    output = {}
+    if not good_price:
+        output['price'] = ' - Must be an integer between 0 and 5000'
+    if not good_title:
+        output['title'] = ' - Must be between 8 and 35 characters'
+    if not good_description:
+        output['description'] = ' - Must be between 8 and 500 characters'
+    if not good_quantity:
+        output['quantity'] = ' - Must be and integer between 1 and 20'
+    return jsonify(output), 401
 
 
 
