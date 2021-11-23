@@ -26,7 +26,7 @@ const setMessageBoard_ = (messageBoard) => ({
         })
     })
     const response = await result.json()
-    return dispatch(setMessageBoard_({response, boardType, sellerId, buyerId}))
+    return dispatch(setMessageBoard_({itemSelected, response, boardType, sellerId, buyerId}))
 
 
   };
@@ -40,6 +40,7 @@ const setMessageBoard_ = (messageBoard) => ({
             tempState['boardType'] = action.payload.boardType
             tempState['sellerId'] = action.payload.sellerId
             tempState['buyerId'] = action.payload.buyerId
+            tempState['title'] = action.payload.itemSelected
             return tempState
         case RESET:
             return {}
