@@ -15,6 +15,8 @@ import EditProductPage from './components/editProductPage';
 import ProfilePage from './components/profile';
 import EditUserPage from './components/editUser';
 import MessagesPage from './components/messagesPage';
+import { loadOptions } from './store/options';
+
 import SearchPage from './components/searchPage';
 import SellAnotherProductPage from './components/sellSameProductPage';
 import { authenticate } from './store/session';
@@ -24,10 +26,12 @@ function App() {
     const [itemSelected, setItemSelected] = useState('regular')
 	const dispatch = useDispatch();
 
+
 	useEffect(() => {
 		(async () => {
 			await dispatch(authenticate());
 			setLoaded(true);
+            dispatch(loadOptions())
 		})();
 	}, [dispatch]);
 

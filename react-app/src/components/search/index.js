@@ -4,26 +4,11 @@ import 'react-dropdown/style.css';
 import './index.css'
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 const Search = () => {
     const history = useHistory()
     const [option, setOption] = useState('All Categories')
-    const options = [
-        'All Categories',
-        'Antiques',
-        'Books',
-        'Cameras & Photo',
-        'Clothing, & Shoes',
-        'Collectibles',
-        'Computers & Tables',
-        'Phones and Accessories',
-        'Electronics',
-        'Musical Instruments',
-        'Pet Supplies',
-        'Sporting Goods',
-        'Toys & Hobbies',
-        'Game Consoles'
-    ]
-
+    const options = useSelector(state => state.options)
     const [searchText, setSearchText] = useState('')
     const optionHandler = (option) => {
         if (typeof option === 'string'){

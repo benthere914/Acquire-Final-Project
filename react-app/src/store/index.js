@@ -6,6 +6,7 @@ import selectedItem from './selectedItem'
 import buyerMessageBoards from './buyerMessageBoards'
 import sellerMessageBoards from './sellerMessageBoards'
 import selectedMessageBoard from './selectedMessageBoard'
+import options from './options'
 import messages from './messages'
 const rootReducer = combineReducers({
   session,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   buyerMessageBoards,
   sellerMessageBoards,
   selectedMessageBoard,
-  messages
+  messages,
+  options
 });
 
 
