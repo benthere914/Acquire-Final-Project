@@ -130,7 +130,7 @@ const SignUpForm = () => {
                         onClick={() => {setViewRepeatPassword((current) => !current)}}>
                     </i>
                 </div>
-                <button style={{height: 500}} className='signUpButton' type='submit'>Sign Up</button>
+                <button className='signUpButton' type='submit'>Sign Up</button>
             </form>
 
         </>
