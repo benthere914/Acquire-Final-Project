@@ -19,7 +19,7 @@ const MainDropdown = () => {
     return (
     <>
     {user?.username?
-    <div className='mainDropDown' style={user?.id === 1?{height: 170}:null}>
+    <div className='mainDropDown' style={user?.id === 1?{height: 155}:null}>
         <div className='topOfMainDropDown' onClick={() => {history.push(`/users/${user?.id}`)}}>
             <img
                 className='userPhoto'
@@ -48,7 +48,7 @@ const MainDropdown = () => {
                 <i className='fas fa-comment-dots'/>
                 <p>messages</p>
             </li>
-            <li onClick={() => {dispatch(logout()); history.push('/')}}>
+            <li style={{borderBottomLeftRadius: 5, borderBottomRightRadius: 5}} onClick={() => {dispatch(logout()); history.push('/')}}>
                 <i className='fas fa-sign-out-alt'/>
                 <p>Log out</p>
             </li>
@@ -56,7 +56,7 @@ const MainDropdown = () => {
     </div>:
     <div className='mainDropDown' style={{height: 72, width: 125}}>
         <ul>
-            <li style={{borderTopLeftRadius: 22, borderTopRightRadius: 22}} onClick={() => {history.push('sign-up')}}>
+            <li style={{borderTopLeftRadius: 5, borderTopRightRadius: 5}} onClick={() => {history.push('sign-up')}}>
                 <i className='fas fa-plus'/>
                 <p>Sign Up</p>
             </li>
@@ -64,7 +64,7 @@ const MainDropdown = () => {
                 <i className='fas fa-cog'/>
                 <p>Log In</p>
             </li>
-            <li style={{borderBottomLeftRadius: 22, borderBottomRightRadius: 22}} onClick={() => {dispatch(login('demo@aa.io', 'password'))}}>
+            <li style={{borderBottomLeftRadius: 5, borderBottomRightRadius: 5}} onClick={() => {dispatch(login('demo@aa.io', 'password'))}}>
                 <i className='fas fa-comment-dots'/>
                 <p>Demo</p>
             </li>
