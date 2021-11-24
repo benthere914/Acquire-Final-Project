@@ -19,10 +19,18 @@
 }
 
 .itemTopRightDiv{
-    /* border: solid black; */
-    width: 900px;
-    height: 560px;
+    border: solid gray;
+    border-radius: 15px;
+    width: 600px;
+    height: 500px;
     margin: 25px;
+    /* padding-left: 100px; */
+    padding: 100px;
+
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: center; */
+    /* align-items: center; */
 }
 .itemBottomDiv{
     /* border: solid black; */
@@ -184,8 +192,8 @@ p.count{
 
 .itemTopRightDiv .messageTag{
     position: absolute;
-    bottom: 730px;
-    right: 320px;
+    bottom: 627px;
+    right: 200px;
     border: solid gray;
     border-radius: 5px;
     width: 230px;
