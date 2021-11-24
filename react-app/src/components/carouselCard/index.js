@@ -44,7 +44,7 @@ const CarouselCard = ({id}) => {
             <div className='carouselCard3' style={{backgroundColor: 'rgb(230, 32, 72)'}}>
                 <div className='mainDiv3'>
                     <p>We've got a feeling you'll love these</p>
-                    <button>Shop All Tech <span><i className='fas fa-arrow-right'></i></span></button>
+                    <button className='carousel3Button' onClick={() => {history.push('/search/All%20Categories/laptop%20phone%20television%20xbox%20switch%20playstation')}}>Shop All Tech <span><i className='fas fa-arrow-right'></i></span></button>
                 </div>
                 <div className='imagesDiv3' >
                     <img alt='carousel card' src='https://i.ebayimg.com/images/g/apkAAOSwkSJc0K6h/s-l400.webp'></img>
