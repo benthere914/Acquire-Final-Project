@@ -53,7 +53,7 @@ const ProductPage = () => {
         <div className='itemMainDiv'>
             <div className='itemTopDiv'>
                 <div className='itemTopLeftDiv'>
-                    <Carousel infiniteLoop={true}>
+                    <Carousel infiniteLoop={true} showArrows={false}>
 
                             {photos?.map((photo) => (
                             <img
