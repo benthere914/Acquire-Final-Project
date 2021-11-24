@@ -22,7 +22,7 @@ antiques_photos = [
     'https://funntiques.com/files/2021/05/Turn_of_the_Century_Panel_Lamp-min.jpeg',
 
     'https://susansilverantiques.com/wp-content/uploads/chinese-antique-baluster-blue-white-prunus-branches-lamp-circa-1850-susan-silver-antiques-4197-11-new.jpg',
-    'https://thumbs.worthpoint.com/zoom/images2/1/1114/10/antique-chinese-blue-white-porcelain_1_eacc04ddfd0a6c4cadab6be23ffe6a0a.jpg',
+
     'https://ae01.alicdn.com/kf/HTB1.12GouuSBuNjy1Xcq6AYjFXab/Jingdezhen-The-Cultural-Revolution-antique-porcelain-factory-vases-goods-flowers-and-gold-vintage-antiques-vase.jpg',
     'https://the-maac.com/wp-content/uploads/2020/02/IMG_2100.jpg',
     'https://cdn0.rubylane.com/_pod/item/1822641/19-224/Antique-Hand-Painted-Nippon-Moriage-Floral-pic-1A-2048%3A10.10-66f7aef8-f.jpg',
@@ -299,7 +299,7 @@ music_instruments_photos = [
     'https://i1.wp.com/thompsonmusic.com/wp-content/uploads/2017/01/model_a.jpg?fit=505%2C325&ssl=1',
     'https://images.musicstore.de/images/1280/yamaha-ytr-2330-bb-trumpet-gold-lacquer_1_BLA0003132-000.jpg',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShyIAQLv6xDVR0STJlSzcVZpkUtP64Wptg-w&usqp=CAU',
-    'https://thumbs.static-thomann.de/thumb/orig/pics/bdb/484261/14817556_800.jpg'
+    'https://thumbs.static-thomann.de/thumb/orig/pics/bdb/484261/14817556_800.jpg',
 
     'https://m.media-amazon.com/images/I/8186g7plXaL._AC_SL1500_.jpg',
     'https://m.media-amazon.com/images/I/814CB9HtujL._AC_SL1500_.jpg',
@@ -396,12 +396,11 @@ toys_and_hobbies_photos = [
     'https://purewows3.imgix.net/images/articles/2020_04/best-board-games-for-adults-off-topic.jpg?auto=format,compress&cs=strip',
 
     'https://www.armadalib.org/images/leggos-1.png/@@images/image.png',
-    'https://i.pinimg.com/originals/87/e8/15/87e815c79f5a20e2a03f6d552bb1e01f.jpg',
+
     'https://l450v.alamy.com/450v/pw9et7/close-of-of-a-pile-of-leggos-so-terrible-to-step-on-barefoot!-pw9et7.jpg',
     'https://www.lego.com/cdn/cs/set/assets/blt6631c3930abc6526/21324.jpg?fit=bounds&format=jpg&quality=80&width=1500&height=1500&dpr=1',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnWKYM8zaXEbRpUrUGGv9BWtlSx_YTPx5-q7dWm5SKQEwYEGIWeEgk0BTKZ32H7TKZ28Q&usqp=CAU',
     'https://media.istockphoto.com/photos/lego-policeman-figure-with-aircraft-picture-id458963595?k=20&m=458963595&s=612x612&w=0&h=YNpWzT96MKHPFBhAQZLrZgU27eB3NCGEDySU6XaTpYM=',
-    'https://i.pinimg.com/550x/63/91/33/6391332314200f752bda88283f949001.jpg',
     'https://www.target.com.au/medias/static_content/product/images/full/88/80/A1738880.jpg?impolicy=product_portrait_hero',
     'https://media.istockphoto.com/photos/legos-picture-id520177236?s=612x612',
     'https://target.scene7.com/is/image/Target/GUEST_e82ad916-16ae-48e5-b13b-73e4a0b9b682?wid=488&hei=488&fmt=pjpeg',
