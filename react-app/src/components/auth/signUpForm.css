@@ -24,9 +24,18 @@
 }
 
 button.signUpButton{
+    background-color: white;
     width: 330px;
-    height: 500px;
+    padding: 15px 50px;
+    border-radius: 5px;
     cursor: pointer;
+    border: none;
+    outline: none;
+}
+
+button.signUpButton:hover{
+    background-color: gray;
+    color: white
 }
 
 .formData{

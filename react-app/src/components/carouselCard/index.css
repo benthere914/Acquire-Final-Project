@@ -186,4 +186,11 @@
     background-color: white;
     cursor: pointer;
     border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+.carousel3Button:hover{
+    background-color: gray;
+    color: white;
 }
