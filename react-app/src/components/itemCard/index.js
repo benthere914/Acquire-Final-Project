@@ -13,7 +13,7 @@ const ItemCards = ({items}) => {
                         </div>
                         <div className='cardData'>
                             <p>{item?.name}</p>
-                            <p>{item?.price}</p>
+                            <p>${item?.price}</p>
                             <p className='free shipping'>Free shipping</p>
                         </div>
                     </div>

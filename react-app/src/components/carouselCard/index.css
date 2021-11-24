@@ -177,3 +177,10 @@
 .carousel-status{
     display: none;
 }
+
+.carousel3Button{
+    position: relative;
+    bottom: 60px;
+    right: 20px;
+    padding: 5px 10px;
+}
