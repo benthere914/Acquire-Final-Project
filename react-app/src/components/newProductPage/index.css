@@ -43,6 +43,15 @@
     /* left: 5px; */
     height: 30px;
     cursor: pointer;
+    background-color: white;
+    outline: none;
+    border: solid gray;
+}
+
+.publishForm button:hover{
+    cursor: pointer;
+    background-color: gray;
+    color: white;
 }
 .publishForm .Dropdown-root{
     width: 95%;
