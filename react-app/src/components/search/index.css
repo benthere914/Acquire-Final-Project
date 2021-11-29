@@ -4,9 +4,6 @@
     justify-content: space-between;
     align-items: center;
     position: relative;
-    /* left: 400px; */
-    /* bottom: 40px; */
-    /* border: solid black; */
     right: 200px;
 }
 .search input{
@@ -15,7 +12,6 @@
     padding-left: 15px;
     font-size: 25px;
     position: relative;
-    /* right: 50px; */
 }
 
 
@@ -35,7 +31,6 @@
 }
 .Dropdown-root{
     width: 250px;
-    /* height: 15px; */
     cursor: pointer;
 }
 
@@ -49,23 +44,21 @@
     height: 35px;
     width: 250px;
     overflow: hidden;
+    padding: 7px;
 }
 
 .search div.Dropdown-control .Dropdown-placeholder{
     font-size: 22px;
     overflow: hidden;
 }
-.search div.Dropdown-control .Dropdown-arrow-wrapper{
-    position: relative;
-    left: 40px;
-    bottom: 15px;
+.search div.Dropdown-control .Dropdown-arrow-wrapper .Dropdown-arrow{
+    right: 15px;
 }
 
 .categoryModalButton p{
     font-size: 20px;
     height: 45px;
     width: 1450px;
-    /* border: solid black; */
     position: relative;
     right: 50px;
     text-align: center;
