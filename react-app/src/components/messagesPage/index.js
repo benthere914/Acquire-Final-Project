@@ -31,12 +31,15 @@ const MessagesPage = () => {
     const [customMenuId, setCustomMenuId] = useState(0)
     const [boardTitle, setBoardTitle] = useState('')
     const [boardsToMap, setBoardsToMap] = useState([])
+    const [badMessage, setBadMessage] = useState(false)
+
 
     return (
     <>
         <div>
             <div className='messagesPage'>
                 <MessageBoards
+                    setBadMessage={setBadMessage}
                     buyerMessageBoards={buyerMessageBoards}
                     sellerMessageBoards={sellerMessageBoards}
                     setBoardsToMap={setBoardsToMap}
@@ -58,6 +61,8 @@ const MessagesPage = () => {
                     dateConverter={dateConverter}/>
                 {hasBoards?
                 <Messages
+                    badMessage={badMessage}
+                    setBadMessage={setBadMessage}
                     setBoardsToMap={setBoardsToMap}
                     boardsToMap={boardsToMap}
                     boardTitle={boardTitle}

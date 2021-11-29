@@ -6,7 +6,7 @@ import { getSellerMessageBoards } from '../../store/sellerMessageBoards'
 import { getMessages } from '../../store/messages'
 import Message from '../message'
 import { reset } from '../../store/selectedMessageBoard'
-const Messages = ({boardTitle, setBoardTitle, customMenuId, customContextMenuVisible, setCustomContextMenuVisible, buttonText, setButtonText, setHasBoards, boardId, setBoardId, buyerId, setBuyerId, sellerId, setSellerId, setSelectedBoard, selectedBoard, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
+const Messages = ({badMessage, setBadMessage, boardTitle, setBoardTitle, customMenuId, customContextMenuVisible, setCustomContextMenuVisible, buttonText, setButtonText, setHasBoards, boardId, setBoardId, buyerId, setBuyerId, sellerId, setSellerId, setSelectedBoard, selectedBoard, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
     const selectedMessageBoard = useSelector(state => state.selectedMessageBoard)
     const buyerMessageBoard = useSelector(state => Object.values(state.buyerMessageBoards))
     const sellerMessageBoard = useSelector(state => Object.values(state.sellerMessageBoards))
@@ -18,7 +18,6 @@ const Messages = ({boardTitle, setBoardTitle, customMenuId, customContextMenuVis
     const [selectedMessage, setSelectedMessage] = useState(0)
     const [editMessageModal, setEditMessageModal] = useState(false)
     const [loadCount, setLoadCount] = useState(0)
-    const [badMessage, setBadMessage] = useState(false)
     const dispatch = useDispatch()
     useEffect(() => {
         if (selectedMessageBoard?.messageBoardId){

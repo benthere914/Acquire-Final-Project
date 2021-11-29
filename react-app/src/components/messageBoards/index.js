@@ -2,13 +2,14 @@ import './index.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { getMessages } from '../../store/messages'
 import { useState } from 'react'
-const MessageBoards = ({buyerMessageBoards, sellerMessageBoards, setBoardTitle, setCustomContextMenuVisible,setCustomMenuId,  buttonText, setButtonText, setHasBoards, boardId, setBoardId, setBuyerId, setSellerId, setSelectedBoard, selectedBoard, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
+const MessageBoards = ({setBadMessage, buyerMessageBoards, sellerMessageBoards, setBoardTitle, setCustomContextMenuVisible,setCustomMenuId,  buttonText, setButtonText, setHasBoards, boardId, setBoardId, setBuyerId, setSellerId, setSelectedBoard, selectedBoard, selectedMessageBoards, imgErrorHandler, dateConverter}) => {
     const dispatch = useDispatch()
     const [messageSearch, setMessageSearch] = useState('')
     const [searchResults, setSearchResults] = useState([])
     const [viewSearch, setViewSearch] = useState(false)
     const userId = useSelector(state => state.session?.user?.id)
     const message_board_left_click_handler = (board) => {
+        setBadMessage(false)
         dispatch(getMessages(board?.id));
         setBoardId(board?.id);
         setSellerId(board?.sellerId);
