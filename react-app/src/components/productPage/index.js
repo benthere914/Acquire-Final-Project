@@ -20,6 +20,7 @@ const ProductPage = () => {
     const item = useSelector(state => state.selectedItem)
     const photos = useSelector(state => state.selectedItem.photos)
     const user = useSelector(state => state.session.user)
+    const [load, setLoad] = useState(false)
     const [deleteModal, setDeleteModal] = useState(false)
     const [newMessageModal, setNewMessageModal] = useState(false)
 
@@ -45,23 +46,24 @@ const ProductPage = () => {
     useEffect(() => {
         if (params?.itemId){
             const itemId = params?.itemId
-            dispatch(getItem(itemId))
+            dispatch(getItem(itemId)).then(() => {setLoad(true)})
         }
     }, [])
     return (
     <>
+    {load &&
         <div className='itemMainDiv'>
             <div className='itemTopDiv'>
                 <div className='itemTopLeftDiv'>
                     <Carousel infiniteLoop={true} showArrows={false}>
 
                             {photos?.map((photo) => (
-                            <img
+                                <img
                                 key={photo?.id}
                                 alt='item for sale'
                                 src={photo?.photoUrl}
                                 onError={(e) => {imgErrorHandler(e)}}
-                            >
+                                >
 
                             </img>))}
 
@@ -71,10 +73,10 @@ const ProductPage = () => {
                     <p className='itemName'>{item?.name}</p>
                     <UserTag user={item?.seller} extraText={'Sold by'} extraFontSize={25} extraFontWeight={600}/>
                     {user?.id !== +item?.seller?.id?(
-                            <div onClick={() => {
-                                if (user?.id){setNewMessageModal(true)}
-                                else{history.push('/login')}
-                                }} className='messageTag'>
+                        <div onClick={() => {
+                            if (user?.id){setNewMessageModal(true)}
+                            else{history.push('/login')}
+                        }} className='messageTag'>
                                 <p className=''>{`Message`}</p>
                             </div>
                         ):null}
@@ -113,19 +115,20 @@ const ProductPage = () => {
             </div>):null}
             </div>
         </div>
+        }
         {deleteModal?(
             <WarningModal
-                mainMessage='Are you sure you want to delete this post? This can not be undone'
-                mainButtonMessage={'Yes, I\'m sure. Delete This Post'}
-                secondaryButtonMessage={'No. I\'m not sure.'}
-                mainFunc={deletePostHandler}
-                setWarningModal={setDeleteModal}
-                text={password}
-                setText={setPassword}
-                error={error}
-                setError={setError}
+            mainMessage='Are you sure you want to delete this post? This can not be undone'
+            mainButtonMessage={'Yes, I\'m sure. Delete This Post'}
+            secondaryButtonMessage={'No. I\'m not sure.'}
+            mainFunc={deletePostHandler}
+            setWarningModal={setDeleteModal}
+            text={password}
+            setText={setPassword}
+            error={error}
+            setError={setError}
             />
-        ):null}
+            ):null}
     </>
     )
 }

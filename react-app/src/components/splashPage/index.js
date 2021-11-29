@@ -4,17 +4,19 @@ import CarouselCard from '../carouselCard';
 import ItemCards from '../itemCard';
 import { Carousel } from 'react-responsive-carousel';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { getTopItems } from '../../store/items';
 const SplashPage = () => {
     const dispatch = useDispatch()
     const items = useSelector(state => Object.values(state.items))
+    const [load, setLoad] = useState(false)
     useEffect(() => {
-        dispatch(getTopItems())
+        dispatch(getTopItems()).then(() => {setLoad(true)})
     }, [])
     return (
     <>
         {/* <Search/> */}
+        {load &&
         <div className='splashPage'>
 
         <div className='splashDivCarousel'>
@@ -27,6 +29,7 @@ const SplashPage = () => {
         <p className='featuredDeals'>Featured Deals</p>
         <ItemCards items={items}/>
         </div>
+        }
     </>
     )
 }

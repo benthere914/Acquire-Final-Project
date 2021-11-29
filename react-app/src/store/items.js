@@ -22,6 +22,7 @@ const loadItems = (items) => ({
     if (response.ok) {
         const items = await response.json()
         dispatch(loadItems(items));
+        return items
     }
   };
 
