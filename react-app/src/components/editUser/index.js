@@ -141,7 +141,7 @@ const EditUserPage = () => {
                                 <p>{user?.username}</p>
                             </div>
                             <div>
-                                <p className='editUserDataButton' onClick={() => {editModalButtonHandler('User Name'); setData(user?.username)}}>Edit</p>
+                                <p className='editUserDataButton' onClick={() => {editModalButtonHandler('Username'); setData(user?.username)}}>Edit</p>
                             </div>
                         </li>
                         <li>
