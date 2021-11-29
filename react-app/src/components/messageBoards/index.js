@@ -106,25 +106,24 @@ const MessageBoards = ({buyerMessageBoards, sellerMessageBoards, setBoardTitle, 
 
                     {!viewSearch?(
                         selectedMessageBoards.map((board) => (
-                        <>
+
                         <div
-                        style={boardId === board?.id?{backgroundColor: 'lightblue'}: null}
-                        // style={board?.id === customMenuId?{backgroundColor: 'orange'}:null}
-                        onClick={() => {message_board_left_click_handler(board)}}
-                        onContextMenu={(e) => {message_board_right_click_handler(e, board?.id, board?.title)}}
-                        className='messageBoardTab'
-                        key={board.id}>
-                        <img
-                        src={board?.user?.icon}
-                        alt={`chat room with ${board?.user?.username}`}
-                        onError={(e) => {imgErrorHandler(e)}}
-                        />
-                        <p className='username'>{board?.user?.username}</p>
-                        <p className='lastMessage'>{board?.last_message?.message}</p>
-                        <p className='timeSince'>{dateConverter(board?.last_message?.createdAt)}</p>
+                            key={board?.id}
+                            style={boardId === board?.id?{backgroundColor: 'lightblue'}: null}
+                            onClick={() => {message_board_left_click_handler(board)}}
+                            onContextMenu={(e) => {message_board_right_click_handler(e, board?.id, board?.title)}}
+                            className='messageBoardTab'
+                            key={board.id}>
+                            <img
+                                src={board?.user?.icon}
+                                alt={`chat room with ${board?.user?.username}`}
+                                onError={(e) => {imgErrorHandler(e)}}
+                            />
+                            <p className='username'>{board?.user?.username}</p>
+                            <p className='lastMessage'>{board?.last_message?.message}</p>
+                            <p className='timeSince'>{dateConverter(board?.last_message?.createdAt)}</p>
                         </div>
-                        {/* {board?.id === boardId && <p className='boardTitle'>{board?.title}</p>} */}
-                        </>
+
                         ))
                     ):
                     searchResults.map((board) => (
