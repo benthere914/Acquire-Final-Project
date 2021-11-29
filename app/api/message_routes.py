@@ -10,7 +10,6 @@ message_routes = Blueprint('message', __name__)
 @message_routes.route('/', methods=['POST'])
 def send_message():
     body = request.get_json()
-    print(body)
     if (0 < len(body['message']) < 1999):
         message_boards = MessageBoard.query.filter(MessageBoard.sellerId == body['sellerId']).filter(MessageBoard.potentialBuyerId == body['buyerId']).all()
         if len(message_boards) == 1:

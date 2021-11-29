@@ -1,7 +1,6 @@
 const LOAD_ALL_OPTIONS = 'LOAD_ALL_OPTIONS/options'
 
 const load_options = (payload) => {
-    console.log(LOAD_ALL_OPTIONS)
     return ({type: LOAD_ALL_OPTIONS,payload})
 
 }
