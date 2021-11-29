@@ -117,7 +117,6 @@ const EditProductPage = () => {
             }
             else{
                 const result = await response.json()
-                console.log('bad data')
                 setTitleError(result?.title)
                 setPriceError(result?.price)
                 setDescriptionError(result?.description)

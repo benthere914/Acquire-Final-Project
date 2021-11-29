@@ -11,9 +11,7 @@ const NewMessageModal = ({itemSelected, setNewMessageModal, receivingUser}) => {
     const [message, setMessage] = useState('')
     const sendMessageHandler = () => {
         dispatch(setMessageBoard(itemSelected, userId, receivingUser?.id, userId, message, 'buyer')).then((e) => {
-            console.log(e)
             if (e === 'bad message'){
-                console.log('bad data')
                 setBadMessage(true)
             }else{
             history.push('/messages')}})
