@@ -5,12 +5,10 @@ const Message = ({count, setMessageText, setButtonText, boardId, editMessageModa
     const history = useHistory()
     return (
     <>
-
-    {message?.authorId === userId?
-        <>
+        {message?.authorId === userId?
+            <>
                 <div
                     className='message myUser'
-                    key={message?.id}
                     onContextMenu={(e) => {setSelectedMessage(message?.id);e.preventDefault(); setEditMessageModal(true)}}
                     style={count <= 8? {bottom: 50, top: 0}: null}
                 >
@@ -20,15 +18,17 @@ const Message = ({count, setMessageText, setButtonText, boardId, editMessageModa
                         alt={message?.author?.username}
                         onError={(e) => {imgErrorHandler(e)}}
                     />
-                {editMessageModal && selectedMessage === message?.id?<EditMessagePopup setMessageText={setMessageText} messageText={message?.message} userId={userId} setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} id={message?.id}/>:null}
+                    {editMessageModal && selectedMessage === message?.id?<EditMessagePopup setMessageText={setMessageText} messageText={message?.message} userId={userId} setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} id={message?.id}/>:null}
                 </div>
-        </>
+            </>
         :
-        <div className='message otherUser' key={message?.id} onClick={() => {history.push(`/users/${message?.author?.id}`)}}>
-            <img
-                src={message?.author?.icon}
-                alt={message?.author?.username}
-                onError={(e) => {imgErrorHandler(e)}}
+            <div
+                className='message otherUser'
+                onClick={() => {history.push(`/users/${message?.author?.id}`)}}>
+                <img
+                    src={message?.author?.icon}
+                    alt={message?.author?.username}
+                    onError={(e) => {imgErrorHandler(e)}}
                 />
                 <p>{message?.message}</p>
             </div>}
