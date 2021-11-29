@@ -3,6 +3,17 @@ import EditMessagePopup from '../editMessagePopup';
 import { useHistory } from 'react-router';
 const Message = ({count, setMessageText, setButtonText, boardId, editMessageModal, setEditMessageModal, selectedMessage,setSelectedMessage, userId, message, imgErrorHandler}) => {
     const history = useHistory()
+    const longWord = (message) => {
+        let words = message.split(' ')
+        for (let i = 0; i < words.length; i++){
+            if (words[i].length > 25){
+                words[i] = words[i].slice(0, 25)
+                words[i] += '...'
+            }
+        }
+        words = words.join(' ')
+        return words
+    }
     return (
     <>
         {message?.authorId === userId?
@@ -12,7 +23,7 @@ const Message = ({count, setMessageText, setButtonText, boardId, editMessageModa
                     onContextMenu={(e) => {setSelectedMessage(message?.id);e.preventDefault(); setEditMessageModal(true)}}
                     style={count <= 8? {bottom: 50, top: 0}: null}
                 >
-                    <p>{message?.message}</p>
+                    <p>{longWord(message?.message)}</p>
                     <img
                         src={message?.author?.icon}
                         alt={message?.author?.username}
@@ -30,7 +41,7 @@ const Message = ({count, setMessageText, setButtonText, boardId, editMessageModa
                     alt={message?.author?.username}
                     onError={(e) => {imgErrorHandler(e)}}
                 />
-                <p>{message?.message}</p>
+                <p>{longWord(message?.message)}</p>
             </div>}
     </>
     )
