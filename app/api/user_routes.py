@@ -57,9 +57,13 @@ def update_data(userId):
     if (user.username == 'Demo' or user.username == 'demo'):
         password = 'Cannot edit this user'
         data = 'Cannot edit this user'
-
+    if 'username' in body:
+        if any(User.query.filter(User.username == body['username']).all()):
+                data = 'Username taken'
     if ('email' in body):
-        if not bool(re.search(emailRegex, body["email"])):
+        if any(User.query.filter(User.email == body['email']).all()):
+                data = 'Email taken'
+        elif not bool(re.search(emailRegex, body["email"])):
             data = 'invalid email'
 
     if ('newPassword' in body):
@@ -80,7 +84,7 @@ def update_data(userId):
         if ('newIcon' in body):
             user.icon = body['newIcon']
 
-        db.session.add(user)
+        # db.session.add(user)
         db.session.commit()
         return user.to_dict()
     else:
