@@ -141,7 +141,7 @@ const EditUserPage = () => {
                                 <p>{user?.username}</p>
                             </div>
                             <div>
-                                <p className='editUserDataButton' onClick={() => {editModalButtonHandler('User Name')}}>Edit</p>
+                                <p className='editUserDataButton' onClick={() => {editModalButtonHandler('User Name'); setData(user?.username)}}>Edit</p>
                             </div>
                         </li>
                         <li>
@@ -150,7 +150,7 @@ const EditUserPage = () => {
                                 <p>{user?.email}</p>
                             </div>
                             <div>
-                                <p className='editUserDataButton' onClick={() => {editModalButtonHandler('Email')}}>Edit</p>
+                                <p className='editUserDataButton' onClick={() => {editModalButtonHandler('Email'); setData(user?.email)}}>Edit</p>
                             </div>
                         </li><li>
                             <div>
@@ -158,7 +158,7 @@ const EditUserPage = () => {
                                 <p>{user?.icon}</p>
                             </div>
                             <div>
-                                <p className='editUserDataButton' onClick={() => {editModalButtonHandler('Icon')}}>Edit</p>
+                                <p className='editUserDataButton' onClick={() => {editModalButtonHandler('Icon'); setData(user?.icon)}}>Edit</p>
                             </div>
                         </li><li>
                             <div>
