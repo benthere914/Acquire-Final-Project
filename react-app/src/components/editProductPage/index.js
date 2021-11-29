@@ -98,11 +98,11 @@ const EditProductPage = () => {
             body: JSON.stringify({
                 userId,
                 title,
-                price,
+                price: +price,
                 category,
                 condition,
                 description,
-                quantity,
+                quantity: +quantity,
                 icon1,
                 icon2,
                 icon3,
