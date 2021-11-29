@@ -73,6 +73,7 @@ const SearchPage = () => {
     }
     return (
     <>
+    {buttonsLoaded &&
         <div className='searchPage'>
             <p className='searchTitle'>{category}</p>
             {items.length > 0?
@@ -84,6 +85,7 @@ const SearchPage = () => {
             </>
         :<p className='noItems'>There are no Items that meet the search criteria.</p>}
         </div>
+    }
     </>
     )
 }
