@@ -166,8 +166,8 @@ const Messages = ({badMessage, setBadMessage, boardTitle, setBoardTitle, customM
                     style={customContextMenuVisible?{width: 350, maxWidth: 350, overflow: 'hidden', textOverflow: 'ellipsis'}:null}
                 >{boardTitle}</p>
             </div>
-        <div style={messages?.length <= 8? {justifyContent: 'flex-end'}:null} className='messages' onMouseLeave={() => {setEditMessageModal(false);}}>
-            {messages?.map((message) => (<div key={message?.id}><Message count={messages?.length} setMessageText={setMessageText} setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage} userId={userId} message={message} imgErrorHandler={imgErrorHandler}/></div>))}
+        <div style={messages?.length <= 8? {justifyContent: 'flex-end'}:null} style={{display: 'flex', flexDirection: 'column-reverse'}} className='messages' onMouseLeave={() => {setEditMessageModal(false);}}>
+            {messages?.reverse()?.map((message) => (<div key={message?.id}><Message count={messages?.length} setMessageText={setMessageText} setButtonText={setButtonText} boardId={boardId} editMessageModal={editMessageModal} setEditMessageModal={setEditMessageModal} selectedMessage={selectedMessage} setSelectedMessage={setSelectedMessage} userId={userId} message={message} imgErrorHandler={imgErrorHandler}/></div>))}
             </div>
         </>
     :null}
