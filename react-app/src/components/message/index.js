@@ -41,7 +41,7 @@ const Message = ({count, setMessageText, setButtonText, boardId, editMessageModa
                     alt={message?.author?.username}
                     onError={(e) => {imgErrorHandler(e)}}
                 />
-                <p>{message?.message}</p>
+                <p>{longWord(message?.message)}</p>
             </div>}
     </>
     )
