@@ -79,7 +79,7 @@ const MessagesPage = () => {
                     selectedMessageBoards={selectedMessageBoards}
                     imgErrorHandler={imgErrorHandler}
                     dateConverter={dateConverter}/>
-                    :<p>You have no messages. Please visit someones profile to send a message</p>}
+                    :<p className='noMessages'>You have no messages. Please visit someones profile to send a message</p>}
             </div>
         </div>
     </>
