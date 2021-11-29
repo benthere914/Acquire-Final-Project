@@ -179,7 +179,7 @@ const EditUserPage = () => {
                     </div>
                     <div>
                         <div className='formData'>
-                            <label>{editModalTitle}{dataError}</label>
+                            <label>New {editModalTitle}{dataError}</label>
                             <input
                                 style={badData?{border: 'solid 1px red'}:null}
                                 type='text'
@@ -191,7 +191,7 @@ const EditUserPage = () => {
 
 
                         <div className='formData'>
-                            <label>Password{passwordError}</label>
+                            <label>Current Password{passwordError}</label>
                             <input
                                 style={badPassword?{border:'solid 1px red'}:null}
                                 type={viewPassword?'text':'password'}
