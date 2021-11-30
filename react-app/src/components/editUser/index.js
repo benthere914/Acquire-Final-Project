@@ -90,7 +90,7 @@ const EditUserPage = () => {
     const editUserHandler = () => {
 
 
-        if (editModalTitle === 'User Name'){
+        if (editModalTitle === 'Username'){
             dispatch(sessionActions.updateUsername(userId, data, password)).then((e) => {reset(e)})
         }
         else if (editModalTitle === 'Email'){
@@ -117,12 +117,14 @@ const EditUserPage = () => {
     {contentLoaded?
         <div className='editUserPage'>
             <div className='editUserPreviewUser'>
-                <BetterImage
+                {editModalTitle === 'Icon' &&
+                    <BetterImage
                     classname={'imageCheck'}
                     src={data}
                     alt={user?.username}
                     setError={setImgError}
-                />
+                    />
+                }
                 <img
                 src={user?.icon}
                 alt={user?.username}
